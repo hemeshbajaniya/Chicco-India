@@ -1,0 +1,37 @@
+<isif condition="${pdict.account.wishlist}">
+    <div class="col-xl-4 col-lg-6 col-md-6 wishlist-account-card" data-error-msg="${Resource.msg('wishlist.removefromwishlist.failure.msg','wishlist',null)}">
+        <div class="boxes">
+    <div class="title">
+        <div class="row">
+            <div class="col-7">
+                <h5 class="pull-left text-white mb-0">
+                    <img src="${URLUtils.staticURL('/images/my_accounts/wishlist.png')}" alt="wishlist" class="mr-1" loading="lazy"/>
+                    ${Resource.msg('label.wishlist', 'account', null)}
+                </h5>
+            </div>
+            <div class="col-5 text-right">
+                <a href="${URLUtils.url('Wishlist-Show')}" class="pull-right box_links text-white">${Resource.msg('link.viewall', 'account', null)}</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body card-min-height card-info-group pl-2">
+        <isif condition="${pdict.account.wishlist && pdict.account.wishlist.length > 0}">
+            <isloop items="${pdict.account.wishlist}" var="item">
+                <isinclude template="account/wishlist/listCard" />
+            </isloop>
+            <iselse/>
+            <p class="text-center mb-3 empty-wishlist-msg">
+                ${Resource.msg('wishlist.empty.text', 'wishlist', null)}
+            </p>
+        </isif>
+    </div>
+    <iscomment> <isif condition="${pdict.account.wishlist && pdict.account.wishlist.length > 0}">
+        <div class="card-footer card-footer-border text-center">
+            <isset name="shareLinks" value="${pdict.socialLinks}" scope="page" />
+            <isinclude template="wishlist/components/socialsharing" />
+        </div>
+    </isif> </iscomment>
+        </div>
+    </div>
+</isif>
+

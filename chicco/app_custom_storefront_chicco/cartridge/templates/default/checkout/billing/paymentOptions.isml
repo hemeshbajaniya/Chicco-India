@@ -1,0 +1,13 @@
+<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-12 pull-left form-nav billing-nav payment-information"
+     data-payment-method-id="CREDIT_CARD"
+     data-is-new-payment="${pdict.customer.registeredUser && pdict.customer.customerPaymentInstruments.length ? false : true}"
+>
+    <ul class="border-0 nav nav-tabs nav-fill payment-options" role="tablist">
+        <isinclude template="checkout/billing/paymentOptions/paymentOptionsTabs" />
+    </ul>
+</div>
+<div class="col-xl-9 col-lg-8 col-md-6 col-sm-12 col-xs-12 col-12 pull-right text-center credit-card-selection-new" >
+    <div class="border-0 tab-content">
+        <isinclude template="checkout/billing/paymentOptions/paymentOptionsContent" />
+    </div>
+</div>

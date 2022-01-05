@@ -1,0 +1,120 @@
+<isif condition="${slotcontent != null}">
+    <isloop items="${slotcontent.content}" var="contentAsset" status="selector">
+        <div class="row">
+            <div class="col-12">
+                <div class="child_age_slider">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="img_title">
+                                                <a href="${contentAsset.custom.ageUrl1}">
+                                                    <img src="${contentAsset.custom.ageImg1.url}" alt=""
+                                                        class="w-100" loading="lazy"/>
+                                                    <span>
+                                                        <isprint value="${contentAsset.custom.ageTitle1}"
+                                                            encoding="off" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="img_title">
+                                                <a href="${contentAsset.custom.ageUrl2}">
+                                                    <img src="${contentAsset.custom.ageImg2.url}" alt=""
+                                                        class="w-100" loading="lazy"/>
+                                                    <span>
+                                                        <isprint value="${contentAsset.custom.ageTitle2}"
+                                                            encoding="off" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="img_title">
+                                                <a href="${contentAsset.custom.ageUrl3}">
+                                                    <img src="${contentAsset.custom.ageImg3.url}" alt=""
+                                                        class="w-100" loading="lazy"/>
+                                                    <span>
+                                                        <isprint value="${contentAsset.custom.ageTitle3}"
+                                                            encoding="off" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="img_title">
+                                        <a href="${contentAsset.custom.ageUrl4}">
+                                            <img src="${contentAsset.custom.ageImg4.url}" alt="" class="w-100" loading="lazy"/>
+                                            <span>
+                                                <isprint value="${contentAsset.custom.ageTitle4}" encoding="off" />
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="img_title">
+                                                <a href="${contentAsset.custom.ageUrl5}">
+                                                    <img src="${contentAsset.custom.ageImg5.url}" alt=""
+                                                        class="w-100" loading="lazy"/>
+                                                    <span>
+                                                        <isprint value="${contentAsset.custom.ageTitle5}"
+                                                            encoding="off" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="img_title">
+                                                <a href="${contentAsset.custom.ageUrl6}">
+                                                    <img src="${contentAsset.custom.ageImg6.url}" alt=""
+                                                        class="w-100" loading="lazy"/>
+                                                    <span>
+                                                        <isprint value="${contentAsset.custom.ageTitle6}"
+                                                            encoding="off" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="img_title">
+                                                <a href="${contentAsset.custom.ageUrl7}">
+                                                    <img src="${contentAsset.custom.ageImg7.url}" alt=""
+                                                        class="w-100" loading="lazy"/>
+                                                    <span>
+                                                        <isprint value="${contentAsset.custom.ageTitle7}"
+                                                            encoding="off" />
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="img_title">
+                                        <a href="${contentAsset.custom.ageUrl8}">
+                                            <img src="${contentAsset.custom.ageImg8.url}" alt="" class="w-100" loading="lazy"/>
+                                            <span>
+                                                <isprint value="${contentAsset.custom.ageTitle8}" encoding="off" />
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </isloop>
+</isif>

@@ -1,0 +1,7 @@
+node_modules
+
+dw.json
+
+**/cartridge/static/**/css/*
+**/cartridge/static/**/js/*
+yotpo/.github/**

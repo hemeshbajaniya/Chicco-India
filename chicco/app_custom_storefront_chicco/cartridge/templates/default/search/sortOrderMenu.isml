@@ -1,0 +1,13 @@
+
+${Resource.msg('category.product.count.sort', 'search', null)}
+<isif condition="${pdict.productSearch.productIds.length > 0}">
+    <select name="sort-order" class="sortby_price" id="sortby_price">
+        <isloop items="${pdict.productSearch.productSort.options}" var="option">
+                        <option  value="${option.url}"
+                data-id="${option.id}"
+                ${pdict.productSearch.productSort.ruleId === option.id ? 'selected':''}>
+                ${option.displayName}
+            </option>
+        </isloop>
+    </select>
+</isif>

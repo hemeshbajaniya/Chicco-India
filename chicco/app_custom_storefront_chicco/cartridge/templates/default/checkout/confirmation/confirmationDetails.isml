@@ -1,0 +1,77 @@
+<div class="col-xl-8 col-lg-7">
+    <div class="tabbing mb-lg-0 mb-4">
+        <div class="tab-content pb-0">
+            <div class="container active shipping_product">
+                <div class="row">
+                    <div class="col-xl-11 ml-xl-4 ml-0">
+                        <div class="card border-0 confirm-details">
+                            <div class="card-body border-0">
+                                <div class="row align-items-center main_title">
+                                    <div class="col-md-12">
+                                        <h6>${Resource.msg('label.order.shipping.addresses', 'confirmation', null)}</h6>
+                                    </div>
+                                    <div class="col-12">
+                                        <span class="border-bottom"></span>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-2">
+                                    <div class="col-md-12">
+                                        <div class="address_boxes p-0 border-0">
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <isinclude template="checkout/shipping/shippingSummary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center main_title">
+                                    <div class="col-md-12">
+                                        <h6>${Resource.msg('label.order.billing.address', 'confirmation', null)}</h6>
+                                    </div>
+                                    <div class="col-12">
+                                        <span class="border-bottom"></span>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center mt-2">
+                                    <div class="col-md-12">
+                                        <div class="address_boxes p-0 border-0">
+                                            <div class="row mt-2">
+                                                <div class="col-12">
+                                                    <isinclude template="checkout/billing/billingSummary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row main_title order_history">
+                            <div class="col-md-12">
+                                <h6>${Resource.msg('label.order.shipping.itemsSummary', 'confirmation', null)}</h6>
+                            </div>
+                            <div class="col-12">
+                                <span class="border-bottom"></span>
+                            </div>
+                            <isinclude template="checkout/orderProductSummary" />
+                        </div>
+                    </div>
+                    
+                    <div class="w-100 mx-4 mb-3">
+                        <a href="${URLUtils.url('Home-Show')}" class="blue-btn w-100 btn btn-primary btn-block order-confirmation-continue-shopping" role="button" aria-pressed="true">
+                            ${Resource.msg('button.continue.shopping','confirmation',null)}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-4 col-lg-5 left_paymet_boxes pt-0">
+    <div class="card border-0 checkout-order-total-summary">
+        <div class="card-body order-total-summary p-0">
+            <isinclude template="checkout/orderTotalSummary" />
+        </div>
+    </div>
+</div>

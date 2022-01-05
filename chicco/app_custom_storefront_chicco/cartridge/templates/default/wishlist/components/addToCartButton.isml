@@ -1,0 +1,24 @@
+<iscomment> <input type="hidden" class="add-to-cart-url" value="${pdict.addToCartUrl}">
+    <a href="#" class="add_to_cart primary-btn btn btn-light btn-primary"
+        data-pid="${item.pid}"
+        data-url="${URLUtils.url('Cart-AddProduct')}"
+        data-option="${JSON.stringify(item.selectedOptions)}"
+        ${!item.available ? "disabled" : ""}
+    >
+         <i class="fa fa-shopping-bag"></i> 
+        ${Resource.msg('button.addtocart', 'common', null)}
+    </a>
+     </iscomment>
+    <input type="hidden" class="add-to-cart-url" value="${pdict.addToCartUrl}" />
+    <a href id="add-to-cart" class ="add-to-cart btn blue-btn btn-light btn-primary"
+        data-pid="${item.pid}"
+        data-url="${URLUtils.url('Cart-AddProduct', 'isWishList', true)}"
+        data-option="${JSON.stringify(item.selectedOptions)}"
+        ${!item.available ? "disabled" : ""}
+    >
+        ${Resource.msg('button.addtocart', 'common', null)}
+    </a>
+
+
+
+

@@ -1,0 +1,133 @@
+
+
+<isif condition="${pdict.items.length === 0}">
+    <div class="container cart-empty">
+        <div class="row">
+            <div class="col-12 text-center mt-5">
+                <h2>${Resource.msg('info.cart.empty.msg', 'cart', null)}</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5 mt-3">
+            <div class="col-md-5 col-12 text-center">
+                <a href="${URLUtils.url('Home-Show')}" class="primary-btn normal error continue-shopping" role="button"
+                    aria-pressed="true">
+                    ${Resource.msg('button.continue.shopping', 'confirmation', null)}
+                </a>
+            </div>
+        </div>
+    </div>
+<iselse/>
+    <section class="shopping_shortlist_sec mini-cart-data pb-3">
+        <div class="container">
+            <div class="row">
+                <!-- Shopping + Shortlist -->
+                <div class="col-xl-8 col-lg-7">
+                    <div class="tabbing cart-container">
+
+                        <!-- Tabs -->
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#Shopping_Cart">
+                                    ${Resource.msg('label.shoppingcart', 'cart', null)}
+                                </a>
+                            </li>
+                            <iscomment>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#Short_List">
+                                        ${Resource.msg('label.myshortList', 'cart', null)}
+                                    </a>
+                                </li>
+                            </iscomment>
+                        </ul>
+
+                        <div class="tab-content">
+
+                            <!-- Tab panes 1 -->
+                            <div class="tab-pane container cart cart-page active shipping_product">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <isloop items="${pdict.items}" var="lineItem" status="productItems">
+                                            <isif condition="${lineItem.productType === 'bundle'}">
+                                                <isinclude template="cart/productCard/cartBundleCard" />
+                                            <iselse/>
+                                                <isif condition="${lineItem.noProduct === true}">
+                                                    <isinclude
+                                                        template="cart/productCard/uncategorizedCartProductCard" />
+                                                <iselse/>
+                                                    <isinclude template="cart/productCard/cartProductCard" />
+                                                </isif>
+                                            </isif>
+                                        </isloop>
+                                        <isinclude template="cart/cartApproachingDiscount" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="tab-pane container shipping_product" id="Short_List">
+                                <div class="col-sm-12 col-md-12">
+                                    <isinclude url="${URLUtils.url('Wishlist-MoreList')}">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="container empty-cart-container">
+                    </div>
+                </div>
+                <!-- Payments -->
+                <div class="col-xl-4 col-lg-5 left_paymet_boxes">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="boxes delevery_details">
+                                <h6>
+                                    ${Resource.msg('label.deliverydetails', 'cart', null)}
+                                </h6>
+                                <form action="${URLUtils.url('ShipRocket-CheckService')}" method="GET"
+                                    class="check-service-ability needs-validation" novalidate>
+                                    <div class="row mt-3">
+                                        <div class="col-12 pincodes">
+                                            <div class="form-group mb-0">
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                <input type="text" name="pincode" id="pincode"
+                                                    placeholder="Enter Pincode" class="pincode-service-ability">
+                                                <input type="submit" class="check_btn" name="check" value="Check">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="d-none error-response alert alert-danger"></div>
+                                <p class="estimated-delievery-response">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="boxes coupon_code">
+                                <isinclude template="cart/cartPromoCode" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="boxes payment_info">
+                                <h6>
+                                    ${Resource.msg('label.paymentinformation', 'cart', null)}
+                                </h6>
+                                <isinclude template="cart/cartTotals" />
+                                <isinclude template="cart/checkoutButtons" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <isinclude template="cart/cartRemoveProductModal" />
+</isif>
+ 

@@ -1,0 +1,82 @@
+<tr valign="center">     
+    <td>
+        <div style="padding-bottom: 10px">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+            <tbody>
+                <tr valign="center">
+                <td style="text-align: right;" width="45%">  
+                    <div style="padding-left: 30px">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
+                        <tbody>
+                            <tr valign="center">                    
+                            <td style="text-align: left;" width="50%">  
+                                <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                ${Resource.msg('label.order.subtotal','confirmation', null)}:
+                                </p>
+                            </td>
+                            <td style="text-align: right;" width="50%">  
+                                <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                   ${pdict.order.totals.subTotal}
+                                </p>
+                            </td>    
+                            </tr>   
+                            <tr valign="center">   
+                                <isif condition="${pdict.order.totals.orderLevelDiscountTotal.value !== 0}">                 
+                                    <td style="text-align: left;" width="50%">  
+                                        <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                        ${Resource.msg('label.order.discount', 'common', null)}:
+                                        </p>
+                                    </td>
+                                    <td style="text-align: right;" width="50%">  
+                                        <p style="color: #2ECF54; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                          ${pdict.order.totals.orderLevelDiscountTotal.formatted}
+                                        </p>
+                                    </td>  
+                                </isif> 
+                            </tr>    
+                            <tr valign="center">                    
+                            <td style="text-align: left;" width="50%">  
+                                <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                ${Resource.msg('label.order.sales.tax','confirmation', null)}:
+                                </p>
+                            </td>
+                            <td style="text-align: right;" width="50%">  
+                                <p style="color: #CF602E; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                     ${pdict.order.totals.totalTax}
+                                </p>
+                            </td>    
+                            </tr>    
+                            <tr valign="center">                    
+                            <td style="text-align: left;" width="50%">  
+                                <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                ${Resource.msg('label.order.shipping.cost','confirmation', null)}:
+                                </p>
+                            </td>
+                            <td style="text-align: right;" width="50%">  
+                                <p style="color: #CF602E; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                ${pdict.order.totals.totalShippingCost}
+                                </p>
+                            </td>    
+                            </tr>     
+                            <tr valign="center">                    
+                            <td style="text-align: left; border-top: 1px solid #5B5360; padding-top: 14px;" width="50%">  
+                                <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                <b>${Resource.msg('label.order.grand.total','confirmation', null)}:</b>
+                                </p>
+                            </td>
+                            <td style="text-align: right; border-top: 1px solid #5B5360; padding-top: 14px;" width="50%">  
+                                <p style="color: #5B5360; font-size: 17px; line-height: 22px; margin: 0 0 10px; font-weight: 500;">
+                                <b>${pdict.order.totals.grandTotal}</b>
+                                </p>
+                            </td>    
+                            </tr>   
+                        </tbody>
+                    </table>
+                    </div>
+                </td>    
+                </tr>   
+            </tbody>
+        </table>
+        </div>
+    </td>                         
+</tr>

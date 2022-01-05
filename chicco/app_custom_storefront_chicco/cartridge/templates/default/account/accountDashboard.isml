@@ -1,0 +1,36 @@
+<isdecorate template="common/layout/page">
+
+    <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
+        <isinclude template="reporting/reportingUrls" />
+    </isif>
+
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/dashboard.css');
+        assets.addCss('/css/account/account.css');
+        assets.addJs('/js/wishlist.js');
+    </isscript>
+
+    <iscomment> <div class="hero slant-down account-image">
+        <h1 class="page-title">${Resource.msg('page.title.myaccount','account',null)}</h1>
+    </div> </iscomment>
+
+    
+    <!---Breadcrumbs--->
+    <isinclude template="components/breadcrumbs/pageBreadcrumbs"/>
+    <section class="my_account border_top pt-4">
+            
+        <div class="container">
+            <div class="row align-items-center">   
+                <div class="col-12">
+                    <h3>
+                        ${Resource.msg('page.title.myaccount','account',null)}
+                    </h3>
+                </div>
+            </div>
+
+            <!---Dashboard ProfileCards--->
+            <isinclude template="account/dashboardProfileCards"/>
+        </div>
+    </section>   
+</isdecorate>

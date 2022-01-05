@@ -1,0 +1,113 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/orderHistory.js');
+        assets.addCss('/css/account/profile.css');
+    </isscript>
+
+    <iscomment>
+        <div class="hero slant-down account-image">
+            <h1 class="page-title">${Resource.msg('page.title.myaccount', 'account', null)}</h1>
+        </div>
+    </iscomment>
+    <!---Breadcrumbs--->
+    <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
+
+    <section class="order_track_sec my_oder_sec pt-4">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12 ">
+                    <form>
+                        <div class="row align-items-center search_filter mb-5">
+                            <div class="col-md-8 col-sm-6 col-12 pull-left">
+                                <iscomment>  
+                                <div class="form-group">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" name="search" id="search" placeholder="Search by Order ID"
+                                        class="w-100" />
+                                </div></iscomment>
+
+                                <div class="col-12">
+                                    <h4 class="mb-4">${Resource.msg('label.orderhistory.myorders', 'account', null)}</h4>
+                                </div>
+                            </div> 
+                            <iscomment> <div class="col-md-1 text-center">
+                                <div class="form-group">
+                                    <span>${Resource.msg('label.message.or', 'account', null)}</span>
+                                </div>
+                            </div> </iscomment>
+                            <iscomment> <div class="col-md-4">
+                                <div class="form-group">
+                                    <select class="sort_by w-100"
+                                        aria-label="${Resource.msg('label.filter.order.history', 'account', null)}">
+                                        <isloop items="${pdict.filterValues}" var="filterValue">
+                                            <option value="${filterValue.optionValue}" <isif
+                                                condition="${pdict.orderFilter === filterValue.displayValue || pdict.filterValues === Resource.msg('orderhistory.sixmonths.option',
+                                                           'order', null) || pdict.filterValues === Resource.msg('orderhistory.twelvemonths.option', 'order', null)}">
+                                                selected
+                                                </isif>>
+                                                ${filterValue.displayValue}
+                                            </option>
+                                        </isloop>
+                                    </select>
+                                </div>
+                            </div> </iscomment>
+                             <div class="col-12 col-sm-6 col-md-4 pull-right">
+                                <div class="form-group">
+                                    <select class="sort_by w-100 form-control custom-select order-history-select" aria-label="${Resource.msg('label.filter.order.history','account',null)}">
+                                        <option selected disabled hidden>${Resource.msg('label.orderhistory.sortby', 'account', null)}</option> 
+                                        <isloop items="${pdict.filterValues}" var="filterValue">
+                                            <option
+                                                value="${filterValue.optionValue}"
+                                                <isif condition="${pdict.orderFilter === filterValue.displayValue
+                                                    || pdict.filterValues === Resource.msg('orderhistory.sixmonths.option','order',null)
+                                                    || pdict.filterValues === Resource.msg('orderhistory.twelvemonths.option','order',null)}"> selected</isif>>
+                                                    ${filterValue.displayValue}
+                                            </option>
+                                        </isloop>
+                                    </select>
+                                </div>
+                            </div>
+                            <iscomment> <div class="col-md-2">
+                                <div class="form-group">
+                                    <input type="submit" name="Search" value="Search" class="blue-btn d-block w-100" />
+                                </div>
+                            </div> </iscomment>
+
+                            <div class="col-12 pt-3">
+                                <span class="border_bottom_primary d-block"></span>
+                            </div>
+                        </div>
+
+                        <isinclude template="account/order/orderList" />
+
+                    </form>
+                    <iscomment>
+                        <div class="form-group">
+                            <select class="form-control custom-select order-history-select"
+                                aria-label="${Resource.msg('label.filter.order.history', 'account', null)}">
+                                <isloop items="${pdict.filterValues}" var="filterValue">
+                                    <option value="${filterValue.optionValue}" <isif
+                                        condition="${pdict.orderFilter === filterValue.displayValue || pdict.filterValues === Resource.msg('orderhistory.sixmonths.option',
+                                                   'order', null) || pdict.filterValues === Resource.msg('orderhistory.twelvemonths.option', 'order', null)}">
+                                        selected
+                                        </isif>>
+                                        ${filterValue.displayValue}
+                                    </option>
+                                </isloop>
+                            </select>
+                        </div>
+                    </iscomment>
+                </div>
+            </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-12 text-center">
+                        <a href="${URLUtils.url('Account-Show')}" class="normal primary-btn">
+                            ${Resource.msg('link.profile.backtomyaccount', 'account', null)}
+                        </a>
+                    </div>
+                </div>
+        </div>
+    </section>
+</isdecorate>

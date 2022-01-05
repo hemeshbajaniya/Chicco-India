@@ -1,0 +1,28 @@
+<isif condition="${pdict.account.payment}">
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="boxes">
+            <div class="title">
+                <div class="row">
+                    <div class="col-7">
+                        <h5 class="text-white mb-0">
+                            <img src="${URLUtils.staticURL('/images/my_accounts/cards.png')}" alt="cards" class="mr-1" loading="lazy"/>
+                            ${Resource.msg('label.payment','account',null)}
+                        </h5>
+                    </div>
+                    <div class="col-5 text-right">
+                        <isif condition="${pdict.account.payment}">
+                            <a href="${URLUtils.url('PaymentInstruments-List')}" class="box_links text-white" aria-label="${Resource.msg('label.payment.viewsavedpaymentmethods','account',null)}">${Resource.msg('link.view','account',null)}</a>
+                        </isif>
+                    </div>
+                </div> 
+            </div>
+            <isif condition="${pdict.account.payment}">
+                <div class="card-body card-min-height">
+                    <p>${Resource.msg('label.payment.credit','account',null)} ${pdict.account.payment.creditCardType}</p>
+                    <p>${pdict.account.payment.maskedCreditCardNumber}</p>
+                    <p>${Resource.msg('label.payment.ending','account',null)} ${pdict.account.payment.creditCardExpirationMonth}/${pdict.account.payment.creditCardExpirationYear}</p>
+                </div>
+            </isif>
+        </div>
+    </div>
+</isif>

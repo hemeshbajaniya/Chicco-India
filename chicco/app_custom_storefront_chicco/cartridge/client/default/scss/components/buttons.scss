@@ -1,0 +1,134 @@
+@import "../common/variables";
+
+.primary-btn {
+    border: 1px solid $primary_btn_bgcolor;
+    background-color: $primary_btn_bgcolor !important;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $white !important;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 17px;
+    width: auto;
+    text-align: center;
+    transition: 0.5s;
+}
+.primary-btn-banner{
+    border: 1px solid #343a40;
+    background-color: #343a40 !important;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $white !important;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 17px;
+    width: auto;
+    text-align: center;
+    transition: 0.5s;
+}
+.primary-btn-banner:hover {
+    border: 1px solid #343a40;
+    background-color: transparent !important;
+    color: #343a40 !important;
+    transition: 0.5s;
+}
+.primary-btn:hover {
+    border: 1px solid $primary_btn_bgcolor;
+    background-color: transparent !important;
+    color: $primary_btn_bgcolor !important;
+    transition: 0.5s;
+}
+
+.primary-border-btn {
+    border: 1px solid $primary_btn_bgcolor;
+    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $primary_btn_bgcolor;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 12px 15px;
+    text-align: center;
+    transition: 0.5s;
+}
+.primary-border-btn:hover {
+    border: 1px solid $primary_btn_bgcolor;
+    background-color: $primary_btn_bgcolor;
+    color: $white !important;
+    transition: 0.5s;
+}
+
+.secondary-btn {
+    border: 1px solid $primary_btn_bgcolor;
+    background-color: $white;
+    border-radius: 8px;
+    cursor: pointer;
+    color: $primay_color;
+    padding: 10px 10px !important;
+    width: 130px;    
+    text-align: center;
+    transition: 0.5s;
+}
+.secondary-btn:hover {
+    border: 1px solid $primary_btn_bgcolor;
+    background-color: $primary_btn_bgcolor;
+    color: $white;
+    transition: 0.5s;
+}
+
+.blue-btn {
+    border: 1px solid $blue_btn;
+    background-color: $blue_btn !important;
+    border-radius: 7px;
+    cursor: pointer;
+    color: $white !important;
+    font-size: 14px;
+    font-weight: 700 !important;
+    padding: 12px 17px; 
+    width: 130px;
+    text-align: center;   
+    transition: 0.5s;
+}
+.blue-btn:hover {
+    border: 1px solid $blue_btn !important;
+    background-color: $white !important;
+    color: $blue_btn !important;
+    transition: 0.5s;
+}
+
+.blue-border-btn {
+    border: 1px solid $blue_btn;
+    background-color: transparent;
+    border-radius: 7px;
+    cursor: pointer;
+    color: $blue_btn;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 17px; 
+    width: 130px;
+    text-align: center;   
+    transition: 0.5s;
+}
+.blue-border-btn:hover {
+    border: 1px solid $blue_btn;
+    background-color: $blue_btn;
+    color: $white;
+    transition: 0.5s;
+}
+
+.out-of-stock {
+    color: $out_of_stock;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 17px; 
+}
+
+.font-18{
+    font-size: 18px !important;
+    padding: 8px 17px !important;
+}
+@media (max-width: 767px){
+    .font-18{
+        font-size: 13px !important;
+    }
+}

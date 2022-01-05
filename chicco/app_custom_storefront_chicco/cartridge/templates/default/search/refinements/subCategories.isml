@@ -1,0 +1,6 @@
+<isloop items="${categories}" var="category" status="loopCounter">
+    <div class="form-group checkboxes-data mb-0">
+        <input class="filters-refinments" type="checkbox" id="category-${loopCounter.count}" data-href="${category.url}" ${category.selected ? 'checked': ''}>
+        <label for="category-${loopCounter.count}">${category.displayValue}</label>
+    </div> 
+</isloop>

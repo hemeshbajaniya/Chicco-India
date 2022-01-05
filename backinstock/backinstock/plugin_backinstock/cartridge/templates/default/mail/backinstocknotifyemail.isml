@@ -1,0 +1,65 @@
+<!--- TEMPLATENAME: backinstocknotifyemail.isml --->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- TemplateComment :  EMail form for inviting someone to shop  -->
+<iscontent type="text/html" charset="UTF-8"/>
+
+<html>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			${Resource.msgf('backinstock.email.msg','backinstock',null,pdict.firstName,pdict.lastName)}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			${Resource.msg('backinstock.email.msg.info','backinstock',null)}
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:50px 0;text-align: left">
+			<table  style="background:#ffffff;border:1px solid #999999;width:680px;">
+				<tr>
+					<td style="font-size:12px;font-family:arial;padding:20px 10px;vertical-align:top;">
+						<isset name="image" value="${pdict.Product.getImage('medium',0)}" scope="page"/>	
+						<isset name="imageURL" value="${image.httpURL}" scope="page"/>	
+						<isif condition="${!empty(image)}">
+							<isset name="thumbnailUrl" value="${imageURL}" scope="page"/>
+							<isset name="imageAlt" value="${image.alt}" scope="page"/>
+							<isset name="imageTitle" value="${image.title}" scope="page"/>
+						<iselse/>
+							<isset name="thumbnailUrl" value="${URLUtils.httpStatic('/images/noimagesmall.png')}" scope="page"/>
+							<isset name="imageTitle" value="${pdict.Product.name}" scope="page"/>
+							<isset name="imageAlt" value="${pdict.Product.name}" scope="page"/>
+						</isif>
+						<img src="${thumbnailUrl}" alt="${imageAlt}" title="${imageTitle}" loading="lazy"/>
+					</td>
+					<td style="font-size:12px;font-family:arial;padding:20px 10px;vertical-align:top;">
+						<h1 style="margin-top: 0px;;font-size:20px;font-family:georgia;font-weight:normal;"><isprint value="${pdict.Product.name}" encoding="off"/></h1>
+						<p>${Resource.msg('backinstock.email.itemno','backinstock',null)}: <isprint value="${pdict.Product.ID}" encoding="off"/></p>
+						<br/>
+						<isdisplayvariationvalues product="${pdict.Product}"/>
+						<isloop iterator="${pdict.ProductOptionModel.options}" alias="productOption">
+							<isset name="selectedOptionValue" value="${pdict.ProductOptionModel.getSelectedOptionValue(productOption)}" scope="page"/>					
+							<isprint value="${productOption.displayName}"/>: 
+							<isprint value="${selectedOptionValue.displayValue}"/>			
+						</isloop>
+						<br/>
+						<isif condition="${pdict.Product.shortDescription}">
+							<p>
+								${Resource.msg('backinstock.email.description','backinstock',null)}:<br />
+								<isprint value="${pdict.Product.shortDescription}" encoding="off"/>
+							</p>
+						</isif>
+					</td>
+				</tr>
+			</table>						
+		</td>
+	</tr>
+	<tr>
+		<td><a href="${pdict.pidLink}">${Resource.msg('backinstock.email.link','backinstock',null)}</a></td>
+	</tr>
+</table>
+	
+</body>
+</html>

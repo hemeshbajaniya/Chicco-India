@@ -1,0 +1,56 @@
+<section class="site-banner">
+    <div class="row">
+        <div class="col-12">
+            <div class="banner_slider">
+                <div class="owl-carousel owl-theme">
+                    <isif condition="${slotcontent != null}">
+                        <isloop items="${slotcontent.content}" var="contentAsset" status="banner">
+                            <iscomment> <isprint value="${contentAsset.custom.body}" encoding="off" /></iscomment>
+                            <div class="item">
+                                <style type="text/css">
+                                    @media (max-width: 767px) {
+                                    .banner_content .image_${banner.count} {
+                                            height: auto;
+                                            min-width: 255px;
+                                            min-height: 255px;
+                                            position: relative;
+                                            background-size: contain;
+                                            background-position: 50%;
+                                            background-repeat: no-repeat;
+                                            background-image: url(${contentAsset.custom.backgroundImgMobile.url});
+                                        }
+                                    }
+
+                                    @media (min-width: 768px) {
+                                    .banner_content .image_${banner.count} {
+                                            height: 500px;
+                                            background-size: cover;
+                                            background-image: url(${contentAsset.custom.backgroundImg.url});
+                                        }
+                                    }
+                                </style> 
+                                <div class="banner_content">
+                                    <div class="image_${banner.count} w-100" loading="lazy"></div>
+                                    <iscomment> <img src="${contentAsset.custom.backgroundImg.url}" alt="banner_img"
+                                        class="w-100" loading="lazy"/>   </iscomment>
+                                    <div class="content">
+                                        <h1 class="text-dark">
+                                            <isprint value="${contentAsset.custom.bannerTitle}" encoding="off" />
+                                        </h1>
+                                        <p class="text-dark font-size-18">
+                                            <isprint value="${contentAsset.custom.subtitle}" encoding="off" />
+                                        </p>
+                                        <a href="${contentAsset.custom.buttonUrl}"
+                                            class="primary-btn-banner d-inline-block">
+                                            <isprint value="${contentAsset.custom.buttonText}" encoding="off" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </isloop>
+                    </isif>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

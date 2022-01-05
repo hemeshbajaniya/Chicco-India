@@ -1,0 +1,40 @@
+<div class="row mt-lg-5 mt-3 pb-4">
+    <div class="col-md-12">
+        <div class="promotion_slider pb-0">
+            <div class="owl-carousel owl-theme">  
+                <isloop items="${pdict.promotions}" var="promotion" status="promotionLoopState">
+                <isif condition="${promotion.homePageDisplay}">                 
+                    <div class="item">
+                        <div class="prmotion_box text-center">
+                            <isif condition="${!empty(promotion.imgURL)}">
+                                <a href="${promotion.promotionURL}">
+                                    <img src="${promotion.imgURL}" title="${promotion.imgTitle}"
+                                        alt="${promotion.imgTitle}" loading="lazy"/>
+                                </a>
+                            </isif>
+                            <div class="promotion_content">
+                                <a href="${promotion.promotionURL}">
+                                    <h3 class="text-center">
+                                        ${promotion.name}
+                                    </h3>
+                                </a>
+                                <p>
+                                    <isprint value="${promotion.calloutMsg}" encoding="off" />
+                                </p>
+                                <div class="range-slider mb-2">
+                                    <input class="input-range" id="range_data" type="range" />
+                                </div>
+                                <div class="timer">
+                                    <img src="${URLUtils.staticURL('/images/clockwise.svg')}"
+                                        alt="${promotion.endDateString}" title="${promotion.endDateString}" loading="lazy" />
+                                    ${promotion.endDateString}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </isif>
+                </isloop>
+            </div>
+        </div>
+    </div>
+</div>

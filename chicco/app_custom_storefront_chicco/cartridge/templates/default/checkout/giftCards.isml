@@ -1,0 +1,52 @@
+<div class="row card col-md-12 gift-card-summary payment-form align-items-center main_title border-0 mt-4 mb-2 px-0">
+    <div class="form-group payment_radio">
+        <div class="card-header clearfix border-0 p-0 col-md-12">
+            <input type="radio" name="gift_card" id="gift_card" class="select_card" />
+            <label for="gift_card" class="card-header clearfix main_lable gift_card">
+                ${Resource.msg('gift.cards.title', 'checkout', null)}
+            </label>
+        </div>
+        <div class="card-body card_details">
+            <isif condition="${!empty(pdict.customer.savedGV)}">
+                <div class="row no-gutters pb-2">
+                    <div class="col-sm-12">
+                        <label class="form-control-label" for="gift-certificate-input">
+                            ${Resource.msg('label.gift.certificate.saved', 'checkout', null)}
+                        </label>
+                        <select class="saved-gv-select form-control">
+                            <isloop items="${pdict.customer.savedGV}" var="gv" status="index">
+                                    <option value="${gv}">${gv}</option>
+                            </isloop>
+                        </select>
+                    </div>
+                </div>
+            </isif>
+            <div class="row no-gutters">
+                <div class="col-sm-8">
+                    <div class="form-group required mb-3">
+                        <label class="form-control-label" for="gift-certificate-input">
+                            ${Resource.msg('label.gift.certificate.input', 'checkout', null)}
+                        </label>
+                        <input type="text" class="form-control" id="gift-certificate-input-number">
+                        <div class="invalid-feedback">${Resource.msg('message.gift.certificate.invalid', 'checkout', null)}</div>
+                    </div>
+                </div>
+                <div class="col-sm-4 pl-2">
+                    <div class="form-group required mb-3">
+                        <label class="form-control-label" for="gift-certificate-input">
+                            ${Resource.msg('label.gift.certificate.input.amount', 'checkout', null)}
+                        </label>
+                        <input type="number" class="form-control" id="gift-certificate-input-amount">
+                        <div class="invalid-feedback">${Resource.msg('message.gift.certificate.invalid.amount', 'checkout', null)}</div>
+                    </div>
+                </div>
+                <div class="response-msg alert alert-danger d-none"></div>
+            </div>
+            <div class="row">
+                <div class="col-7 col-sm-4">
+                    <button data-action="${URLUtils.url('GiftCard-AppleGiftCard')}" type="button" name="apply" class="blue-btn btn btn-apply-gift-card btn-block btn-primary">${Resource.msg('label.gift.certificate.button.apply', 'checkout', null)}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

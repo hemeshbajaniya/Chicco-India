@@ -1,0 +1,54 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+
+        var assets = require('*/cartridge/scripts/assets.js');
+
+        assets.addJs('/js/jquery.min.js');
+        assets.addJs('/js/jquery.counterup.min.js');
+        assets.addJs('/js/popper.min.js');
+        assets.addJs('/js/jquery.matchHeight-min.js');
+        assets.addJs('/js/slick.js');
+        assets.addJs('/js/owl.carousel.js');
+        assets.addJs('/js/main_design.js');
+    </isscript>
+
+
+    <main>
+        <!-- .site-banner -->
+        <isslot id="home-banner-m" description="Home page banner." context="global" />
+        <!-- .site-banner -->
+
+        <!-- .select_child_age_sec -->
+        <section class="select_child_age_sec">
+            <div class="container">
+                <isslot id="home-select-age" context="global" description="HomePage Child-Age Selection" />
+            </div>
+        </section>
+        <iscomment> <isinclude template="home/home_selectChildAge" />  </iscomment>
+        <!-- ./select_child_age_sec -->
+
+        <!-- .collection_offer -->
+        <isslot id="home-promo-banner-m" description="Homepage Promotion banner." context="global" />
+        <!-- ./collection_offer -->
+
+        <!-- .product_section -->
+        <isslot id="home-products-m" description="Product tiles on the home page." context="global" />
+        <!-- ./product_section -->
+
+
+        <!-- .promotion_section -->
+        <isslot id="home-promotion-slider" description="home page promotion slider" context="global" />
+        <!-- ./promotion_section -->
+
+
+
+        <!-- .advice_section -->
+        <isslot id="home-advice" context="global" description="Our Advice article" />
+        <!-- ./advice_section -->
+
+
+
+    </main>
+
+
+</isdecorate>

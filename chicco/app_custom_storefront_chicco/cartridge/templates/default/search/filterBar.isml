@@ -1,0 +1,39 @@
+<iscomment> <ul>
+    <isloop items="${pdict.productSearch.selectedFilters}" var="refinement">
+        <isif condition="${refinement.type === 'color'}">
+            <li class="swatch-filter swatch-filter-${refinement.presentationId}">
+                <button data-href="${refinement.url}" class="btn">
+                    <span class="sr-only">
+                        ${Resource.msgf('assistive.text.remove.filter.button', 'search', null, refinement.title)}
+                    </span>
+                </button>
+            </li>
+        <iselse>
+            <li class="filter-value">
+                <button data-href="${refinement.url}" class="btn text-left">
+                    <span aria-hidden="true">${refinement.displayValue}</span>
+                    <span class="sr-only">
+                        ${Resource.msgf('assistive.text.remove.filter.button', 'search', null, refinement.title)}
+                    </span>
+                </button>
+            </li>
+        </isif> 
+    </isloop>
+</ul>  </iscomment>
+
+<isloop items="${pdict.productSearch.selectedFilters}" var="refinement">
+    <div class="category">
+        <div class="list_cat">
+            <div class="no_of_products">
+                34
+            </div>
+            <div class="category-filter">
+                <div class="form-group checkboxes-data mb-0 parent-cat">
+                    <input type="checkbox" id="Mugs" />
+                    <label for="Mugs">Mugs</label>
+                </div>     					
+            </div>
+        </div>
+        <span class="border-bottom"></span>
+    </div>
+</isloop>

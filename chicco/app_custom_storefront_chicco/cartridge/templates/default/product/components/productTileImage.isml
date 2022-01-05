@@ -1,0 +1,15 @@
+
+
+<div class="img text-center">
+    <a href="${pdict.urls.product}" target="_blank">
+        <img src="${product.images.medium[0].url}"
+        alt="${product.productName}"
+        title="${product.images.medium[0].title}" loading="lazy" />
+    </a>
+    <iscomment> <a class="wishlistTile" href="${URLUtils.url('Wishlist-AddProduct')}" title="${Resource.msg('wishlist.addto.wishlist.heart', 'wishlist', null)}">
+        <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
+            <i class="fa fa-heart-o fa-stack-1x"></i>
+        </span>
+    </a> </iscomment>
+</div>

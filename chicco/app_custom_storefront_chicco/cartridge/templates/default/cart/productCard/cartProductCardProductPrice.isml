@@ -1,0 +1,35 @@
+<isif condition="${!lineItem.isBonusProductLineItem}">
+<iscomment> <div class="row">
+    <div class="col-5 original_price">
+        <p>
+           ${Resource.msg('label.MRP', 'cart', null)}
+        </p>
+    </div>
+    <div class="col-7 original_price">
+        <div class="line-item-price-${lineItem.UUID}">
+            <isset name="price" value="${lineItem.price}" scope="page" />
+            <isinclude template="/product/components/pricing/main.isml" />
+        </div>
+    </div>
+</div> </iscomment>
+
+<div class="row">
+    <div class="col-5 discounted_price">
+        <p>
+            <strong>
+               ${Resource.msg('label.price', 'cart', null)}
+            </strong>
+        </p>
+    </div>
+    <div class="col-7 discounted_price">
+        <p>
+            <strong>
+                <div class="line-item-price-${lineItem.UUID}">
+                    <isset name="price" value="${lineItem.price}" scope="page" />
+                    <isinclude template="/product/components/pricing/main.isml" />
+                </div>
+            </strong>
+        </p>
+    </div>
+</div>
+</isif>

@@ -1,0 +1,153 @@
+<div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="boxes">
+        <div class="title">
+            <div class="row">
+                <isif condition="${pdict.accountlanding}">
+                    <div class="col-7">
+                        <h5 class="pull-left text-white mb-0">
+                            <img src="${URLUtils.staticURL('/images/my_accounts/order.png')}" alt="order" class="mr-1" />
+                            ${Resource.msg('label.orderhistory','account',null)}
+                        </h5>
+                    </div>
+                    <div class="col-5 text-right">
+                        <a href="${URLUtils.url('Order-History')}" class="pull-right box_links text-white"  aria-label="${Resource.msg('label.orderhistory.vieworderhistory','account',null)}">${Resource.msg('link.view','account',null)}</a>
+                    </div>
+                <iselse/>
+                    <div class="col-7">
+                        <h3 class="pull-left">${Resource.msg('label.orderhistory.orderno','account',null)} ${order.orderNumber}</h3>
+                    </div>
+                    <div class="col-5 text-right">
+                        <a href="${URLUtils.url('Order-History')}" class="pull-right box_links text-white"  aria-label="${Resource.msg('label.orderhistory.vieworderhistory','account',null)}">${Resource.msg('link.view','account',null)}</a>
+                    </div>
+                </isif>
+            </div>
+        </div>
+
+        <isif condition="${pdict.account.orderHistory}">
+            <div class="card-body card-min-height card-info-group">
+                <div class="row">
+                    <isif condition="${pdict.accountlanding}">
+                        <div class="col-12">
+                            ${Resource.msg('label.orderhistory.mostrecentorder','account',null)}
+                        </div>
+                    </isif>
+                    <div class="col-4 hidden-xs-down">
+                        <img class="img-fluid" src="${order.firstLineItem.imageURL}" alt="${order.firstLineItem.alt}" title="${order.firstLineItem.title}"/>
+                    </div>
+                    <div class="col-sm-8 col-12">
+                        <isif condition="${pdict.accountlanding}">
+                            <p>${Resource.msg('label.orderhistory.ordernumber','account',null)} <isprint value="${order.orderNumber}"/></p>
+                        </isif>
+                        <p>${Resource.msg('label.orderhistory.dateordered','account',null)} <isprint value="${order.creationDate}"/></p>
+                        <p>${Resource.msg('label.orderhistory.orderstatus','account',null)} <span class="dashboard-order-card-status">${order.orderStatus}</span></p>
+                        <isinclude template="account/order/shippingTitle"/>
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-7 dashboard-order-card-footer-columns card-info-group mb-0">
+                        <p class="mb-0">${Resource.msg('label.orderhistory.totalitems','account',null)}</p>
+                        <p class="dashboard-order-card-footer-value">
+                            <isprint value="${order.productQuantityTotal}" formatter="#"/>
+                        </p>
+                    </div>
+                    <div class="col-5 dashboard-order-card-footer-columns card-info-group">
+                        <p class="mb-0">${Resource.msg('label.orderhistory.ordertotal','account',null)} </p>
+                        <p class="dashboard-order-card-footer-value">
+                            ${order.priceTotal}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <iselse/>
+            <div class="card-body card-min-height">
+                <p class="text-center">${Resource.msg('message.emptycard', 'account', null)}</p>
+            </div>
+        </isif>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<iscomment> <div class="card">
+    <isif condition="${pdict.accountlanding}">
+        <div class="card-header clearfix">
+            <h2 class="pull-left">${Resource.msg('label.orderhistory','account',null)}</h2>
+            <a href="${URLUtils.url('Order-History')}" class="pull-right"  aria-label="${Resource.msg('label.orderhistory.vieworderhistory','account',null)}">${Resource.msg('link.view','account',null)}</a>
+        </div>
+    <iselse/>
+        <div class="card-header clearfix">
+            <h3 class="pull-left">${Resource.msg('label.orderhistory.orderno','account',null)} ${order.orderNumber}</h3>
+            <a href="${URLUtils.url('Order-Details', 'orderID', order.orderNumber, 'orderFilter', pdict.orderFilter)}" class="pull-right" aria-label="${Resource.msgf('label.orderhistory.vieworderdetails', 'account', null, order.orderNumber)}">${Resource.msg('link.view','account',null)}</a>
+        </div>
+    </isif>
+
+    <div class="card-body card-info-group">
+        <div class="row">
+            <isif condition="${pdict.accountlanding}">
+                <div class="col-12">
+                    ${Resource.msg('label.orderhistory.mostrecentorder','account',null)}
+                </div>
+            </isif>
+            <div class="col-4 hidden-xs-down">
+                <img class="img-fluid" src="${order.firstLineItem.imageURL}" alt="${order.firstLineItem.alt}" title="${order.firstLineItem.title}">
+            </div>
+            <div class="col-sm-8 col-12">
+                <isif condition="${pdict.accountlanding}">
+                    <p>${Resource.msg('label.orderhistory.ordernumber','account',null)} <isprint value="${order.orderNumber}"/></p>
+                </isif>
+                <p>${Resource.msg('label.orderhistory.dateordered','account',null)} <isprint value="${order.creationDate}"/></p>
+                <p>${Resource.msg('label.orderhistory.orderstatus','account',null)} <span class="dashboard-order-card-status">${order.orderStatus}</span></p>
+                <p>${Resource.msg('label.shipping.status','account',null)} <span class="dashboard-order-card-status">${order.shippingStatus}</span></p>
+                <isinclude template="account/order/shippingTitle"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-7 dashboard-order-card-footer-columns card-info-group">
+                <a href="${URLUtils.url('Increff-CustomerCancellation')}" data-order-id="${order.orderNumber}" class="card-footer-link account-cancelled-order">${Resource.msg('label.order.cancelle','account',null)}</a>
+            </div>
+             <div class="col-5 dashboard-order-card-footer-columns card-info-group">
+                <a href="${URLUtils.url('Increff-GetOrderInvoice')}" data-order-id="${order.orderNumber}" class="card-footer-link account-get-invoice">${Resource.msg('lable.order.invoice','account',null)}</a>
+            </div>
+        </div>
+        <div class="pl-3 row invoice-response-${order.orderNumber}"></div>
+        <hr/>
+        <div class="row">
+            <div class="col-7 dashboard-order-card-footer-columns card-info-group">
+                <p>${Resource.msg('label.orderhistory.totalitems','account',null)}</p>
+                <p class="dashboard-order-card-footer-value">
+                    <isprint value="${order.productQuantityTotal}" formatter="#"/>
+                </p>
+            </div>
+            <div class="col-5 dashboard-order-card-footer-columns card-info-group">
+                <p>${Resource.msg('label.orderhistory.ordertotal','account',null)} </p>
+                <p class="dashboard-order-card-footer-value">
+                    ${order.priceTotal}
+                </p>
+            </div>
+        </div>
+    </div>
+</div> </iscomment>

@@ -1,0 +1,12 @@
+{
+    "hooks": [
+        {
+            "name": "app.payment.processor.payu",
+            "script": "./cartridge/scripts/hooks/payment/processor/PAYU.js"
+        },
+         {
+            "name": "app.payment.processor.free_maternity",
+            "script": "./cartridge/scripts/hooks/payment/processor/PAYU.js"
+        }
+    ]
+}

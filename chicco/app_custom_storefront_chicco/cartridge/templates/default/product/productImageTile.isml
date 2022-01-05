@@ -1,0 +1,25 @@
+<div class="product_imgs">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumbnails-slider text-center">
+                <isloop items="${product.images['large']}" var="image" status="loopStatus">
+                    <button class="thumbnail-button <isif condition="
+                        ${loopStatus.index == 0}">current</isif>" aria-current="true">
+                        <img src="${image.url}" alt="${image.alt} image number ${image.index}"
+                            itemprop="image" loading="lazy" />
+                    </button>
+                </isloop>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="main-image-slider">
+                <isloop items="${product.images['large']}" var="image" status="loopStatus">
+                    <a data-fancybox="gallery" href="${image.url}" class="image-link <isif condition=" ${loopStatus.index == 0}">current</isif>">
+                        <img src="${image.url}" alt="${image.alt} image number ${image.index}"
+                            itemprop="image" loading="lazy" />
+                    </a>
+                </isloop>
+            </div>
+        </div>
+    </div>
+</div>

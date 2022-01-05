@@ -1,0 +1,114 @@
+<iscomment>
+    <div class="product-tile">
+        <!-- dwMarker="product" dwContentID="${product.uuid}" -->
+        <isinclude template="product/components/productTileImage" />
+        <- Done <div class="tile-body">
+            <isif condition="${pdict.display.swatches !== false}">
+                <isinclude template="product/components/productTileSwatch" />
+            </isif>
+
+            <isinclude template="product/components/productTileName" />
+            <- Done <isset name="price" value="${product.price}" scope="page" />
+            <- Done <isif condition="${product.productType === 'set'}">
+                <isinclude template="product/components/pricing/setPrice" />
+                <iselse>
+                    <isinclude template="product/components/pricing/main" />
+                    </isif>
+                    <- Done <isif condition="${pdict.display.ratings !== false}">
+                        <isinclude template="product/productTileFooter" />
+                        </isif>
+                        <input type="hidden" class="add-to-cart-url" value="${URLUtils.url('Cart-AddProduct')}">
+                        <button class="primary-btn d-inline-block add-to-cart-plp"
+                            data-pid="${product.defaultVariant ? product.defaultVariant.ID : product.id}">
+                            ${Resource.msg('button.addtocart', 'common', null)}
+                        </button>
+    </div>
+    <!-- END_dwmarker -->
+    </div>
+</iscomment>
+
+
+<div class="product_box">
+    <isinclude template="product/components/productTileImage" />
+
+    <div class="content">
+        <a class="wishlistTile" href="${URLUtils.url('Wishlist-AddProduct')}"
+            title="${Resource.msg('wishlist.addto.wishlist.heart', 'wishlist', null)}">
+            <span class="heart_icon">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </span>
+        </a>
+
+        <isinclude template="product/components/productTileName" />
+
+
+        <isset name="price" value="${product.price}" scope="page" />
+        <isif condition="${product.productType === 'set'}">
+            <isinclude template="product/components/pricing/setPrice" />
+        <iselse/>
+            <isinclude template="product/components/pricing/main" />
+        </isif>
+        <isif condition="${product.promotions}">
+            <div class="promotions">
+                <isloop items="${product.promotions}" var="promotion" status="promoStatus">
+                    <isif condition="${promotion.calloutMsg !== '' && promoStatus.count == 1}">
+                        <div class="discount">
+                            (
+                            <isprint value="${promotion.calloutMsg}" encoding="off" />)
+                        </div>
+                    </isif>
+                </isloop>
+            </div>
+        </isif>
+        <iscomment> ${pdict.promotions} </iscomment>
+
+        <isinclude template="widget/yotpoRatingsWidget" />
+        <iscomment>
+            <isif condition="${pdict.display.ratings !== false}">
+                <isinclude template="product/productTileFooter" />
+            </isif>
+        </iscomment>
+
+        <iscomment>
+            <isif condition="${pdict.display.swatches !== false}">
+                <isinclude template="product/components/productTileSwatch" />
+            </isif>
+        </iscomment>
+       
+        <iscomment> <input type="hidden" class="add-to-cart-url"
+                value="${pdict.rootCatId == 'Fashion' ? pdict.urls.product : URLUtils.url('Cart-AddProduct')}">
+        </iscomment>
+         <isif condition="${pdict.rootCatId == 'Fashion'}">
+              <a id="add-to-cart"  target="_blank" href='${pdict.urls.product}' class="blue-btn home-product d-inline-block pointer"
+                data-quantity="1" data-pid="${product.id}" ${!product.available ? "disabled" : ""}>
+                <isif condition="${!product.available}">
+                    ${Resource.msg('label.addtocart.button.out.of.stock', 'product', null)}
+                <iselse/>
+                    ${Resource.msg('button.addtocart', 'common', null)}
+                </isif>
+            </a>
+            
+        <iselse/>
+            <input type="hidden" class="add-to-cart-url" value="${URLUtils.url('Cart-AddProduct')}">
+            <button id="add-to-cart" class="add-to-cart-plp blue-btn home-product d-inline-block pointer"
+                data-quantity="1" data-pid="${product.id}" ${!product.available ? "disabled" : ""}>
+                <isif condition="${!product.available}">
+                    ${Resource.msg('label.addtocart.button.out.of.stock', 'product', null)}
+                <iselse/>
+                    ${Resource.msg('button.addtocart', 'common', null)}
+                </isif>
+            </button>
+        </isif>
+        
+        <iscomment>
+            <isif condition="${pdict.display.showAddToCart}">
+                <input type="hidden" class="add-to-cart-url" value="${URLUtils.url('Cart-AddProduct')}">
+                <button class="blue-btn d-inline-block add-to-cart-plp"
+                    data-pid="${product.defaultVariant ? product.defaultVariant.ID : product.id}">
+                    ${Resource.msg('button.addtocart', 'common', null)}
+                </button>
+            </isif>
+        </iscomment>
+
+    </div>
+</div>

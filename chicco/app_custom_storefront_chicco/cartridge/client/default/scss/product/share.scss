@@ -1,0 +1,75 @@
+@import "../variables";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+@import "../utilities/shapes";
+@import "../utilities/responsiveUtils";
+@import "../utilities/swatch";
+
+@media screen and (max-width: 1024px) {
+  .sharing_options {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sharing_options {
+    display: none;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    text-align: center;
+    z-index: 99999;
+  }
+
+  .sharing_inner {
+    position: relative;
+    text-align: center;
+    margin: 10px;
+
+    ul {
+      li:first-child {
+        a {
+          margin-left: 0px !important;
+        }
+      }
+    }    
+  }
+
+  .sharing_options a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .sharing_options a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .sharing_options {
+    display: block;
+
+    #fb:hover {
+      background-color: rgb(56, 88, 152);
+      color: white;
+    }
+    #wp:hover {
+      background-color: rgb(37, 211, 102);
+      color: white;
+    }
+    #pt:hover {
+      background-color: rgb(230, 0, 35);
+      color: white;
+    }
+    #tw:hover {
+      background-color: rgb(29, 155, 240);
+      color: white;
+    }
+  }
+
+  #share_list {
+    display: flex;
+    align-items: center;
+    padding: 0%;
+  }
+}

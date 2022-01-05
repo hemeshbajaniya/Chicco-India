@@ -1,0 +1,254 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "../common/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
+.site-footer {
+    background-color: $background_color;
+    padding: 50px 0 10px;
+
+    .top-footer {
+        border-bottom: 2px solid #4c6277;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        .store-location {
+            color: #EFF6FF;
+            font-weight: 500;
+            font-size: 14px;
+
+            @include media-breakpoint-down(sm) {
+                position: absolute;
+                top: -80px;
+                right: 30px;
+            }
+        }
+
+        .email_subscribe {
+            position: relative;
+        }
+        input {
+            background-color: transparent;
+            border: 1px solid $white;
+            border-radius: 50px;
+            color: $white;
+            font-size: 13px;
+            height: 38px;
+            padding: 0 20px;
+            width: 100%;
+
+            &::-webkit-input-placeholder { /* Edge */
+                color: $white;
+              }
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: $white;
+            }
+            &::placeholder {
+                color: $white;
+            }
+
+        }
+        button {
+            color: #42596E;
+            cursor: pointer;
+            background-color: $white;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 30px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 38px;
+            transition: 0.5s;
+
+            &:hover {
+                color: #42596E;
+                background-color: #CBCBCB;
+                transition: 0.5s;
+            }
+        }
+    }
+
+
+    .middle-footer {
+
+        .widget2 {
+
+            @include media-breakpoint-up(lg) {
+                margin-left: 30px;
+            }
+
+        }
+
+        @include media-breakpoint-down(sm) {
+            .accordion-ques .titles {
+                position: relative;
+            }
+            .accordion-ques .titles[aria-expanded="false"]:before {
+                font-family: 'FontAwesome';
+                content: "\f107";
+                cursor: pointer;
+                color: $white;
+                float: right;
+                font-size: 20px;
+                position: absolute;
+                right: 20px;
+                top: -2px;
+            }
+            .accordion-ques .titles[aria-expanded="true"]:before {
+                font-family: 'FontAwesome';
+                content: "\f106";
+                cursor: pointer;
+                color: $white;
+                float: right;
+                font-size: 20px;
+                position: absolute;
+                right: 20px;
+                top: -2px;
+            }
+        }
+
+        h6 {
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 20px;
+
+            &::before {
+                content: '';
+                background-color: $white;
+                display: block;
+                height: 3px;
+                bottom: 0;
+                left: 0;
+                width: 34px;
+                position: absolute;      
+                
+                @include media-breakpoint-down(sm) {
+                    height: 2px;
+                }
+            }
+
+            @include media-breakpoint-down(sm) {
+                margin-bottom: 20px;
+                padding-bottom: 8px;
+            }
+        }
+
+        p {
+            color: #CBCBCB;
+            font-weight: 400;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .menus {
+            li {
+                list-style: none;
+                margin-bottom: 5px;
+            }     
+            a {
+                color: #CBCBCB;
+                font-weight: 400;
+                font-size: 13px;
+                transition: 0.5s;
+
+                &:hover {
+                    color: $white;
+                    transition: 0.5s;
+                }
+                
+            }
+        }
+
+        .callus {
+            a {
+                color: $white;
+                display: block;
+                font-weight: 500;
+                font-size: 16px;
+                margin-bottom: 15px;
+                transition: 0.5s;
+
+                // i {
+                //     transform: rotate(90deg);
+                // }
+
+                img {
+                    margin-right: 5px;
+                    width: 18px;
+                }
+
+                &:hover {
+                    color: $white;
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+
+
+    @include media-breakpoint-down(md) {
+        padding: 30px 0 10px;
+    }
+}
+
+
+.bottom-footer {
+    padding: 30px 0 10px;
+
+    h6 {
+        color: #42596E;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 20px;
+
+        &::before {
+            content: '';
+            background-color: #42596E;
+            display: block;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            width: 34px;
+            position: absolute;                
+        }
+    }
+
+    p {
+        color: #818181;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .payments {
+        img {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+
+        @include media-breakpoint-up(lg) {
+            margin-left: 50px;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        padding: 20px 0;
+    }
+}
+
+.copyrights {
+    background-color: $background_color;
+    padding: 10px 0;
+
+    p {
+        color: #CBCBCB;
+        font-size: 13px;
+        font-weight: 400;
+        margin-bottom: 0;
+    }
+}
+
+.alert-footer {
+    border-radius: 35px;
+    margin-top: 5px;
+}

@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-12">
+        <div class="boxes payment_info">
+            <h6>
+                ${Resource.msg('heading.order.paymentInfo', 'checkout', null)}
+            </h6>
+            <form>
+                <div class="row mt-3 subtotal-item">
+                    <div class="col-6">
+                        <label>${Resource.msg('heading.order.total', 'checkout', null)}</label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <label class="sub-total">${pdict.order.totals.subTotal}</label>
+                    </div>
+                </div>
+
+                <div class="row order-discount <isif condition="
+                    ${pdict.order.totals.orderLevelDiscountTotal.value === 0}">hide-order-discount</isif>">
+                    <div class="col-6">
+                        <label>${Resource.msg('label.order.discount', 'common', null)}</label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <label
+                            class="text-green order-discount-total">${Resource.msg('label.minus', 'cart', null)} ${pdict.order.totals.orderLevelDiscountTotal.formatted}</label>
+                    </div>
+                </div>
+                <iscomment> <div class="row sales-tax-item">
+                    <div class="col-6">
+                        <label>${Resource.msg('label.GST', 'checkout', null)}</label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <label class="text-orange tax-total">${pdict.order.totals.totalTax}</label>
+                    </div>
+                </div> </iscomment>
+                <div class="row shipping-item">
+                    <div class="col-6">
+                        <label>${Resource.msg('label.Shipping', 'checkout', null)}</label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <label class="text-orange shipping-total-cost">${pdict.order.totals.totalShippingCost}</label>
+                    </div>
+                </div>
+                
+                <div class="row shipping-discount <isif condition="${pdict.order.totals.shippingLevelDiscountTotal.value === 0}">hide-shipping-discount</isif>">
+                    <div class="col-6">
+                        <label>${Resource.msg('label.shipping.discount', 'common', null)}</label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <label
+                            class="text-green shipping-discount-total">${Resource.msg('label.minus', 'cart', null)} ${pdict.order.totals.shippingLevelDiscountTotal.formatted}</label>
+                    </div>
+                </div>
+                <span class="border-bottom"></span>
+                <div class="row grand-total">
+                    <div class="col-6">
+                        <label>
+                            <strong>${Resource.msg('heading.order.subTotal', 'checkout', null)}</strong>
+                        </label>
+                    </div>
+                    <div class="col-6 text-right">
+                        <label class="grand-total-sum">
+                            <strong>${pdict.order.totals.grandTotal}</strong>
+                        </label>
+                    </div>
+                </div>
+                <p>
+                    ${Resource.msg('label.tax', 'product', null)}
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

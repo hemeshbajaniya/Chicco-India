@@ -1,0 +1,110 @@
+<isif condition="${pdict.account.loyaltyPoints}">
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="boxes">
+            <div class="title">
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="pull-left profile-header text-white mb-0">
+                            <img src="${URLUtils.staticURL('/images/my_accounts/hand_gesture.png')}" alt="hand_gesture"
+                                class="mr-1" loading="lazy"/>
+                            ${Resource.msg('label.loyalty.points.heading', 'account', null)}
+                        </h5>
+                    </div>
+                    <iscomment> <div class="col-5 text-right">
+                        <a href="#" class="box_links text-white"
+                            aria-label="${Resource.msg('link.view', 'account', null)}" data-toggle="modal"
+                            data-target="#loyalty_points">${Resource.msg('link.view', 'account', null)}</a>
+                    </div> </iscomment>
+                </div>
+            </div>
+            <isif condition="${!pdict.account.loyaltyPoints.error}">
+                <div class="card-body card-min-height">
+                    <div class="desc">
+                        <p>${Resource.msg('label.loyalty.points.balance', 'account', null)}
+                            ${pdict.account.loyaltyPoints.pointValue}</p>
+                        <p>${Resource.msg('label.loyalty.points.points', 'account', null)}
+                            ${pdict.account.loyaltyPoints.availablePoints}</p>
+                    </div>
+                </div>
+                <iselse/>
+                <div class="card-body card-min-height">
+                    <p class="text-center">${Resource.msg('message.emptycard', 'account', null)}</p>
+                </div>
+            </isif>
+        </div>
+    </div>
+</isif>
+
+<!-- Loyalty Points -->
+<div class="modal fade popup-modal gift_voucher_popup" id="loyalty_points" tabindex="-1" role="dialog"
+    aria-labelledby="add_registeredTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close_btn text-uppercase" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h3 class="text-center">
+                    ${Resource.msg('label.loyalty.points.heading', 'account', null)}
+                </h3>
+
+                <div class="row mt-4">
+                    <div class="col-lg-6">
+                        <div class="loyalty_boxes text-center">
+                            <img src="${URLUtils.staticURL('/images/loyalty_purse.png')}" alt="loyalty_purse"
+                                class="mr-1" loading="lazy" />
+                            <h6 class="borer-0">
+                                ${Resource.msg('label.loyalty.points.heading', 'account', null)}
+                            </h6>
+                            <div class="price">
+
+                            </div>
+                            <a href="" class="add_new blue-btn">
+                                ${Resource.msg('label.loyalty.points.add.btn', 'account', null)}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="loyalty_boxes text-center">
+                            <img src="${URLUtils.staticURL('/images/loyalty_gift.png')}" alt="loyalty_gift"
+                                class="mr-1"  loading="lazy"/>
+                            <h6 class="borer-0">
+                                ${Resource.msg('label.loyalty.points.readeem', 'account', null)}
+                            </h6>
+                            <div class="price">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shopping_shortlist_sec delete_cart_item_popup">
+                    <div class="shipping_product">
+                        <h6>
+                            ${Resource.msg('lable.loyalty.table.heading', 'account', null)}
+                        </h6>
+
+                        <form>
+                            <div class="row mt-4 register_product_form main_title">
+                                <div class="col-12">
+                                    <table>
+                                        <tr>
+                                            <th>${Resource.msg('lable.loyalty.table.srNo', 'account', null)}</th>
+                                            <th>${Resource.msg('lable.loyalty.table.transactionId', 'account', null)}</th>
+                                            <th>${Resource.msg('lable.loyalty.table.amount', 'account', null)}</th>
+                                            <th>${Resource.msg('lable.loyalty.table.addedDatePoint', 'account', null)}
+                                            </th>
+                                            <th>${Resource.msg('lable.loyalty.table.useDatePoint', 'account', null)}</th>
+                                            <th>${Resource.msg('lable.loyalty.table.expiryDatePoint', 'account', null)}
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

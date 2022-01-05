@@ -1,0 +1,418 @@
+<body bgcolor="#eee">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td align="center" valign="top">
+        <!-- Main -->
+        <table border="0" cellpadding="0" cellspacing="0" width="750" style="background-color: #ffffff;">
+          <tr>
+            <td class="td"
+              style="width:750px; min-width:750px;font-size:0pt; line-height:16px;padding:0; margin:0; font-weight:normal;background:#fff;font-family: Helvetica, Arial, sans-serif;">
+
+              <div style="padding: 20px 35px; border-bottom: 1px solid #5B5360;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+                    <tr valign="center">
+                      <td style="text-align: left;" width="35%">
+                        <img src="${URLUtils.httpStatic('/images/logo.png')}" width="115px" alt="site-logo"
+                          class="site-logo" />
+                      </td>
+                      <td style="text-align: right;" width="65%">
+                        <a href="${URLUtils.https('Account-Show')}" role="menuitem"
+                          style="display: inline-block;margin-left: 25px;font-size: 16px;text-decoration: none; color: #5B5360; font-weight: 600;">
+                          ${Resource.msg('link.header.myaccount', 'account', null)}
+                        </a>
+                        <a href="${URLUtils.https('Order-History')}" role="menuitem"
+                          style="display: inline-block;margin-left: 25px;font-size: 16px;text-decoration: none; color: #5B5360; font-weight: 600;">
+                          ${Resource.msg('label.orederstatus', 'account', null)}
+                        </a>
+                        <a href="${URLUtils.https('Home-Show')}" role="menuitem"
+                          style="display: inline-block;margin-left: 25px;font-size: 16px;text-decoration: none; color: #5B5360; font-weight: 600;">
+                          ${Resource.msg('label.shopnow', 'account', null)}
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+
+
+              <div style="padding: 20px 35px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tbody>
+
+
+                    <tr valign="center">
+                      <td style="text-align: left;" width="100%">
+                        <div style="margin-bottom: 30px;">
+                          <h2
+                            style="color: #5B5360;font-size: 25px;line-height: 32px;font-weight: 700;margin-bottom: 15px;">
+                            ${Resource.msg('email.msg.new.registration.dear', 'registration', null)}&nbsp;${pdict.order.billing.billingAddress.address.firstName}&nbsp;${pdict.order.billing.billingAddress.address.lastName},
+                          </h2>
+                          <p
+                            style="font-size: 16px;font-weight:500;line-height: 24px;color: #5B5360; margin-bottom: 15px;">
+                            ${Resource.msg('email.msg.order.confirmation.body1', 'confirmation', null)}
+                          </p>
+                          <p
+                            style="font-size: 16px;font-weight:500;line-height: 24px;color: #5B5360; margin-bottom: 15px;">
+                            ${Resource.msg('email.msg.order.confirmation.body2', 'confirmation', null)} ${Resource.msgf('label.number.items.in.cart','cart', null, pdict.order.items.totalQuantity)}
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr valign="center">
+                      <td>
+                        <div style="border-bottom: 1px solid #5B5360; padding-bottom: 5px;">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr valign="center">
+                                <td style="text-align: left;" width="50%">
+                                  <h2
+                                    style="color: #5B5360;font-size: 25px;line-height: 32px;font-weight: 700;margin: 0 0 15px;">
+                                    ${Resource.msg('heading.order.summary', 'checkout', null)}
+                                  </h2>
+                                </td>
+                                <td style="text-align: right;" width="50%">
+                                  <p
+                                    style="font-size: 16px;font-weight:500;line-height: 24px;color: #5B5360; margin: 0 0 15px; padding-top: 8px;">
+                                    ${Resource.msg('heading.order.placedate', 'checkout', null)}
+                                    <isprint value="${pdict.order.creationDate}" style="DATE_LONG" />
+                                  </p>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr valign="center">
+                      <td>
+                        <div style="padding: 20px 0;">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr valign="top">
+                                <td width="35%">
+                                  <span
+                                    style="color: rgba(91, 83, 96, 0.65); font-size: 18px; margin-bottom: 14px; display: block;">
+                                    ${Resource.msg('label.order.billing.address', 'confirmation', null)}
+                                  </span>
+                                  <isset name="address" value="${pdict.order.billing.billingAddress.address}"
+                                    scope="page" />
+                                  <isinclude template="checkout/addressSummary" />
+                                </td>
+                                <isloop items="${pdict.order.shipping}" var="shippingModel" status="shippingLoop">
+                                  <td width="35%">
+                                    <span
+                                      style="color: rgba(91, 83, 96, 0.65); font-size: 18px; margin-bottom: 14px; display: block;">
+                                      ${Resource.msg('label.order.shipping.addresses', 'confirmation', null)}
+                                    </span>
+                                    <iscomment> ${pdict.order.shipping[0].applicableShippingMethods[0].displayaName}
+                                    </iscomment>
+                                    <iscomment>
+                                      <isset name="address"
+                                        value="${pdict.order.shipping[0].applicableShippingMethod[0].displayaName}"
+                                        scope="page" />
+                                    </iscomment>
+
+                                    <isset name="address" value="${shippingModel.shippingAddress}" scope="page" />
+                                    <isinclude template="checkout/addressSummary" />
+
+                                  </td>
+                                  <td width="30%">
+                                    <span
+                                      style="color: rgba(91, 83, 96, 0.65); font-size: 18px; margin-bottom: 14px; display: block;">${Resource.msg('label.order.shipping.method', 'confirmation', null)}
+                                    </span>
+                                    <p class="address-detail-tag">
+                                      <b>
+                                        ${shippingModel.selectedShippingMethod.displayName}
+                                        <isif condition="${shippingModel.selectedShippingMethod.estimatedArrivalTime}">
+                                          ${shippingModel.selectedShippingMethod.estimatedArrivalTime}
+                                        </isif>
+                                      </b>
+                                    </p>
+                                    <iscomment> <a href="${URLUtils.url('Account-TrackMyOrder', 'orderID', order.orderNumber)}"data-order-id="${order.orderNumber}" class="card-footer-link"
+                                      style="color: #1B3582; font-size: 16px; line-height: 20px; margin: 0 0 8px; text-decoration: none;">
+                                    <b>${Resource.msg('label.shipping.tracknow','account',null)}</b> </iscomment>
+                                  </td>
+                                </isloop>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr valign="center">
+                      <td>
+                        <div style="padding: 0; border: 1px solid #5B5360; border-radius: 10px;">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <thead style="background-color: #1B3582;">
+                              <tr>
+                                <th
+                                  style="color: #ffffff; border-top-left-radius: 7px; padding: 15px 0;font-size: 16px; line-height: 20px;">
+                                  <span>${Resource.msg('label.order.products', 'confirmation', null)}</span>
+                                </th>
+                                <th style="color: #ffffff; padding: 15px 0;font-size: 16px; line-height: 20px;">
+                                  ${Resource.msg('field.selectquantity','cart',null)}
+                                </th>
+                                <th
+                                  style="color: #ffffff; border-top-right-radius: 7px; padding: 15px 0;font-size: 16px; line-height: 20px;">
+                                  ${Resource.msg('label.each.item.prices','cart',null)}
+                                </th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <isloop items="${pdict.order.shipping}" var="shippingModel" status="shippingLoop">
+                                <isif condition="${pdict.order.shipping.length > 1}">
+                                  <isloop items="${shippingModel.productLineItems.items}" var="lineItem">
+                                    <tr style="border-bottom: 1px solid #5B5360">
+                                      <td style="border-bottom: 1px solid #5B5360; border-right: 1px solid #5b535b;"
+                                        width="60%">
+                                        <div style="padding: 15px; margin-bottom: 10px;">
+                                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                            
+                                              <tr valign="center">
+                                                <td style="text-align: left;" width="25%">
+                                                  <a href='${URLUtils.http('Product-Show','pid',lineItem.id)}' target='_blank' style="color:#000001;" >
+                                                    <img src="${lineItem.images.small[0].url}" alt="${lineItem.productName}" title="${lineItem.productName}"  width="120px"/>
+                                                  </a>
+                                                </td>
+                                                <td style="padding-left: 20px;" width="75%">
+                                                  <p
+                                                    class="address-detail-tag">
+                                                    <b style="font-size:initial; color:#222222">${lineItem.productName}</b>
+                                                  </p>
+                                                  <span
+                                                    style="color: rgba(91, 83, 96, 0.75); font-size: 15px; margin: 0 0 14px; display: block;">
+                                                    Order ${pdict.order.orderNumber}
+                                                  </span>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </td>
+                                      <td
+                                        style="border-bottom: 1px solid #5B5360; border-right: 1px solid #5b535b; text-align: center;"
+                                        width="20%">
+                                        <div style="padding: 15px; margin-bottom: 10px;">
+                                          <p
+                                            style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                            <isprint value="${lineItem.quantity}" formatter="##" />
+                                          </p>
+                                        </div>
+                                      </td>
+                                      <td style="border-bottom: 1px solid #5B5360; text-align: center;" width="20%">
+                                        <div style="padding: 15px; margin-bottom: 10px;">
+                                          <p
+                                            style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                             ${lineItem.priceTotal.price}
+                                          </p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </isloop>
+                                </isif>
+                              </isloop>
+                              <isif condition="${pdict.order.shipping.length === 1}">
+                                 
+                                <isloop items="${pdict.order.items.items}" var="lineItem">
+                                  
+                                   <tr style="border-bottom: 1px solid #5B5360">
+                                    <td style="border-bottom: 1px solid #5B5360; border-right: 1px solid #5b535b;"
+                                      width="60%">
+                                      <div style="padding: 15px; margin-bottom: 10px;">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                          <tbody>
+                                            <tr valign="center">
+                                              <td style="text-align: left;" width="25%">
+                                                <a href='${URLUtils.http('Product-Show','pid',lineItem.id)}' target='_blank' style="color:#000001;" >
+                                                  <img src="${lineItem.images.small[0].absURL}" alt=""  width="120px"/>
+                                                </a>
+                                              </td>
+                                              <td style="padding-left: 20px;" width="75%">
+                                                <p
+                                                  class="address-detail-tag">
+                                                  <b style="font-size:initial; color:#222222">${lineItem.productName}</b>
+                                                  <iscomment> <b>Sanket</b> </iscomment>
+                                                </p>
+                                                
+                                                <span
+                                                 style="color: rgba(91, 83, 96, 0.75); font-size: 15px; margin: 0 0 14px; display: block;">
+                                                  Order ${pdict.order.orderNumber}
+                                                </span>
+                                              </td> 
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </td>
+                                    <td
+                                      style="border-bottom: 1px solid #5B5360; border-right: 1px solid #5b535b; text-align: center;"
+                                      width="20%">
+                                      <div style="padding: 15px; margin-bottom: 10px;">
+                                        <p
+                                          style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                          <isprint value="${lineItem.quantity}" formatter="##" />
+                                        </p>
+                                      </div>
+                                    </td>
+                                    <td style="border-bottom: 1px solid #5B5360; text-align: center;" width="20%">
+                                      <div style="padding: 15px; margin-bottom: 10px;">
+                                        <p
+                                          style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                           ${lineItem.priceTotal.price}
+                                        </p>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <iscomment> <isif condition="${lineItem.bonusProductLineItemUUID === 'bonus'}">
+                                    <isloop items="${lineItem.bonusProducts}" var="bonusProduct" status="loopState">
+                                      <tr style="border-bottom: 1px solid #5B5360">
+                                        <td style="border-bottom: 1px solid #5B5360; border-right: 1px solid #5b535b;"
+                                          width="60%">
+                                     -     <div style="padding: 15px; margin-bottom: 10px;">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                              <tbody>
+                                                <tr valign="center">
+                                                  <td style="text-align: left;" width="25%">
+                                                    <a href='${URLUtils.http('Product-Show','pid',lineItem.id)}' target='_blank' style="color:#000001;" >
+                                                      <img src="${lineItem.images.small[0].url}" alt="${lineItem.productName}" title="${lineItem.productName}"/>
+                                                    </a>
+                                                  </td>
+                                                  <td style="padding-left: 20px;" width="75%">
+                                                    <p
+                                                      class="address-detail-tag">
+                                                      <b>${bonusProduct.productName}</b>
+                                                    </p>
+                                                    <span
+                                                      style="color: rgba(91, 83, 96, 0.75); font-size: 15px; margin: 0 0 14px; display: block;">
+                                                      Order ${pdict.order.orderNumber}
+                                                    </span>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </td>
+                                        <td
+                                          style="border-bottom: 1px solid #5B5360; border-right: 1px solid #5b535b; text-align: center;"
+                                          width="20%">
+                                          <div style="padding: 15px; margin-bottom: 10px;">
+                                            <p
+                                              style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                              <isprint value="${bonusProduct.quantity}" formatter="##" />
+                                            </p>
+                                          </div>
+                                        </td>
+                                        <td style="border-bottom: 1px solid #5B5360; text-align: center;" width="20%">
+                                          <div style="padding: 15px; margin-bottom: 10px;">
+                                            <p
+                                              style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                              ${bonusProduct.priceTotal.price}
+                                            </p>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </isloop>
+                                  </isif> </iscomment>
+                                </isloop>
+                              </isif>
+                            </tbody>
+
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr valign="center">
+                      <td>
+                        <div style="padding-bottom: 5px; margin: 25px 0 0;">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr valign="center">
+                                <td style="text-align: left;" width="55%">
+                                  <div
+                                    style="padding: 24px 20px; border-radius: 10px; text-align: center;">
+                                    <div
+                                      style="border: 1px solid #5B5360; padding: 25px 20px; border-radius: 10px; text-align: center;">
+                                      <img src="${URLUtils.httpStatic('/images/logo.png')}" alt="site-logo"
+                                        class="site-logo" width="140px" />
+                                    </div>
+                                  </div>
+                                </td>
+                                <td style="text-align: right;" width="45%">
+                                  <div style="padding-left: 30px; margin: 25px 0 0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                      <tbody>
+                                        <isinclude template="checkout/confirmation/confirmationOrderTotal" />
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr valign="center">
+                      <td>
+                        <div style="padding-top: 20px;">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr valign="top">
+                                <td width="100%">
+                                  <p
+                                    style="font-size: 15px;font-weight:500;line-height: 20px;color: #5B5360; margin: 0 0 15px; padding: 0;">
+                                    ${Resource.msg('email.msg.order.confirmation.body4', 'confirmation', null)}.
+                                  </p>
+                                  <p
+                                    style="font-size: 15px;font-weight:500;line-height: 20px;color: #5B5360; margin: 0; padding: 0;">
+                                    ${Resource.msg('email.msg.order.confirmation.body5', 'confirmation', null)}.
+                                  </p>
+                                  <a href="https://www.chicco.in/"
+                                    style="color: #5B5360;font-size: 22px;line-height: 32px;font-weight: 700;margin: 0 0 15px; text-decoration: none;">
+                                    <b>${Resource.msg('email.msg.order.confirmation.message1', 'confirmation', null)}</b>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- Footer -->
+              <div style="padding: 18px 35px 20px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                    <td width="50%">
+                      <div style="border-top: 1px solid #5B5360;">
+                        <div
+                          style="text-align: center;font-size: 15px;font-weight:500;line-height: 20px;color: rgba(91, 83, 96, 0.75);padding-top: 20px;width: 70%;margin: 0 auto;">
+                          ${Resource.msg('email.msg.order.confirmation.body3', 'confirmation', null)}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <!-- END Main -->
+      </td>
+    </tr>
+  </table>
+</body>

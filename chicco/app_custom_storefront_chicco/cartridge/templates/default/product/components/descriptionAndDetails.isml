@@ -1,0 +1,20 @@
+<isif condition="${product.longDescription}">
+    <hr class="d-sm-none">
+</isif>
+
+<div class="row align-items-center">
+    <div class="col-12 <isif condition=" ${!product.longDescription}">hidden-xl-down</isif>">
+
+        <ul class="feature_list">
+            <li>
+                <isif condition="${product.longDescription}">
+                    <div class="col-sm-12 col-md-8 col-lg-9 value content"
+                        id="collapsible-details-${loopState && loopState.count ? loopState.count : '1'}">
+                        <isprint value="${product.longDescription}" encoding="off" />
+                    </div>
+                </isif>
+                <br>
+            </li>
+        </ul>
+    </div>
+</div>

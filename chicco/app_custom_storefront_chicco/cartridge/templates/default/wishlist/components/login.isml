@@ -1,0 +1,264 @@
+<iscomment> <p class="mx-3">${Resource.msg('wishlist.landing.guest.description', 'wishlist', null)}</p> </iscomment>
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="row mt-4 align-items-center">
+            <div class="col-12">
+                <h2 class="text-center mb-0 wishlist-owner">${Resource.msgf('label.wishlistCard.heading', 'account', null)}</h2>
+            </div>
+            <iscomment> <div class="col-lg-3 text-lg-right">
+                <a href="#" class="blue-btn w-100">
+                    <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>${Resource.msg('wl.socialshare.button', 'wishlist', null)}
+                </a>
+            </div> </iscomment>
+        </div>
+        <isinclude template="wishlist/components/list"/>
+    </div>
+    <div class="login_otp_sec">
+        <div class="container login-page">
+            <section>
+                <div class="container">
+                    <div class="row card border-0">
+                        <div class="col-12 card-body">
+                            <div class="tab-content login_box login-form-nav">
+                                <div class="tab-pane ${pdict.navTabValue === 'login' ? 'active' : ''}" id="login"
+                                    role="tabpanel" aria-labelledby="login-tab">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <h4>
+                                                ${Resource.msg('link.header.login.module', 'login', null)}
+                                            </h4>
+                                            <isinclude template="account/components/loginForm" />
+                                            <isinclude template="account/password/requestPasswordResetModal" />
+                                            <isinclude template="login/otp/otpRequestModel" />
+                                        </div>
+                                        <div class="col-lg-2 text-center">
+                                            <div class="or_button">
+                                                ${Resource.msg('label.login.or', 'login', null)}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 mt-lg-0 mt-4">
+                                            <h4>
+                                                ${Resource.msg('link.header.mobile.module', 'login', null)}
+                                            </h4>
+                                            <form class="request-otp-form" action="${URLUtils.url('Login-GenerateOtp', 'mobile', pdict.mobile)}" method="POST"
+                                                name="request-otp-form" id="request-otp-form">
+                                                <div class="request-otp-error-message alert alert-danger d-none"></div>
+                                                <div class="row">
+                                                    <div class="col-md-12 request-password-body">
+                                                        <div class="form-group required">
+                                                            <label class="form-control-label" for="reset-password-email">
+                                                                <isprint value="${Resource.msg('label.input.login.mobilenumber', 'login', null)}"
+                                                                    encoding="htmlcontent" />
+                                                                <button type="button" class="info-icon">
+                                                                    <span class="icon" aria-hidden="true">i</span>
+                                                                    <span class="sr-only">${Resource.msg('button.help.assistive.text','common',null)}</span>
+                                                                    <span class="tooltip d-none">
+                                                                        ${Resource.msg('tooltip.phonenumber','registration',null)}
+                                                                    </span>
+                                                                </button>
+                                                            </label>
+                                                            <input id="phonNumber" type="tel" class="form-control w-100 field" name="phoneNumber"
+                                                                aria-describedby="emailHelp" maxlength="10"
+                                                                placeholder="${Resource.msg('placeholder.input.login.mobile', 'login', null)}" required/>
+                                                            <div class="invalid-feedback">${Resource.msg('lable.otp.form.required', 'otp', null)}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group send-email-btn">
+                                                            <button type="submit" id="submitEmailButton"
+                                                                class="btn btn-primary btn-block blue-btn d-block w-100 get_otp_btn">
+                                                                ${Resource.msg('button.text.getotp', 'login', null)}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <form class="request-otp-verify-form d-none" action="${URLUtils.url('Login-VerifyOtp', 'mobile', pdict.mobile)}"
+                                                    method="POST" name="otp-verify-form" id="otp-verfiy-form">
+                                                    <div class="verify-otp-error-message alert alert-danger d-none"></div>
+                                                    <div class="request-password-body">
+                                                        <p class="sucess-otp-message"></p>
+                                                        
+                                                <div class="row mt-4">
+                                                    <div class="col-12 form-group required">
+                                                        <div class="row mb-4">
+                                                            <div class="col-2 opt">
+                                                                <input type="text" name="opt_number1" id="opt_number1"
+                                                                    data-next="opt_number2"
+                                                                    class="w-100 opt_number"
+                                                                    aria-describedby="form-otp-error"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2 opt">
+                                                                <input type="text" name="opt_number2" id="opt_number2"
+                                                                    data-next="opt_number3"
+                                                                    data-previous="opt_number1"
+                                                                    aria-describedby="form-otp-error"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2 opt">
+                                                                <input type="text" name="opt_number3" id="opt_number3"
+                                                                    data-next="opt_number4"
+                                                                    data-previous="opt_number2"
+                                                                    aria-describedby="form-otp-error"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2 opt">
+                                                                <input type="text" name="opt_number4" id="opt_number4"
+                                                                    data-next="opt_number5"
+                                                                    data-previous="opt_number3"
+                                                                    aria-describedby="form-otp-error"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2 opt">
+                                                                <input type="text" name="opt_number5" id="opt_number5"
+                                                                    data-next="opt_number6"
+                                                                    data-previous="opt_number4"
+                                                                    aria-describedby="form-otp-error"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                             <div class="col-2 opt">
+                                                                <input type="text" name="opt_number6" id="opt_number6"
+                                                                    data-previous="opt_number5"
+                                                                    class="w-100 opt_number"
+                                                                    aria-describedby="form-otp-error"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div id="form-otp-error" class="invalid-feedback">${Resource.msg('lable.otp.form.required', 'otp', null)}</div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-center">
+                                                        <h6 class="code_expire">
+                                                            ${Resource.msg('label.login.codeexpire', 'login', null)}
+                                                            <span class="count-down"></span>
+                                                        </h6>
+                                                    </div>
+                                                        <input type="hidden" class="otp-phoneNumber" name="phoneNumber" />
+                                                        <input type="hidden" class="otp-requestID" name="requestID" />
+                                                    </div>
+                                                    <div class="send-email-btn">
+                                                        <button type="submit" id="submitOtp" class="btn btn-primary btn-block">
+                                                            ${Resource.msg('lable.otp.form.otp.verify', 'otp', null)}
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="clearfix pt-4">
+                                                        <div class="form-group custom-control custom-checkbox pull-left remember-me">
+                                                            <a href="${URLUtils.url('Login-Show', 'mobile', pdict.mobile)}"
+                                                                title="${Resource.msg('label.otp.form.email.login', 'otp', null)}">
+                                                                ${Resource.msg('label.otp.form.email.login', 'otp', null)}
+                                                            </a>
+                                                        </div>
+                                                        <div class="pull-right forgot-password text-right">
+                                                            <a href="${URLUtils.url('Login-GenerateOtp', 'mobile', pdict.mobile)}" class='resend-otp'
+                                                                title="${Resource.msg('label.otp.form.resend', 'otp', null)}">
+                                                                ${Resource.msg('label.otp.form.resend', 'otp', null)}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                                        
+                                                        <iscomment> <form>
+
+                                                <div class="row mt-4 opt_fields">
+                                                    <div class="col-12">
+                                                        <h6 class="text-center">
+                                                            ${Resource.msg('label.input.login.enterotp', 'login', null)}
+                                                            <br />
+                                                            <span>8963254171</span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="row mb-4">
+                                                            <div class="col-2">
+                                                                <input type="number" name="opt_number1" id="opt_number1"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <input type="number" name="opt_number2" id="opt_number2"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <input type="number" name="opt_number3" id="opt_number3"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <input type="number" name="opt_number4" id="opt_number4"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <input type="number" name="opt_number5" id="opt_number5"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <input type="number" name="opt_number6" id="opt_number6"
+                                                                    class="w-100 opt_number"
+                                                                    placeholder="${Resource.msg('placeholder.input.login.otp', 'login', null)}"
+                                                                    required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-center">
+                                                        <h6 class="code_expire">
+                                                            ${Resource.msg('label.login.codeexpire', 'login', null)}
+                                                            <span>00:59</span>
+                                                        </h6>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <input type="submit" name="submit" id="submit"
+                                                                value="${Resource.msg('button.verify', 'login', null)}"
+                                                                class="blue-btn d-block w-100" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-center">
+                                                        <div class="form-group">
+                                                            <a href="#">
+                                                                ${Resource.msg('button.resend', 'login', null)}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form> </iscomment>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane ${pdict.navTabValue === "register" ? 'active' : ''}"
+                                    id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <isinclude template="account/components/registerForm" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 text-center">
+                            <isinclude template="account/components/navTabs" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

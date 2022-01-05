@@ -1,0 +1,10 @@
+<div class="payment-details">
+    <isloop items="${pdict.order.billing.payment.selectedPaymentInstruments}" var="payment">
+          <isif condition="${payment.paymentMethod === 'PayU' && !pdict.order.billing.payment.freeMaternityKit.freeMaternityKitItem}">
+            <isinclude template="checkout/billing/paymentOptions/payUSummary" />
+        </isif>
+         <isif condition="${payment.paymentMethod === 'FREE_MATERNITY' && pdict.order.billing.payment.freeMaternityKit.freeMaternityKitItem && !pdict.order.billing.payment.freeMaternityKit.error}">
+    	    <isinclude template="checkout/billing/paymentOptions/freeMaternitySummary" />
+        </isif>
+    </isloop>
+</div>

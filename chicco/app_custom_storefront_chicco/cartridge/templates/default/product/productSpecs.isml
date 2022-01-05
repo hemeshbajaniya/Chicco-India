@@ -1,0 +1,137 @@
+<div class="col-12">
+    <div class="tabbing">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#Description">
+                    ${Resource.msg('tab.Description', 'product', null)}
+                </a>
+            </li>
+            <isif condition="${!empty(product.youtubeVideo)}">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#Video">
+                        ${Resource.msg('tab.Video', 'product', null)}
+                    </a>
+                </li>
+            </isif>
+            <isif condition="${!empty(product.specifications)}">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#Specifications">
+                        ${Resource.msg('tab.Specifications', 'product', null)}
+                    </a>
+                </li>
+            </isif>
+            <isif condition="${!empty(product.warningsInstruction)}">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#Warnings_Instruction">
+                        ${Resource.msg('Warnings.and.Instruction', 'product', null)}
+                    </a>
+                </li>
+            </isif>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#Shipping_Returns">
+                    ${Resource.msg('Shipping.And.Returns', 'product', null)}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#Reviews">
+                    ${Resource.msg('tab.Reviews', 'product', null)}
+                </a>
+            </li>
+            <isif condition="${!empty(product.faq)}">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#FAQ">
+                        ${Resource.msg('tab.FAQ', 'product', null)}
+                    </a>
+                </li>
+            </isif>
+        </ul>
+        <div class="tab-content mt-4">
+
+            <!-- Tab panes 1 -->
+            <div class="tab-pane container active" id="Description">
+                <isset name="loopState" value="${{count: 1}}" scope="page" />
+                <isinclude template="product/components/descriptionAndDetails" />
+            </div>
+
+            <!-- Tab panes 2 -->
+            <div class="tab-pane container" id="Video">
+                <div class="row align-items-center">
+                    <isif condition="${!empty(product.youtubeVideo)}">
+                        <div class="col-md-6 col-12 mb-4">
+                            <iframe class="w-100" height="320px" src="${product.youtubeVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                    
+                    </isif>
+                    <isif condition="${!empty(product.youtubeVideo2)}">
+                        <div class="col-md-6 col-12 mb-4">
+                            <iframe class="w-100" height="320px" src="${product.youtubeVideo2}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                    
+                    </isif>
+                    <isif condition="${!empty(product.youtubeVideo3)}">
+                        <div class="col-md-6 col-12 mb-4">
+                            <iframe class="w-100" height="320px" src="${product.youtubeVideo3}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                    
+                    </isif>
+                    <isif condition="${!empty(product.youtubeVideo4)}">
+                        <div class="col-md-6 col-12 mb-4">
+                            <iframe class="w-100" height="320px" src="${product.youtubeVideo4}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                    
+                    </isif>
+                    <isif condition="${!empty(product.youtubeVideo5)}">
+                        <div class="col-md-6 col-12 mb-4">
+                            <iframe class="w-100" height="320px" src="${product.youtubeVideo5}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                    
+                    </isif>
+                    <isif condition="${!empty(product.youtubeVideo6)}">
+                        <div class="col-md-6 col-12 mb-4">
+                            <iframe class="w-100" height="320px" src="${product.youtubeVideo6}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                    
+                    </isif>
+                    <iscomment> <isprint value="${product.youtubeVideo}" encoding="off" /> </iscomment>
+                </div>
+            </div>
+
+            <!-- Tab panes 3 -->
+            <div class="tab-pane container" id="Specifications">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <isprint value=" ${product.specifications}" encoding="off" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab panes 4 -->
+            <div class="tab-pane container" id="Warnings_Instruction">
+                <div class="row align-items-center ">
+                    <isprint value=" ${product.warningsInstruction}" encoding="off" />
+                </div>
+            </div>
+
+            <!-- Tab panes 5 -->
+            <div class="tab-pane container" id="Shipping_Returns">
+                <div class="row align-items-center ">
+                    <div class="col-12">
+                        <ul class="feature_list">
+                            <isslot id="Shipping-Returns-content" context="global" description="shipping returns"
+                                context-object="" preview-url="" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab panes 6 -->
+            <div class="tab-pane container" id="Reviews">
+                <div class="row align-items-center reviews">
+                    <isinclude template="widget/yotpoReviewsWidget" />
+                </div>
+            </div>
+
+            <!-- Tab panes 7 -->
+            <div class="tab-pane container" id="FAQ">
+                <div class="row align-items-center faq_que_ans">
+                    <isprint value=" ${product.faq}" encoding="off" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

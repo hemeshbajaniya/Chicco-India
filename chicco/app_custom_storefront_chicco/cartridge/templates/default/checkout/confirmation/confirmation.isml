@@ -1,0 +1,118 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/layouts/cart.css');
+        assets.addJs('/js/checkoutRegistration.js');
+    </isscript>
+
+    <script>
+    dataLayer.push({ ecommerce: null });    
+    var dataLayer =  window.dataLayer  ||  [];
+    dataLayer.push({
+    'event': 'transaction',
+    ecommerce: {
+        'purchase': {
+        'actionField': {
+            'id': ${pdict.order.orderNumber},                         // Transaction ID. Required for purchases and refunds.
+            'affiliation': ${pdict.order.orderNumber},
+            'revenue': ${pdict.order.priceTotal},                     // Total transaction value (incl. tax and shipping)
+            'tax':${pdict.order.totals.totalTax},
+            'shipping': ${pdict.order.totals.totalShippingCost},
+            'coupon': ${pdict.order.totals.discounts[0].couponCode}
+        },
+        'products':<isprint value="${pdict.products}" encoding="off"/>
+        }
+    }
+    });
+    </script>
+    <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
+        <isinclude template="reporting/reportingUrls" />
+    </isif>
+
+    <div class="breadcrumbs cart_breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <a class="active">
+                            <span>
+                                ${Resource.msg('stepper.count.one', 'checkout', null)}
+                            </span>
+                            ${Resource.msg('stepper.label.Cart', 'checkout', null)}
+                        </a>
+                        <a class="active">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <span>
+                                ${Resource.msg('stepper.count.two', 'checkout', null)}
+                            </span>
+                            ${Resource.msg('stepper.label.Address', 'checkout', null)}
+                        </a>
+                        <a class="active">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <span>
+                                ${Resource.msg('stepper.count.three', 'checkout', null)}
+                            </span>
+                            ${Resource.msg('stepper.label.OrderConfirmation', 'checkout', null)}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container receipt <isif condition="${pdict.order.shipping.length > 1}">multi-ship</isif>">
+        <section class="shopping_shortlist_sec order_confirm_sec pb-3 pt-3">
+            <div class="container">
+                <div class="row thank_you_content">
+                    <div class="col-12 text-center">
+                        <div class="thankyou_desc mb-4">
+                            <div
+                                class="${pdict.returningCustomer ? 'col-sm-6 offset-sm-3' : 'col-sm-6 offset-sm-3 offset-md-0'}">
+                                <img src="${URLUtils.staticURL('/images/checkmark_circle.png')}" alt="checkmark_circle"
+                                    loading="lazy" />
+                                <h2 class="order-thank-you-msg">
+                                    ${Resource.msg('msg.placed.order.thank.you', 'confirmation', null)}
+                                </h2>
+                                <p>
+                                    <strong>
+                                        ${Resource.msg('msg.placed.order.received', 'confirmation', null)}
+                                    </strong>
+                                    <br />
+                                    <strong>
+                                        <span class="summary-details order-number">${Resource.msg('label.order.number', 'confirmation', null)}
+                                            ${pdict.order.orderNumber}</span>
+                                    </strong>
+                                </p>
+                                <isif condition="${pdict.order.orderEmail}">
+                                    <p class="order-thank-you-email-msg">
+                                        <isprint
+                                            value="${Resource.msgf('info.receive.email.confirmation', 'confirmation', null, pdict.order.orderEmail)}"
+                                            encoding="htmlcontent" />
+                                    </p>
+                                </isif>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-right order_date">
+                        <p>
+                            ${Resource.msg('label.order.date', 'confirmation', null)}
+                            <isprint value="${pdict.order.creationDate}" style="DATE_LONG" timezone="SITE" />
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <isif condition="${pdict.returningCustomer === false && pdict.order.orderEmail}">
+                        <div class="col-sm-6 offset-sm-3 offset-md-0 push-md-6">
+                            <isinclude template="checkout/confirmation/confirmationCreateAccount" />
+                        </div>
+                    </isif>
+                    <isinclude template="checkout/confirmation/confirmationDetails" />
+                </div>
+            </div>
+        </section>
+    </div>
+</isdecorate>

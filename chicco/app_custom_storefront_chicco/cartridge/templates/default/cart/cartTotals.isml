@@ -1,0 +1,60 @@
+<form>
+    <div class="row mt-3">
+        <div class="col-6">
+            <label>${Resource.msg('label.estimatedtotal', 'cart', null)}</label>
+        </div>
+        <div class="col-6 text-right">
+            <label class="sub-total">${pdict.totals.subTotal}</label>
+        </div>
+    </div>
+    <div class="row order-discount <isif condition="${pdict.totals.orderLevelDiscountTotal.value === 0}">hide-order-discount</isif>">
+        <div class="col-6">
+            <label>${Resource.msg('label.order.discount', 'common', null)}</label>
+        </div>
+        <div class="col-6 text-right">
+            <label class="text-green"><span class="order-discount-total">${Resource.msg('label.minus', 'cart', null)} ${pdict.totals.orderLevelDiscountTotal.formatted}</span></label>
+        </div>
+    </div>
+    <iscomment>
+        <div class="row">
+            <div class="col-6">
+                <label>${Resource.msg('label.sales.tax', 'cart', null)}</label>
+            </div>
+            <div class="col-6 text-right">
+                <label class="text-orange tax-total"> ${pdict.totals.totalTax}</label>
+            </div>
+        </div>
+    </iscomment>
+    <div class="row">
+        <div class="col-6">
+            <label>${Resource.msg('label.shipping.cost', 'cart', null)}</label>
+        </div>
+        <div class="col-6 text-right">
+            <label class="text-orange shipping-cost">${pdict.totals.totalShippingCost}</label>
+        </div>
+    </div>
+    <div class="row shipping-discount <isif condition="${pdict.totals.shippingLevelDiscountTotal.value === 0}">hide-shipping-discount</isif>">
+        <div class="col-6">
+            <label>${Resource.msg('label.shipping.discount', 'common', null)}</label>
+        </div>
+        <div class="col-6 text-right">
+            <label class="text-green"><span class="shipping-discount-total">${Resource.msg('label.minus', 'cart', null)} ${pdict.totals.shippingLevelDiscountTotal.formatted}</span></label>
+        </div>
+    </div>
+    <span class="border-bottom"></span>
+    <div class="row">
+        <div class="col-6">
+            <label>
+                <strong>${Resource.msg('heading.order.subTotal', 'checkout', null)}</strong>
+            </label>
+        </div>
+        <div class="col-6 text-right">
+            <label>
+                <strong class="grand-total"> ${pdict.totals.grandTotal}</strong>
+            </label>
+        </div>
+    </div>
+    <p>
+        ${Resource.msg('label.tax', 'product', null)}
+    </p>
+</form>

@@ -1,0 +1,110 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/addressBook.js');
+        assets.addCss('/css/account/account.css');
+        assets.addCss('/css/account/addressBook.css');
+        assets.addCss('css/layouts/cart.css');
+    </isscript>
+    <isinclude template="account/deleteAddressModal" />
+    <iscomment> <div class="hero slant-down account-image">
+        <h1 class="page-title">${Resource.msg('label.addressbook', 'account', null)}</h1>
+    </div> </iscomment>
+    
+    <!---Breadcrumbs--->
+    <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
+    <section class="my_account border_top pt-4">
+        <div class="container">
+            <div class="row align-items-center">   
+                <div class="col-12">
+                    <h3>
+                        ${Resource.msg('page.title.myaccount','account',null)}
+                    </h3>
+                </div>
+            </div>
+            
+            <isif condition="${pdict.addressBook.length === 0}">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <h3>${Resource.msg('msg.no.saved.addresses', 'address', null)}</h3>
+                    </div>
+                </div>
+            <iselse/>
+                <h5 class="text-center">
+                    ${Resource.msg('label.MySavedAddress', 'account', null)}
+                </h5>
+            </isif>
+
+            <!-- Rows for addresses in the Address Book -->
+            <div class="shopping_shortlist_sec delete_cart_item_popup ">
+                <div class="shipping_product">
+                    <form>
+                        <div class="row mt-4 justify-content-center">
+
+                            <isloop items="${pdict.addressBook}" var="address">
+                                <div class="col-lg-6">
+                                    <div class="address_boxes">
+                                        <div class="row ">
+                                            <div class="col-6">
+                                                <h5>
+                                                    ${address.address.firstName} ${address.address.lastName}
+                                                    <span>${address.address.addressId}</span>
+                                                </h5>
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <a href="${URLUtils.url('Address-EditAddress', 'addressId', address.address.ID)}"
+                                                    class="edit_btn"
+                                                    aria-label="${Resource.msg('label.addressbook.editaddress', 'account', null)} : ${address.address.ID == pdict.addressBook[0].address.ID ? pdict.addressBook[0].address.ID + ' (' + Resource.msg(
+                                                                                                                                    'label.addressbook.defaultaddress', 'account', null) + ')' : address.address.ID}">
+                                                    <i class="fa fa-pencil mr-2"
+                                                        aria-hidden="true"></i>${Resource.msg('link.edit', 'account', null)}
+                                                </a>
+                                                <a href="#" class="delete_btn remove-address btn-light" data-toggle="modal"
+                                                    data-target="#deleteAddressModal" data-id="${address.address.ID}"
+                                                    data-url="${pdict.actionUrls.deleteActionUrl}"
+                                                    aria-label="${Resource.msg('label.addressbook.deleteaddress', 'account', null)}"
+                                                    <isprint
+                                                    value="${address.address.ID == pdict.addressBook[0].address.ID ? 'data-default="
+                                                    true "' : ''}" encoding="off" />>
+                                                <i class="fa fa-trash-o mr-2"
+                                                    aria-hidden="true"></i>${Resource.msg('link.delete', 'account', null)}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <p>
+                                                    ${address.address.address1} <br>
+                                                    <isif condition="${address.address.address2 !== null}">
+                                                        ${address.address.address2}<br>
+                                                    </isif>
+                                                    ${address.address.city}, ${address.address.stateCode}
+                                                    ${address.address.postalCode} <br>
+                                                    ${address.address.phone}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </isloop>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                        <a href="${URLUtils.url('Address-AddAddress')}"
+                            class="btn blue-btn w-100 font-18 btn-save btn-block btn-primary"
+                            aria-label="${Resource.msg('label.addressbook.addnewaddress', 'account', null)}">${Resource.msg('button.addnew', 'account', null)}</a>
+                        <a href="${URLUtils.url('Account-Show')}" class="mt-2 btn primary-btn font-18 btn-save btn-block btn-primary"
+                            aria-label="${Resource.msg('label.addressbook.myaccount', 'account', null)}">
+                            ${Resource.msg('link.profile.backtomyaccount', 'account', null)}
+                        </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</isdecorate>

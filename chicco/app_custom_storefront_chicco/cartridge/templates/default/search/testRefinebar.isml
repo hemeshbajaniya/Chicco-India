@@ -1,0 +1,213 @@
+<form>
+    <div class="product_filter">
+        <div class="row align-items-center filter_data">
+            <div class="col-6 clear">
+                <isif condition="${pdict.productSearch.productIds.length > 0}">
+                    <p>
+                        <a href="${pdict.productSearch.resetLink}" data-href="${pdict.productSearch.resetLink}">
+                            <i class="fa fa-times" aria-hidden="true"></i>    
+                            Clear all
+                        </a>
+                    </p>
+                </isif>
+            </div>
+
+            <div class="col-6 text-right apply">
+                <p>
+                    <input type="submit" name="apply" id="apply" value="Apply" />
+                </p>
+            </div>
+        </div>
+
+        <span class="border-bottom"></span>
+
+        <div class="row align-items-center pt-4">
+            <isloop items="${pdict.productSearch.refinements}" var="refinement">
+                <!-- Categories -->
+                <div class="col-12">
+                    <div class="row filter_data">
+                        <isif condition="${refinement.isCategoryRefinement}">
+                            <div class="col-12">
+                                <h5>
+                                    ${refinement.displayName}  
+                                </h5>
+                            </div>
+                            <div class="col-12">
+                                <isset name="categories" value="${refinement.values}" scope="page" />
+                                <isinclude template="search/refinements/categories" /> 
+                            </div>
+                         </isif>
+                    </div>
+                </div>
+            </isloop>
+            
+
+            <!-- Filter -->
+            <div class="col-12 mt-1">
+                <div class="row filter_data">
+                    <div class="col-12">
+                        <h5>
+                            Filter by     
+                        </h5>
+                    </div>
+                    <div class="col-12">
+
+                        
+                        <!-- Price -->
+                        <div class="category">
+                            <div class="list_cat">
+                                <div class="category-filter">
+                                    <div class="form-group checkboxes-data mb-0 parent-cat">
+                                        <input type="checkbox" id="shop_by_price" onclick="open_price_range()" />
+                                        <label for="shop_by_price">Shop By Price</label>
+                                    </div>                                                        
+                                    <div id="price_range" class="sub_cat" style="display:none">
+                                        <div slider id="slider-distance">
+                                            <div>
+                                            <div inverse-left style="width:70%;"></div>
+                                            <div inverse-right style="width:70%;"></div>
+                                            <div range style="left:30%;right:40%;"></div>
+                                            <span thumb style="left:30%;"></span>
+                                            <span thumb style="left:60%;"></span>
+                                            <div sign style="left:30%;">
+                                                € <span id="value">${Resource.msg('search.price.value.thirty', 'search', null)}</span>
+                                            </div>
+                                            <div sign style="left:60%;">
+                                                € <span id="value">${Resource.msg('search.price.value.sixty', 'search', null)}</span>
+                                            </div>
+                                            </div>
+                                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
+                                                this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+                                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                                                var children = this.parentNode.childNodes[1].childNodes;
+                                                children[1].style.width=value+'%';
+                                                children[5].style.left=value+'%';
+                                                children[7].style.left=value+'%';children[11].style.left=value+'%';
+                                                children[11].childNodes[1].innerHTML=this.value;" />
+                                        
+                                            <input type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
+                                                this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+                                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                                                var children = this.parentNode.childNodes[1].childNodes;
+                                                children[3].style.width=(100-value)+'%';
+                                                children[5].style.right=(100-value)+'%';
+                                                children[9].style.left=value+'%';children[13].style.left=value+'%';
+                                                children[13].childNodes[1].innerHTML=this.value;" />
+                                        </div>
+                                    </div>    					
+                                </div>
+                            </div>
+                            <span class="border-bottom"></span>
+                        </div>
+
+                        <!-- Offers -->
+                        <div class="category">
+                            <div class="list_cat">
+                                <div class="category-filter">
+                                    <div class="form-group checkboxes-data mb-0 parent-cat">
+                                        <input type="checkbox" id="Offers" onclick="open_offers()" />
+                                        <label for="Offers">Offers</label>
+                                    </div>                                                        
+                                    <div id="offers_subcat" class="sub_cat" style="display:none">
+                                        <div class="form-group checkboxes-data mb-0">
+                                            <input type="checkbox" id="Up5_off">
+                                            <label for="Up5_off">Up to 5% Off</label>
+                                        </div> 
+                                        <div class="form-group checkboxes-data mb-0">
+                                            <input type="checkbox" id="Up10_off">
+                                            <label for="Up10_off">Up to 10% Off</label>
+                                        </div> 
+                                        <div class="form-group checkboxes-data mb-0">
+                                            <input type="checkbox" id="Up15_off">
+                                            <label for="Up15_off">Up to 15% Off</label>
+                                        </div>                                                                     
+                                        <div class="form-group checkboxes-data mb-0">
+                                            <input type="checkbox" id="Up20_off">
+                                            <label for="Up20_off">Up to 20% Off</label>
+                                        </div> 
+                                    </div>    					
+                                </div>
+                            </div>
+                            <span class="border-bottom"></span>
+                        </div>
+
+                        <!-- Size -->
+                        <div class="category">
+                            <div class="list_cat">
+                                <div class="category-filter">
+                                    <div class="form-group checkboxes-data mb-0 parent-cat">
+                                        <input type="checkbox" id="ShopBySize" onclick="open_size()" />
+                                        <label for="ShopBySize">Shop By Size</label>
+                                    </div>                                                        
+                                    <div id="size_subcat" class="sub_cat" style="display:none">
+                                        <div class="form-group size-data mb-0">
+                                            <label class="radio-img text-uppercase">
+                                                <input type="radio" name="need_data" value="S">
+                                                <span>S</span>
+                                            </label>
+                                        </div> 
+                                        <div class="form-group size-data mb-0">
+                                            <label class="radio-img text-uppercase">
+                                                <input type="radio" name="need_data" value="M">
+                                                <span>M</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group size-data mb-0">
+                                            <label class="radio-img text-uppercase">
+                                                <input type="radio" name="need_data" value="L">
+                                                <span>L</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group size-data mb-0">
+                                            <label class="radio-img text-uppercase">
+                                                <input type="radio" name="need_data" value="XL">
+                                                <span>XL</span>
+                                            </label>
+                                        </div>
+                                    </div>    					
+                                </div>
+                            </div>
+                            <span class="border-bottom"></span>
+                        </div> 
+
+                        <isloop items="${pdict.productSearch.refinements}" var="refinement">
+                            <div class="category">
+                                <div class="list_cat">
+                                    <isif condition="${refinement.isAttributeRefinement}">
+                                        <div class="category-filter">
+                                            <div class="form-group checkboxes-data mb-0 parent-cat">
+                                                <input type="checkbox"  onclick="open_filter_cat()" />
+                                                <label aria-label="${refinement.displayName}">${refinement.displayName}</label>
+
+                                            </div>
+                                            <isinclude template="search/refinements/attributes" />
+                                        </div>
+                                    </isif>
+                                </div>
+                                <span class="border-bottom"></span>
+                            </div> 
+                        </isloop>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <span class="border-bottom"></span>
+        <div class="row align-items-center filter_data">
+            <div class="col-6 clear">
+                <p>
+                    <a href="#">
+                        <i class="fa fa-times" aria-hidden="true"></i>    
+                        Clear all
+                    </a>
+                </p>
+            </div>
+            <div class="col-6 text-right apply">
+                <p>
+                    <input type="submit" name="apply" id="apply" value="Apply" />
+                </p>
+            </div>
+        </div>
+    </div>
+</form>

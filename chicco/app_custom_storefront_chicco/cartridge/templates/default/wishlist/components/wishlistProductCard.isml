@@ -1,0 +1,93 @@
+<div class="row py-3 register_product_form main_title ${productItems.last != true ? 'border-bottom':''} border-dark">
+    <div class="col-12">
+        <div class="product_details d-flex align-items-center">
+            <div class="product_img">
+                <img class="product-image" src="${item.imageObj.small[0].url}"
+                    alt="${item.imageObj.small[0].alt}" title="${item.imageObj.small[0].title}" loading="lazy"/>
+            </div>
+
+            <div class="product_Desc w-100 m-2">
+                <isinclude template="wishlist/components/wishlistProductCardHeader"/>
+                <isinclude template="wishlist/components/wishlistProductCardAvailability" />  
+                <div class="item-attributes flex-column">
+                    <isloop items="${item.variationAttributes}" var="attribute">
+                        <isloop items="${attribute.values}" var="eachValue">
+                            <isif condition="${!!eachValue.selected}">
+                            <p class="line-item-attributes font-weight-normal pull-left pr-2">${attribute.displayName}: ${eachValue.displayValue}
+                            </p>
+                            </isif>
+                        </isloop>
+                    </isloop>
+                    <isif condition="${item.options}" >
+                    <isloop items="${item.options}" var="option">
+                        <isif condition="${!!option}" >
+                        <p class="line-item-attributes font-weight-normal">${option.displayName}:${option.displayValue}</p>
+                        </isif>
+                    </isloop>
+                    </isif>
+                </div>              
+                <isinclude template="wishlist/components/productListItemProductPrice" />
+                
+                <iscomment> <div class="item-attributes flex-column">
+                    <isloop items="${item.variationAttributes}" var="attribute">
+                        <isloop items="${attribute.values}" var="eachValue">
+                            <isif condition="${!!eachValue.selected}">
+                            <p class="line-item-attributes font-weight-normal pull-left pr-2">${attribute.displayName}: ${eachValue.displayValue}
+                            </p>
+                            </isif>
+                        </isloop>
+                    </isloop>
+                    <isif condition="${item.options}" >
+                    <isloop items="${item.options}" var="option">
+                        <isif condition="${!!option}" >
+                        <p class="line-item-attributes font-weight-normal">${option.displayName}:${option.displayValue}</p>
+                        </isif>
+                    </isloop>
+                    </isif>
+                </div> </iscomment>
+            </div>
+
+            <div class="buttons text-right">
+                <iscomment> <isif condition=${!pdict.wishlist.publicView}>
+                    <div class="edit-add-to-wishlist">
+                        <a href="${URLUtils.url('Wishlist-GetProduct', 'uuid', item.UUID, 'pid', item.pid)}"
+                            class="edit edit_btn" data-toggle="modal" data-target="#editWishlistProductModal"
+                            title="${Resource.msg('link.edit.item', 'cart', null)}">
+                            <i class="fa fa-pencil mr-2" aria-hidden="true"></i>
+                            ${Resource.msg('link.edit.item', 'cart', null)}
+                        </a>
+                    </div>
+                </isif> </iscomment>
+                <isif condition="${!pdict.wishlist.publicView}">
+                    <isif condition="${!!item.master}">
+                        <isinclude template="wishlist/components/selectAttributesButton"/>
+                    </isif>
+                </isif> 
+                <isinclude template="wishlist/components/addToCartButton"/>
+
+                <isif condition="${!pdict.wishlist.publicView}">
+                   
+                    <div class="d-lg-none buttons"> 
+                        <a href="#" class="delete blue-btn  remove-from-wishlist btn btn-light"
+                            data-url="${URLUtils.url('Wishlist-RemoveProduct','pid', item.pid)}"
+                            aria-label="remove">
+                            <span aria-hidden="true">${Resource.msg('wl.delete', 'wishlist', null)}</span>
+                        </a>
+                    </div>
+                    <div class="hidden-md-down buttons"> 
+                        <a href="#" class="delete blue-btn remove-from-wishlist btn btn-light"
+                            data-url="${URLUtils.url('Wishlist-RemoveProduct','pid', item.pid)}"
+                            aria-label="remove">
+                            <span aria-hidden="true">${Resource.msg('wl.delete', 'wishlist', null)}</span>
+                        </a>
+                    </div>
+         
+                    <iscomment> <isif condition="${!!item.master}">
+                        <isinclude template="wishlist/components/selectAttributesButton"/>
+                    </isif> </iscomment>
+                </isif>
+            </div>
+        </div>
+    </div>
+    
+</div>

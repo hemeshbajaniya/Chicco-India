@@ -1,0 +1,48 @@
+<isdecorate template="common/layout/page">
+
+    <isscript>
+
+        var assets = require('*/cartridge/scripts/assets.js');
+
+        assets.addJs('/js/owl.carousel.js');
+        assets.addJs('/js/main_design.js');
+
+    </isscript>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <a href=${URLUtils.url('Home-Show')}>
+                            ${Resource.msg('homemenu.msg.Home', 'menupromotions', null)}
+                        </a>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a class="active"> ${Resource.msg('homemenu.msg.Promotion', 'menupromotions', null)}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="inner_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="banner_content">
+                        <h1>
+                            ${Resource.msg('homemenu.msg.Promotion', 'menupromotions', null)}
+                        </h1>
+                        <p>
+                            <iscomment> ${Resource.msg('homemenu.msg.BannerDiscription', 'menupromotions', null)} </iscomment>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <isslot id="home-promotion-slider" description="home page promotion slider" context="global" />
+
+</isdecorate>

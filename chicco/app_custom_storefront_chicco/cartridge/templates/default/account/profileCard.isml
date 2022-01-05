@@ -1,0 +1,30 @@
+<div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="boxes">
+
+        <div class="title">
+            <div class="row">
+                <div class="col-7">
+                    <h5 class="text-white mb-0">
+                    <img src="${URLUtils.staticURL('/images/my_accounts/profile.png')}" alt="profile" class="mr-1" loading="lazy"/>
+                    ${Resource.msg('label.profile','account',null)}</h5>
+                </div>
+                <div class="col-5 text-right">
+                     <a href="${URLUtils.url('Account-EditProfile')}" class="pull-right box_links text-white" aria-label="${Resource.msg('label.profile.edit','account',null)}">${Resource.msg('link.edit','account',null)}</a>
+                    </div>  
+            </div>
+        </div>
+        
+        <div class="card-body card-min-height">
+            <dl>
+                 <dd>${pdict.account.profile.firstName} ${pdict.account.profile.lastName}</dd>
+            </dl>
+            <dl>
+                 <dd>${pdict.account.profile.phone}</dd>
+            </dl>
+            <dl>
+                <dd>${pdict.account.profile.email}</dd>
+            </dl>
+        </div>
+
+    </div> 
+</div>

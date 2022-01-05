@@ -1,0 +1,92 @@
+<iscomment>
+
+    Template Notes:
+
+    - This template is intended to be referenced from an <isinclude> tag within an <isloop> in another
+            source template. The <isloop> is expected to have a "status" attribute, named "attributeStatus".
+                - ${attributeStatus.last} is checked to see whether a particular attribute row should include the
+                Quantity drop-down menu
+
+</iscomment>
+
+<div class="attribute">
+    <isif condition="${attr.swatchable}">
+
+        <div class="colors mt-3">
+            <p class="${attr.id}">
+                Colors :
+                <strong>${Resource.msg('label.select', 'common', null)} ${attr.displayName}</strong>
+            </p>
+
+            <div class="row">
+                <isloop items="${attr.values}" var="attrValue">
+                    <isif condition="${!(isBundle && product.productType === 'variant' && !attrValue.selected)}">
+                        <div class="col-xl-3 col-lg-4 col-md-3 col-6">
+                            <div class="form-group size-data mb-0">
+                                <a class="color-attribute"
+                                    aria-label="${Resource.msg('label.select', 'common', null)} ${attr.displayName} ${attrValue.displayValue}"
+                                    aria-describedby="${attrValue.id}" data-url="${attrValue.url}"
+                                    ${product.productType === "variant" && isBundle ? "disabled" : ""}>
+                                    <label class="radio-img text-uppercase">
+                                        <input type="radio" name="color_data" value="red">
+                                        <div class="color_box">
+                                            <div class="img">
+                                                <img data-attr-value="${attrValue.value}" class="
+                                            ${attr.id}-value
+                                            swatch-circle
+                                            swatch-value
+                                            ${attrValue.selected ? 'selected' : ''}
+                                            ${attrValue.selectable ? 'selectable' : 'unselectable'}"
+                                                    src="background-image: url(${attrValue.images['swatch'].length > 0 ? attrValue.images['swatch'][0].url : ''})"
+                                                    alt="" loading="lazy"/>
+                                            </div>
+                                            <div class="name_price">
+                                                <h6>${attrValue.displayValue}</h6>
+                                                <span>₹ 2,500</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </a>
+                            </div>
+                        </div>
+                    </isif>
+                </isloop>
+            </div>
+        </div>
+
+    <iselse/>
+
+
+        <div class="sizes mt-1">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p class="d-inline-block">
+                        Size :
+                    </p>
+                    <div class="d-inline-block">
+                        <isloop items="${attr.values}" var="attrValue">
+                            <div class="form-group size-data mb-0">
+                                <label class="radio-img text-uppercase">
+                                    <input type="radio" name="need_data" value="${attrValue.url}"
+                                        data-attr-value="${attrValue.value}" ${!attrValue.selectable ? 'disabled' : ''}
+                                        ${attrValue.selected ? 'selected' : ''}>
+                                    <span>${attrValue.displayValue}</span>
+                                </label>
+                            </div>
+                        </isloop>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="size_chart">
+                        <p class="mb-0">
+                            <a href="#" data-toggle="modal" data-target="#size_guide">
+                                <img src="${URLUtils.staticURL('/images/product_guide.png')}" alt="product_guide" class="mr-1"  loading="lazy"/>
+                                ${Resource.msg('label.size.guide', 'product', null)}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </isif>
+</div>

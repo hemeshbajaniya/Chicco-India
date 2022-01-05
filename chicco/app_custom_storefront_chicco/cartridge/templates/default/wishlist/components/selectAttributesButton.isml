@@ -1,0 +1,16 @@
+<div class="col-sm-12 select-attributes-wishList p-0">
+    <iscomment> <input type="hidden" class="select-attributes-url" value="${}">
+    <button class="select-attributes-btn btn btn-outline-primary blue-btn mx-2" data-toggle="modal"
+        data-target="#editWishlistProductModal" data-pid="${item.pid}"
+        data-get-product-url="${URLUtils.url('Wishlist-GetProduct', 'uuid', item.UUID, 'pid', item.pid)}">
+        ${Resource.msg('button.select_attributes', 'wishlist', null)}
+    </button> </iscomment>
+    <div class="edit-add-to-wishlist">
+        <a href="${URLUtils.url('Wishlist-GetProduct', 'uuid', item.UUID, 'pid', item.pid)}" class="edit edit_btn"
+            data-toggle="modal" data-target="#editWishlistProductModal"
+            title="${Resource.msg('link.edit.item', 'cart', null)}">
+            <i class="fa fa-pencil mr-2" aria-hidden="true"></i>
+            ${Resource.msg('link.edit.item', 'cart', null)}
+        </a>
+    </div>
+</div>

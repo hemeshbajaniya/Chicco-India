@@ -1,0 +1,29 @@
+<script defer type="text/javascript" src="${URLUtils.staticURL('/js/facebookpixel.js')}"></script>
+<isif condition="${pdict.name === null}">
+    <span class="user">
+        <a href="${URLUtils.https('Login-Show')}" role="button"
+            aria-label="${Resource.msg('label.header.loginbutton', 'account', null)}">
+            <iscomment> <i class="fa fa-sign-in" aria-hidden="true"></i> </iscomment>
+            <img src="${URLUtils.staticURL('/images/user.svg')}" alt="user" class="hidden-lg-down user" loading="lazy">
+            <i class="d-xl-none fa fa-user mr-2" aria-hidden="true"></i>
+            <span class="user-message">${Resource.msg('link.header.login', 'account', null)}</span>
+        </a>
+    </span>
+<iselse/>
+    <span class="user nav-item">
+        <a href="${'#'}" id="myaccount" aria-haspopup="true"
+            aria-label="${Resource.msg('link.header.myaccount', 'account', null)}" role="button">
+            <img src="${URLUtils.staticURL('/images/user.svg')}" alt="user" class="hidden-lg-down user" loading="lazy">
+            <i class="d-xl-none fa fa-user mr-2" aria-hidden="true"></i>
+            <span class="user-message btn dropdown-toggle">${pdict.name}</span>
+        </a>
+    </span>
+    <ul class="user_drop list-unstyled">
+        <li><a href="${URLUtils.https('Account-Show')}" role="menuitem"
+                tabindex="-1">${Resource.msg('link.header.myaccount', 'account', null)}</a></li>
+        <li><a href="${URLUtils.url('Order-History')}" role="menuitem"
+                tabindex="-1">${Resource.msg('label.myorders', 'account', null)}</a></li>
+        <li><a href="${URLUtils.url('Login-Logout')}" role="menuitem"
+                tabindex="-1">${Resource.msg('link.header.logout', 'account', null)}</a></li>
+    </ul>
+</isif>

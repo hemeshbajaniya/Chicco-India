@@ -1,0 +1,129 @@
+<div id="baby-registry-account" class="baby-registry-groups w-100 register_product_form main_title">
+    <div class="col-md-12">  
+        <div class="form-group required">
+            <label class="form-control-label" for="registration-form-phone">
+                ${Resource.msg('label.register.baby.form.name', 'babyregistry', null)}
+            </label>
+            <input type="text" class="form-control w-100 field" required id="baby-registration-form-name"
+                data-missing-error="${Resource.msg('label.register.baby.form.name.missing.error', 'babyregistry', null)}"
+                aria-describedby="form-name-error"
+                placeholder="${Resource.msg('label.register.baby.form.name.placeholder', 'babyregistry', null)}"/>
+            <div class="invalid-feedback" id="form-baby-registration-error"></div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group required">
+            <label class="form-control-label" for="registration-form-phone">
+                ${Resource.msg('label.register.baby.form.age', 'babyregistry', null)}
+            </label>
+            <input type="date" class="form-control w-100 field" id="baby-registration-form-age"
+                data-missing-error="${Resource.msg('label.register.baby.form.age.missing.error', 'babyregistry', null)}"
+                aria-describedby="form-age-error"
+                placeholder="${Resource.msg('label.register.baby.form.age.placeholder', 'babyregistry', null)}"
+                required 
+                />
+            <div class="invalid-feedback" id="form-baby-registration-age-error"></div>
+        </div>
+    </div>
+    
+
+    <div class="col-md-12">
+        <div class="form-group required mb-0">
+            <label class="form-control-label" for="registration-form-gender">
+                ${Resource.msg('label.register.baby.form.gender', 'babyregistry', null)}
+            </label>
+            <label class="radio-img">
+                <input type="radio" class="form-check-input" name="baby-registration-form-gender"
+                    id="baby-registration-form-gender-male"
+                    data-missing-error="${Resource.msg('label.register.baby.form.gender.missing.error', 'babyregistry', null)}"
+                    aria-describedby="form-gender-error"
+                    value="Male" checked/>
+                <span>${Resource.msg('placeholder.input.register.boy', 'login', null)}</span>
+            </label>
+            <label class="radio-img">
+                <input type="radio" name="baby-registration-form-gender" class="form-check-input"
+                    id="baby-registration-form-gender-female"
+                    data-missing-error="${Resource.msg('label.register.baby.form.gender.missing.error', 'babyregistry', null)}"
+                    aria-describedby="form-gender-error"
+                    value="Female"/>
+                <span>${Resource.msg('placeholder.input.register.girl', 'login', null)}</span>
+            </label>
+            <div class="invalid-feedback" id="form-baby-registration-age-error">
+                ${Resource.msg('label.register.baby.form.gender.female', 'babyregistry', null)}
+            </div>
+        </div>
+    </div>
+
+    <div class="baby-form-addtional w-100"></div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <a href="#" class="regiter_another_baby add-more-baby-registry">
+                ${Resource.msg('button.addbaby', 'login', null)}</a>
+        </div>
+    </div>
+
+</div> 
+
+<iscomment>
+<div class="baby-registry-groups w-100">
+    <div class="col-md-12">
+        <div class="form-group required">
+            <label class="form-control-label" for="registration-form-phone">
+                ${Resource.msg('label.register.baby.form.name', 'babyregistry', null)}
+            </label>
+            <input type="text" class="form-control w-100 field" id="baby-registration-form-name"
+                data-missing-error="${Resource.msg('label.register.baby.form.name.missing.error', 'babyregistry', null)}"
+                aria-describedby="form-name-error"
+                placeholder="${Resource.msg('label.register.baby.form.name.placeholder', 'babyregistry', null)}"
+                required/>
+            <div class="invalid-feedback" id="form-baby-registration-error"></div>
+        </div>
+    </div>
+    <div class="col-md-12">
+    <div class="form-group required">
+            <label class="form-control-label" for="registration-form-phone">
+                ${Resource.msg('label.register.baby.form.age', 'babyregistry', null)}
+            </label>
+            <input type="number" class="form-control w-100 field" id="baby-registration-form-age"
+                data-missing-error="${Resource.msg('label.register.baby.form.age.missing.error', 'babyregistry', null)}"
+                aria-describedby="form-age-error"
+                placeholder="${Resource.msg('label.register.baby.form.age.placeholder', 'babyregistry', null)}"
+                required/>
+            <div class="invalid-feedback" id="form-baby-registration-age-error"></div>
+        </div>
+        </div>
+    <div class="col-md-12">
+        <div class="form-group required mb-0">
+            <label class="form-control-label" for="registration-form-gender">
+                ${Resource.msg('label.input.gender.baby', 'login', null)}
+            </label>
+            <label class="radio-img">
+                <input type="radio" class="form-check-input" name="baby-registration-form-gender"
+                    id="baby-registration-form-gender-male"
+                    data-missing-error="${Resource.msg('label.register.baby.form.gender.missing.error', 'babyregistry', null)}"
+                    aria-describedby="form-gender-error"
+                    value="Male" checked/>
+                <span class="radio-span">${Resource.msg('placeholder.input.register.boy', 'login', null)}</span>
+            </label>
+            <label class="radio-img">
+                <input type="radio" name="baby-registration-form-gender" class="form-check-input"
+                    id="baby-registration-form-gender-female"
+                    data-missing-error="${Resource.msg('label.register.baby.form.gender.missing.error', 'babyregistry', null)}"
+                    aria-describedby="form-gender-error"
+                    value="Female"/>
+                <span class="radio-span">${Resource.msg('placeholder.input.register.girl', 'login', null)}</span>
+            </label>
+            <div class="invalid-feedback" id="form-baby-registration-age-error">
+                ${Resource.msg('label.register.baby.form.gender.female', 'babyregistry', null)}
+            </div>
+        </div>
+    </div>
+    <div class="baby-form-addtional w-100"></div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <a href="#" class="regiter_another_baby add-more-baby-registry">
+                ${Resource.msg('button.addbaby', 'login', null)}</a>
+        </div>
+    </div>
+</div> </iscomment>

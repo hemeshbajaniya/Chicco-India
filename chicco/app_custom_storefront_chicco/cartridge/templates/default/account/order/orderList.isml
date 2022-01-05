@@ -1,0 +1,10 @@
+<isloop items="${pdict.orders}" var="order">
+    
+    <isinclude template="account/order/myOrderHistoryCard" />
+       
+
+    <div class="col-12 pt-4 pb-4 pl-0 pr-0">
+        <span class="border_bottom_primary d-block"></span>
+    </div>
+
+</isloop>

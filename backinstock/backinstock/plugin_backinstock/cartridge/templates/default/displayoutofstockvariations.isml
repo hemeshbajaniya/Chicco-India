@@ -1,0 +1,12 @@
+<!--- TEMPLATENAME: displayvariations.isml --->
+<isscript>
+		attrValue.isSelectable = true;
+		if (attrValue.swatchClass == 'unselectable') {
+			attrValue.swatchClass = 'selectable';
+		}
+		
+		if (attrValue.swatchClass == 'unselectable selected') {
+			attrValue.swatchClass = 'selectable selected';
+		}
+		
+</isscript>

@@ -1,0 +1,47 @@
+<div class="mobile-menu d-block d-xl-none">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+        <ul class="pl-0 ml-0 mb-0">
+            <li class="nav-item ch-nav-item ch_username">
+                <isinclude url="${URLUtils.url('Account-Header')}" />
+            </li>
+            <li>
+                <isslot id="mobile-store-locatore" context="global" description="" />
+            </li>
+ 
+            
+            <isif condition="${pdict.categories}">
+                <isloop items="${pdict.categories}" var="category">
+                
+                    <isif condition="${category.subCategories}">
+                        <li class="nav-item ch-nav-item parent-menu" role="presentation">
+                            <a href="<isprint value="${category.url}" encoding="htmldoublequote" />"
+                            id="${category.id}"
+                            class="nav-link ch-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" tabindex="0">${category.name}</a>
+                            <isset name="menuItem" value="${category}" scope="page" />
+                            <isinclude template="components/header/menuItem" />
+                        </li>
+                    <iselse/>
+                        <li class="nav-item ch-nav-item parent-menu" role="presentation">
+                            <a href="<isprint value=" ${category.url}" encoding="htmldoublequote" />"
+                            id="${category.id}"
+                            class="nav-link ch-nav-link" role="link" tabindex="0">${category.name}</a>
+                        </li>
+ 
+ 
+                    </isif>
+                </isloop>
+            </isif>
+            <li>
+                <a href="${URLUtils.url('Page-Show', 'cid', 'who-we-are')}" class="primary-btn">${Resource.msg('homemenu.button.whoweare', 'menupromotions', null)}</a>
+            </li>
+            <li>
+                <a href="${URLUtils.url('Page-Show', 'cid', 'chicco-research-center')}" class="secondary-btn text-white">${Resource.msg('homemenu.button.reserchcenter', 'menupromotions', null)}</a>
+            </li>
+        </ul>
+ 
+ 
+    </div>
+</div>
+

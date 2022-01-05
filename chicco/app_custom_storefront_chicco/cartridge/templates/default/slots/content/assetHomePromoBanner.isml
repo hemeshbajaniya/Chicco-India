@@ -1,0 +1,65 @@
+<section class="collection_offer pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner_slider">
+                    <div class="owl-carousel owl-theme">
+                        <isif condition="${slotcontent != null}">
+                            <isloop items="${slotcontent.content}" var="contentAsset" status="loopCount">
+                                <div class="item">
+                                <style type="text/css">
+                                @media (max-width: 767px) {
+                                   .offer_img_content .caro_img_${loopCount.count} {
+                                        height: 20vmax;
+                                        min-width: 255px;
+                                        min-height: 255px;
+                                        position: relative;
+                                        background-position: 50%;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        background-image: url(${contentAsset.custom.backgroundImgMobile.url});
+                                    }
+                                }
+
+                                @media (min-width: 768px) {
+                                  .offer_img_content .caro_img_${loopCount.count} {
+                                        height: 26vmax;
+                                        
+                                        background-size: cover;
+                                        background-image: url(${contentAsset.custom.backgroundImg.url});
+                                    }
+                                }
+                            </style> 
+                                    <div class="offer_img_content">
+                                    <div class="caro_img_${loopCount.count} w-100" loading="lazy">
+                                    </div>
+                                        <iscomment> <img src="${contentAsset.custom.backgroundImg.url}" class="w-100" loading="lazy" alt="image tags"/> </iscomment>
+                                        <div class="offer_content">
+                                            <h6 class="text-uppercase text-dark">
+                                                <isprint value="${contentAsset.custom.discountHeader}" encoding="off" />
+                                                <b>
+                                                    <isprint value="${contentAsset.custom.discountPercent}"
+                                                        encoding="off" />
+                                                </b>
+                                            </h6>
+                                            <h3 class="text-dark font-30">
+                                                <isprint value="${contentAsset.custom.promotionTitle}" encoding="off" />
+                                            </h3>
+                                            <p class="text-dark font-size-18">
+                                                <isprint value="${contentAsset.custom.subtitle}" encoding="off" />
+                                            </p>
+
+                                            <a href="${contentAsset.custom.buttonUrl}" class="primary-btn-banner d-inline-block">
+                                                <isprint value="${contentAsset.custom.buttonText}" encoding="off" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </isloop>
+                        </isif>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

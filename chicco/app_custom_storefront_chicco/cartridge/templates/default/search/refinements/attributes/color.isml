@@ -1,0 +1,14 @@
+
+<isif condition="${refinementValue.selectable}">
+    <div class="form-group checkboxes-data mb-0">
+        <input class="filters-refinments" type="checkbox" id="${refinementValue.swatchId}"  data-href="${refinementValue.url}"
+        <isif condition="${refinementValue.selected && refinementValue.selectable}">checked</isif>
+        <isif condition="${!refinementValue.selectable}">disabled</isif>
+            >
+        <label for="${refinementValue.swatchId}">
+            <span style="background-color: ${refinementValue.displayValue};"></span>
+            ${refinementValue.displayValue}
+        </label>
+    </div> 
+</isif>
+

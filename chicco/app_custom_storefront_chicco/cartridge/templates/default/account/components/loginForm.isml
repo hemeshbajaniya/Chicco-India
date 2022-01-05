@@ -1,0 +1,74 @@
+<form action="${pdict.actionUrl}" class="login" method="POST" name="login-form">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group required">
+                <label class="form-control-label" for="login-form-email">
+                    ${Resource.msg('label.input.login.email', 'login', null)}
+                </label>
+                <input type="email" id="login-form-email" required aria-required="true"
+                    class="form-control required w-100 field" aria-describedby="form-email-error" name="loginEmail"
+                    value="${pdict.userName}"
+                    placeholder="${Resource.msg('placeholder.input.login.email', 'login', null)}">
+                <div class="invalid-feedback" id="form-email-error"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group required">
+                <label class="form-control-label" for="login-form-password">
+                    ${Resource.msg('label.input.login.password', 'login', null)}
+                </label>
+                <input type="password" id="login-form-password" required aria-required="true"
+                    class="form-control required w-100 field" aria-describedby="form-password-error"
+                    name="loginPassword"
+                    placeholder="${Resource.msg('placeholder.input.login.password', 'login', null)}">
+                    <i class="fa fa-eye-slash eye-btn show-password" aria-hidden="true"></i>
+                    <i class="fa fa-eye eye-btn hide-password" aria-hidden="true"></i>
+                <div class="invalid-feedback" id="form-password-error"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12 clearfix text-right">
+
+        <iscomment> <div class="form-group custom-control custom-checkbox pull-left remember-me">
+            <a
+                id="otp-request"
+                title="${Resource.msg('lable.otp.heading', 'otp', null)}"
+                data-toggle="modal"
+                href="${URLUtils.url('Account-PasswordResetDialogForm')}"
+                data-target="#optRequestModal">
+                ${Resource.msg('lable.otp.heading', 'otp', null)}
+            </a>
+        </div> </iscomment>
+        
+            <div class="pull-right forgot-password text-right">
+                <a class="d-sm-none" href="${URLUtils.url('Account-PasswordReset')}"
+                    title="${Resource.msg('label.forgotpassword', 'login', null)}">
+                    ${Resource.msg('label.forgotpassword', 'login', null)}
+                </a>
+
+                <a id="password-reset" class="hidden-xs-down"
+                    title="${Resource.msg('link.login.forgotpassword', 'login', null)}" data-toggle="modal"
+                    href="${URLUtils.url('Account-PasswordResetDialogForm')}" data-target="#requestPasswordResetModal">
+                    ${Resource.msg('link.login.forgotpassword', 'login', null)}
+                </a>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+
+                <button id="login-button" type="submit" class="blue-btn d-block w-100">${Resource.msg('button.text.loginform', 'login', null)}</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<iscomment> <script>
+window.addEventListener('DOMContentLoaded', (event) => {var createPostShipCss= document.createElement('link');createPostShipCss.setAttribute('rel','stylesheet'); createPostShipCss.setAttribute('href','https://kr-shipmultichannel.s3-ap-southeast-1.amazonaws.com/shiprocket-fronted/shiprocket_post_ship.css');
+                  document.body.appendChild(createPostShipCss); var createPostShipScript= document.createElement('script'); createPostShipScript.setAttribute('onload','changeData()'); createPostShipScript.setAttribute('src','https://kr-shipmultichannel.s3-ap-southeast-1.amazonaws.com/shiprocket-fronted/shiprocket_post_ship.js');
+                  document.body.appendChild(createPostShipScript);});function changeData(){document.querySelector('.post-ship-btn').style.backgroundColor = ''; document.querySelector('.post-ship-btn').style.color = '';
+                  document.querySelector('.post-ship-box-wrp').style.backgroundColor = ''; document.querySelector('.post-ship-box-wrp div').style.color = '';document.querySelector('.post-ship-box-wrp h1').style.color='';
+                  document.querySelector('.post-ship-box-wrp button').style.backgroundColor = ''; document.querySelector('.post-ship-box-wrp button').style.color = '';}
+</script> </iscomment>

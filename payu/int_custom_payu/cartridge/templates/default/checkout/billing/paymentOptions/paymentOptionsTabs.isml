@@ -1,0 +1,9 @@
+<isset name="freeMaternityKitEnabled" value="${dw.system.Site.current.preferences.custom.freeMaternityEnabled}" scope="page" />
+<isloop items="${pdict.order.billing.payment.applicablePaymentMethods}" var="paymentOption">
+    <isif condition="${paymentOption.ID === 'PayU' && !pdict.order.billing.payment.freeMaternityKit.freeMaternityKitItem}">
+    	<isinclude template="checkout/billing/paymentOptions/payUTab" />
+    </isif>
+   <isif condition="${paymentOption.ID === 'FREE_MATERNITY' && pdict.order.billing.payment.freeMaternityKit.freeMaternityKitItem && !pdict.order.billing.payment.freeMaternityKit.error}">
+    	<isinclude template="checkout/billing/paymentOptions/freeMaternityTab" />
+    </isif>
+</isloop>

@@ -1,0 +1,113 @@
+<isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
+    <isinclude template="reporting/reportingUrls" />
+</isif>
+
+<isif condition="${pdict.productSearch.productIds.length > 0}">
+<!-- .breadcrumbs -->
+<isinclude template="components/breadcrumbs/pageBreadcrumbs" />
+<!-- ./breadcrumbs -->
+</isif>
+
+<!--- Search Results Banner --->
+<isif condition="${pdict.productSearch.isCategorySearch}">
+    <div class="hero slant-down search-banner" <!--- If no image, default is specified in search.scss> .search-banner
+        --->
+        <isif condition="${pdict.productSearch.bannerImageUrl}">
+            style="background-image: url(${pdict.productSearch.bannerImageUrl})"
+        </isif>
+        >
+        <section class="inner_banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="banner_content">
+                            <h1 class="header page-title">
+                                ${pdict.productSearch.category.name}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <iscomment>
+        <iselse>
+            <isslot id="search-result-banner-m" description="Banner for search results" context="global" />
+    </iscomment>
+</isif>
+
+
+<isif condition="${pdict.productSearch.productIds.length > 0}">
+
+    <section class="product_filter_listing">
+        <div class="tab-content container">
+            <div class="row mx-0">
+                <!-- Filter (Left Sidebar) -->
+                <div class="col-xl-3">
+                    <div class="filter_icon d-inline-block d-xl-none">
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </div>
+                    <div id="mobile_filter" class="filter_boxes d-none d-xl-block">
+
+                        <div class="close_icon d-inline-block d-xl-none">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                        <isinclude url="${pdict.refineurl}" />
+                    </div>
+                </div>
+
+
+                <!-- Product Listing -->
+                <div class="col-xl-9">
+                    <div class="product_listing">
+
+                        <!-- Topbar -->
+                        <div class="topbar">
+                            <div class="row">
+                                <div class="col-md-6 col-12 align-self-center">
+                                    <p>
+                                        ${Resource.msg('category.product.count.showing', 'search', null)}
+                                        <isinclude template="search/resultsCount" />
+                                        ${Resource.msg('category.product.count.items', 'search', null)}
+                                    </p>
+                                </div>
+
+                                <div class="col-md-6 col-12 text-left text-md-right">
+                                    <p class="align-items-center">
+                                        <isif condition="${pdict.productSearch.productIds.length > 0}">
+                                            <isinclude template="search/sortOrderMenu" />
+                                        </isif>
+                                    </p>
+                                </div>
+
+                                <iscomment>
+                                    <isinclude template="search/excludeOutofStock" />
+                                </iscomment>
+
+                            </div>
+                        </div>
+
+                        <!-- Product Listing -->
+                        <div class="products mt-5" itemtype="http://schema.org/SomeProducts" itemid="#product">
+                            <div class="row">
+                                <isif condition="${pdict.productSearch.productIds.length > 0}">
+                                    <!--- Product Grid --->
+                                    <isinclude template="search/productGrid" />
+                                </isif>
+                            </div>
+
+                            <div class="row pt-3">
+                                <isslot id="search_result_bottom" description="search result bottom slot"
+                                    context="category"
+                                    context-object="${dw.catalog.CatalogMgr.getCategory(pdict.productSearch.category.id)}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<iselse/>
+    <isinclude template="search/noResultsProduct" />
+
+</isif>

@@ -1,0 +1,81 @@
+<!--- TEMPLATENAME: pageHeader.isml --->
+<header class="site-header">
+
+	<div class="top-bar">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12 text-center">
+					<isslot id="header-banner-m" description="Slot above the site header" context="global" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<isinclude url="${URLUtils.url('MobileMenu-IncludeMobileMenu')}" />
+
+	<div class="middle-header pt-3 pb-3">
+		<div class="container-fluid">
+			<nav class="navbar navbar-expand-md navbar-light ch-navbar-light w-100 p-0">
+				<div class="mobile-menu-open d-block d-xl-none">
+					<i><img src="${URLUtils.staticURL('/images/toggle-icon.svg')}" alt="menu-icon" class="w-100"></i>
+				</div>
+
+				<a class="di-inline-block mr-lg-4 pr-lg-1" href="${URLUtils.url('Home-Show')}"
+					title="${Resource.msgf('global.homepage.tooltip', 'common', null, Resource.msg('global.storename', 'common', null), Resource.msg(
+        	'global.home', 'common', null))}">
+					<img src="${URLUtils.staticURL('/images/logo.svg')}" alt="site-logo" class="site-logo" />
+				</a>
+				<div class="mobile_carts d-inline-block d-md-none">
+					<a href="#" class="search-bar">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</a>
+					<a href="${URLUtils.https('Wishlist-Show')}"
+						title="${Resource.msgf('link.wishlist', 'wishlist', null)}">
+						<img src="${URLUtils.staticURL('/images/heart.svg')}" alt="heart" />
+					</a>
+					<isinclude url="${URLUtils.url('Cart-MiniCart')}" />
+				</div>
+
+
+				<ul class="navbar-nav ml-xl-4 mt-0 mt-lg-0 ch-navbar-nav ml-0 d-none d-lg-flex">
+					<li class="nav-item ch-nav-item">
+						<iscontentasset aid="store-locator" description="" />
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto mt-3 mt-md-0 mt-lg-0 ch-navbar-nav right-menu d-none d-md-flex">
+					<li class="nav-item ch-nav-item">
+						<div class="site-search">
+							<isinclude template="components/header/search" />
+						</div>
+					</li>
+					<li class="nav-item ch-nav-item">
+						<a href="${URLUtils.https('Wishlist-Show')}"
+							title="${Resource.msgf('link.wishlist', 'wishlist', null)}">
+							<img src="${URLUtils.staticURL('/images/heart.svg')}" alt="heart" />
+						</a>
+					</li>
+
+					<li class="nav-item ch-nav-item"><a href="${URLUtils.url('Cart-MiniCartShow')}" class="minicart">
+							<isinclude url="${URLUtils.url('Cart-MiniCart')}" />
+						</a></li>
+					<li class="nav-item ch-nav-item ch_username hidden-lg-down">
+						<isinclude url="${URLUtils.url('Account-Header')}" />
+					</li>
+				</ul>
+			</nav>
+			<div class="row search_modal d-md-none px-3 mt-2"  id="search_popup">
+				<div class="site-search min-w-100">
+					<isinclude template="components/header/search" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="main-header main-menu navbar-toggleable-sm menu-toggleable-left multilevel-dropdown d-none d-md-block"
+		id="sg-navbar-collapse" >
+		<div class="container-fluid">
+			<isinclude url="${URLUtils.url('Page-IncludeHeaderMenu')}" />
+		</div>
+	</div>
+
+</header>

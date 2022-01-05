@@ -1,0 +1,9 @@
+<span class="price">
+    <span class="p-0 price-style">
+        ${price.formatted}
+    </span>
+</span>
+
+
+
+

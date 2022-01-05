@@ -1,0 +1,15 @@
+<!--- applicable credit cards--->
+<div class="tab-pane pay-u-content active" id="pay-u-content" role="tabpanel">
+${Resource.msg('label.payu.redirect','checkout',null)}
+     <!--- applicable credit cards--->
+    <div class="payment-form-fields">
+
+        <!--- payment method is credit card --->
+        <input type="hidden" class="payment-form-fields"
+               name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+               value="PayU"
+        >
+
+    </div>
+
+</div>

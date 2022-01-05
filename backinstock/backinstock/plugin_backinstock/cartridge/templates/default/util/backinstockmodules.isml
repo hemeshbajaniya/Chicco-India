@@ -1,0 +1,16 @@
+<!--- TEMPLATENAME: backinstockmodules.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<iscomment>
+	The module to enable out of stock variations. 
+</iscomment>
+<ismodule template="displayoutofstockvariations.isml"
+	name="displayoutofstockvariations"
+/>
+
+<iscomment>
+	The module to add subscriber button and pop up modal widget 
+</iscomment>
+<ismodule template="backinstockwidget.isml"
+	name="backinstockwidget"
+/>

@@ -1,0 +1,69 @@
+<!--- TEMPLATENAME: backinstock.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true" />
+
+<link href="${URLUtils.staticURL('/css/backinstock.css')}"
+    type="text/css" rel="stylesheet" />
+
+<button id="backInStock-btn" data-toggle="modal"
+    data-target="#productSubscriber" type="button"
+    title="${Resource.msg('backinstock.btn','backinstock',null)}"
+    class="blue-border-btn d-block w-100">${Resource.msg('backinstock.btn','backinstock',null)}</button>
+
+<div class="modal fade" id="productSubscriber" tabindex="1" role="dialog"
+    aria-labelledby="productSubscriberModel">
+    <div class="modal-dialog" role="document">                                                   
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title request-password-title">${Resource.msg('backinstock.model.title','backinstock',null)}</h2>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id="backinstock-div" class="backinstock-div">
+                    <div id="backinstock-msg"></div>
+                    <label>${Resource.msg('backinstock.email.itemno','backinstock',null)}:
+                        <isprint value="${product.id}" encoding="off" />
+                    </label>
+                    <div class="backinstock-container">
+                        <input type="hidden" id="backinstock-token"
+                            name="${dw.web.CSRFProtection.getTokenName()}"
+                            value="${dw.web.CSRFProtection.generateToken()}" /> <input
+                            type="hidden" id="backinstock-pid"
+                            name="pid" value="${product.id}" />
+                        <div class="backinstock-row">
+                            <label class="backinstock-width">${Resource.msg('backinstock.firstName','backinstock',null)}</label>
+                            <input type="text"
+                                id="backinstock-firstName"
+                                name="firstName" class="form-control"
+                                value="" />
+                        </div>
+                        <div class="backinstock-row">
+                            <label class="backinstock-width">${Resource.msg('backinstock.lastName','backinstock',null)}</label>
+                            <input type="text" id="backinstock-lastName"
+                                name="lastName" class="form-control"
+                                value="" />
+                        </div>
+                        <div class="backinstock-row">
+                            <label class="backinstock-width">${Resource.msg('backinstock.email','backinstock',null)}</label>
+                            <input type="text" id="backinstock-email"
+                                name="email" class="form-control"
+                                value="" />
+                        </div>
+                        <div class="backinstock-row">
+                            <input id="backinstock-submit" type="button"
+                                name="submit" class="btn btn-primary"
+                                value="${Resource.msg('backinstock.btn.submit','backinstock',null)}"
+                                onclick="backInStockSubmit('${URLUtils.https('BackInStock-Add')}')" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${URLUtils.staticURL('/js/backinstock.js')}"
+    type="text/javascript"></script>
+

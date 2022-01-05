@@ -1,0 +1,49 @@
+<iscomment> <isloop items="${categories}" var="category">
+    <div class="category">
+        <div class="list_cat">
+            <div class="no_of_products">
+                ${pdict.productSearch.count}
+            </div>
+            <div class="category-filter">
+                <div class="form-group checkboxes-data mb-0 parent-cat">
+                    <input class="filters-refinments" type="checkbox" id="${category.displayValue.toLowerCase().replace(/ /g, '-')}" data-href="${category.url}" ${category.selected ? 'checked': ''}/>
+                    <h6 id="filter_heading">${category.displayValue}</h6>
+                </div>                                                        
+                <div id="subcategories" class="sub_cat" >
+                     <isset name="categories" value="${category.subCategories}" scope="page" />
+                    <isinclude template="search/refinements/subCategories" />
+                </div>    					
+            </div>
+        </div>
+        <span class="border-bottom"></span>
+    </div>
+</isloop> </iscomment>
+<ul class="values content filter-category p-0">
+    <isloop items="${categories}" var="category">
+        <li class="list_cat categ sub_cat mt-0 p-0">
+            <button data-href="${category.url}" class="checkboxes-data">
+                <iscomment> <isif condition="${category.selected}">
+                    <i class="fa fa-check-circle"></i>
+                <iselse/>
+                    <i class="fa fa-circle-o"></i>
+                </isif> </iscomment>
+                <input class="filters-refinments" type="checkbox" id="${category.displayValue.toLowerCase().replace(/ /g, '-')}" data-href="${category.url}" ${category.selected ? 'checked': ''}/>
+                <label class="head" for="category-${loopCounter.count}"></label>
+                <span title="${category.title}" class="heading ${category.selected ? 'selected' : ''}" aria-hidden="true">
+                    ${category.displayValue}
+                </span>
+                <span class="sr-only selected-assistive-text">
+                    ${category.selected ? Resource.msg('msg.assistive.selected.text', 'common', null) : ''}
+                    ${category.title}
+                </span>
+            </button>
+            
+            <span class="no_of_products pull-right">
+                ${pdict.productSearch.count}
+            </span>
+
+            <isset name="categories" value="${category.subCategories}" scope="page" />
+            <isinclude template="search/refinements/categories" />
+        </li>
+    </isloop>
+</ul>

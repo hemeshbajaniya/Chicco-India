@@ -1,0 +1,25 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/wishlist.css');
+        assets.addJs('/js/wishlist.js');
+        assets.addCss('/css/login.css');
+        assets.addJs('/js/login.js');
+        assets.addCss('/css/account/account.css');
+        assets.addCss('/css/layouts/product_details.css');
+        assets.addCss('/css/components/quickView.css');
+    </isscript>
+    
+    <iscomment> <div class="hero slant-down login-banner">
+        <h1 class="page-title">${Resource.msg('wishlist.hero.image.header', 'wishlist', null)}</h1>
+    </div> </iscomment>
+    <!---Breadcrumbs--->
+    <isinclude template="components/breadcrumbs/pageBreadcrumbs"/>
+        <div class="container ${pdict.loggedIn ? '' : 'login-page'}">
+            <isif condition="${pdict.loggedIn}">
+                <isinclude template="wishlist/components/wishlist" />
+            <iselse/>
+                <isinclude template="wishlist/components/login" />
+            </isif>
+        </div>
+</isdecorate>

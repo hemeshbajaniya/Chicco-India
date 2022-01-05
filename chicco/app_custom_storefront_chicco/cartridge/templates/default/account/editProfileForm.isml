@@ -1,0 +1,124 @@
+<form action="${URLUtils.url('Account-SaveProfile')}" class="edit-profile-form" method="POST" <isprint
+    value="${pdict.profileForm.attributes}" encoding="off" />>
+    <div class="row mt-4 register_product_form main_title">
+
+        <div class="col-md-12">
+            <div class="form-group mb-3
+                                                        <isif condition="
+                ${pdict.profileForm.customer.firstname.mandatory === true}">
+                required</isif>">
+                <label class="form-control-label" for="firstName">
+                    <isprint value="${pdict.profileForm.customer.firstname.label}" encoding="htmlcontent" />
+                </label>
+                <input type="text" placeholder="${Resource.msg('placeholder.address.firstName', 'forms', null)}" class="form-control w-100 field" id="firstName" <isprint
+                    value="${pdict.profileForm.customer.firstname.attributes}" encoding="off" />>
+                    
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group mb-3
+                                                        <isif condition="
+                ${pdict.profileForm.customer.lastname.mandatory === true}">
+                required
+                </isif>">
+                <label class="form-control-label" for="lastName">
+                    <isprint value="${pdict.profileForm.customer.lastname.label}" encoding="htmlcontent" />
+                </label>
+                <input type="text" placeholder="${Resource.msg('placeholder.address.lastName', 'forms', null)}" class="form-control w-100 field" id="lastName" <isprint
+                    value="${pdict.profileForm.customer.lastname.attributes}" encoding="off" />>
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group mb-3
+                                                        <isif condition="
+                ${pdict.profileForm.customer.phone.mandatory === true}">
+                required
+                </isif>">
+                <label class="form-control-label" for="phone">
+                    <isprint value="${pdict.profileForm.customer.phone.label}" encoding="htmlcontent" />
+                    <button type="button" class="info-icon">
+                        <span class="icon" aria-hidden="true">i</span>
+                        <span class="sr-only">${Resource.msg('button.help.assistive.text','common',null)}</span>
+                        <span class="tooltip d-none">
+                            ${Resource.msg('tooltip.phonenumber','registration',null)}
+                        </span>
+                    </button>
+                </label>
+                <input type="text" readonly class="form-control w-100 field" id="phone" <isprint
+                    value="${pdict.profileForm.customer.phone.attributes}" encoding="off" />>
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group mb-3
+                                                            <isif condition="
+                ${pdict.profileForm.customer.email.mandatory === true}">
+                required
+                </isif>">
+                <label class="form-control-label" for="email">
+                    <isprint value="${pdict.profileForm.customer.email.label}" encoding="htmlcontent" />
+                </label>
+                <input type="email" placeholder="${Resource.msg('placeholder.address.email', 'forms', null)}" class="form-control w-100 field" id="email" <isprint
+                    value="${pdict.profileForm.customer.email.attributes}" encoding="off" />>
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group mb-3
+                                                        <isif condition="
+                ${pdict.profileForm.customer.emailconfirm.mandatory === true}">
+                required</isif>">
+                <label class="form-control-label" for="confirmEmail">
+                    <isprint value="${pdict.profileForm.customer.emailconfirm.label}" encoding="htmlcontent" />
+                </label>
+                <input type="email" placeholder="${Resource.msg('placeholder.address.email', 'forms', null)}" class="form-control w-100 field" id="confirmEmail" <isprint
+                    value="${pdict.profileForm.customer.emailconfirm.attributes}" encoding="off" />>
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group mb-3
+                                                        <isif condition="
+                ${pdict.profileForm.login.password.mandatory === true}">
+                required
+                </isif>">
+                <label class="form-control-label" for="password">
+                    <isprint value="${pdict.profileForm.login.password.label}" encoding="htmlcontent" />
+                </label>
+                <input type="password" placeholder="${Resource.msg('placeholder.address.password', 'forms', null)}" class="form-control w-100 field" id="password" <isprint
+                    value="${pdict.profileForm.login.password.attributes}" encoding="off" />>
+                <div class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}"/>
+        <div>
+            <div class="col form-group">
+                <span class="${pdict.tracking_consent == null ? '' : 'consented' } tracking-consent"
+                    data-url="${URLUtils.url('ConsentTracking-GetContent', 'cid', 'tracking_hint')}"
+                    data-reject="${URLUtils.url('ConsentTracking-SetSession', 'consent', 'false')}"
+                    data-accept="${URLUtils.url('ConsentTracking-SetSession', 'consent', 'true')}"
+                    data-acceptText="${Resource.msg('button.consentTracking.yes', 'common', null)}"
+                    data-rejectText="${Resource.msg('button.consentTracking.no', 'common', null)}"
+                    data-heading="${Resource.msg('heading.consentTracking.track.consent', 'common', null)}"
+                >
+                    <iscomment> ${Resource.msg('link.tracking.consent','account',null)} </iscomment>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-group mb-3">
+                <button type="submit" name="save"
+                    class="blue-btn d-block w-100 btn primary-btn btn-save btn-block btn-primary">${Resource.msg('button.updateaccount', 'account', null)}</button>
+            </div> 
+        </div>
+    </div>
+</form>

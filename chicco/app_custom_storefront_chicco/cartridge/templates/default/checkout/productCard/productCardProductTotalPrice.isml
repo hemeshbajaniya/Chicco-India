@@ -1,0 +1,6 @@
+<iscomment> <div class="strike-through cut-price
+<isif condition=${!lineItem.priceTotal.nonAdjustedPrice}>non-adjusted-price</isif>"
+>
+    <del>${lineItem.priceTotal.nonAdjustedPrice}</del>
+</div> </iscomment>
+<div class="pricing line-item-total-price-amount item-total-${lineItem.UUID}">${lineItem.priceTotal.price}</div>

@@ -1,0 +1,84 @@
+<div class="product_filter ${pdict.productSearch.productIds.length > 0 ? '' : 'd-none'}">
+
+    <isif condition="${pdict.productSearch.productIds.length > 0}">
+        <div class="row align-items-center filter_data">
+            <div class="col-6 clear">
+                <p>
+                    <a href="#" class="reset-refinements" data-href="${pdict.productSearch.resetLink}">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        ${Resource.msg('label.category.filters.reset.all', 'search', null)}
+                    </a>
+                </p>
+            </div>
+        </div>
+        <span class="border-bottom"></span>
+    </isif>
+    <div>
+
+        <div class="refinements row align-items-center pt-4">
+            <isloop items="${pdict.productSearch.refinements}" var="refinement">
+                <isif condition="${refinement.isCategoryRefinement}">
+                    <div class="col-12 refinement-${refinement.displayName.toLowerCase().replace(/ /g, '-')}">
+                        <div class="row filter_data">
+                            <!--- CATEGORY REFINEMENTS --->
+                            <div class="col-12">
+                                <button class="title btn text-left btn-block d-none"
+                                    aria-controls="refinement-${refinement.displayName.toLowerCase().replace(/ /g, '-')}"
+                                    aria-expanded="false">
+                                    <span>${refinement.displayName}</span>
+                                </button>
+                                <h5 aria-label="${refinement.displayName}" class="d-block">
+                                    ${refinement.displayName}</h5>
+                            </div>
+                            <div class="col-12 border-bottom border-dark">
+                                <isif condition="${refinement.isCategoryRefinement}">
+                                    <isset name="categories" value="${refinement.values}" scope="page" />
+                                    <isinclude template="search/refinements/categories" />
+                                </isif>
+                            </div>
+                        </div>
+                    </div>
+                </isif>
+            </isloop>
+            <div class="col-12 mt-1">
+                <div class="row filter_data">
+                    <div class="col-12">
+                        <h5>
+                            ${Resource.msg('product.filter.filter.by', 'search', null)}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <isloop items="${pdict.productSearch.refinements}" var="refinement">
+                <isif condition="${!refinement.isCategoryRefinement}">
+                    <div class="col-12">
+                        <div class="row filter_data pt-0">
+                            <div class="category ml-3">
+                                <div class="list_cat">
+                                    <div class="category-filter">
+                                        <div class="form-group checkboxes-data mb-0 parent-cat">
+                                            <input type="checkbox"
+                                                id="${refinement.displayName.toLowerCase().replace(/ /g, '-')}"
+                                                class="parent-cat" checked>
+                                            <h6 id="filter_heading"
+                                                for="${refinement.displayName.toLowerCase().replace(/ /g, '-')}">${refinement.displayName}</h6 id="filter_heading">
+                                            <isif
+                                                condition="${refinement.isAttributeRefinement || refinement.isPromotionRefinement}">
+                                                <isinclude template="search/refinements/attributes" />
+                                            </isif>
+                                            <isif condition="${refinement.isPriceRefinement}">
+                                                <isinclude template="search/refinements/prices" />
+                                            </isif>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="border-bottom"></span>
+                    </div>
+                </isif>
+            </isloop>
+
+        </div>
+    </div>
+</div>

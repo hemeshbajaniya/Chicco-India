@@ -1,0 +1,9 @@
+<div class="col-md-5">
+    <p class="adjustContent">
+        <label class="switch">
+            <input class="exclude-products" data-action="${URLUtils.url('Search-ExcludeProducts', 'cgid', pdict.productSearch.category.id)}" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <span>Exclude out of stock products</span>
+    </p>
+</div>

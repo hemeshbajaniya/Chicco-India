@@ -1,0 +1,15 @@
+<!--- applicable credit cards--->
+<div class="tab-pane free-maternity-content active" id="free-maternity-content" role="tabpanel">
+Free Free
+     <!--- applicable credit cards--->
+    <div class="payment-form-fields">
+
+        <!--- payment method is credit card --->
+        <input type="hidden" class="payment-form-fields"
+               name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+               value="FREE_MATERNITY"
+        >
+
+    </div>
+
+</div>

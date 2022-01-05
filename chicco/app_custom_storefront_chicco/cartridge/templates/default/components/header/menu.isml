@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-xl navbar-light ch-navbar-light w-100 p-0">
+    <iscomment> <div class="close-menu clearfix d-lg-none">
+        <div class="back pull-left">
+            <button role="button" aria-label="${Resource.msg('label.header.menu.back', 'common', null)}">
+                <span class="caret-left"></span>
+                ${Resource.msg('link.header.menu.back', 'common', null)}
+            </button>
+        </div>
+        <div class="close-button pull-right">
+            <button role="button" aria-label="${Resource.msg('label.header.menu.close', 'common', null)}">
+                ${Resource.msg('link.header.menu.close', 'common', null)}
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div> </iscomment>
+    <div class="menu-group collapse navbar-collapse ch-navbar-collapse" id="navbarNav" role="navigation"> 
+        <ul class="navbar-nav ml-xl-0 mt-2 mt-lg-0 ch-navbar-nav ml-0 w-100" role="menu" > 
+            <isif condition="${pdict.categories}">
+                <isloop items="${pdict.categories}" var="category">
+                    <isif condition="${category.subCategories}">
+                        <li class="nav-item ch-nav-item parent-menu ch-nav-link-main-menu" role="presentation">
+                            <a href="<isprint value="${category.url}" encoding="htmldoublequote"/>" id="${category.id}" class="nav-link ch-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">${category.name}</a>
+                            <isset name="menuItem" value="${category}" scope="page" />
+                            <isinclude template="components/header/menuItem" />
+                        </li>
+                    <iselse/>
+                        <li class="nav-item ch-nav-item parent-menu ch-nav-link-main-menu" role="presentation">
+                            <a href="<isprint value="${category.url}" encoding="htmldoublequote"/>" id="${category.id}" class="nav-link ch-nav-link" role="link" tabindex="0">${category.name}</a>
+                        </li>
+                        
+                        
+                    </isif>
+                </isloop>
+            </isif>
+            <span class="menu-btn-div">
+                <a href="${URLUtils.url('Page-Show', 'cid', 'who-we-are')}" class="nav-link ch-nav-link primary-btn menu-button">${Resource.msg('homemenu.button.whoweare', 'menupromotions', null)}</a> 
+            </span>
+            <span class="menu-btn-div">
+                <a href="${URLUtils.url('Page-Show', 'cid', 'chicco-research-center')}" class="nav-link ch-nav-link secondary-btn menu-button">${Resource.msg('homemenu.button.reserchcenter', 'menupromotions', null)}</a> 
+            </span>
+            <isinclude url="${URLUtils.url('Account-Header', 'mobile', true)}" />
+            <isinclude url="${URLUtils.url('Page-Locale', 'mobile', true)}" />
+                           
+        </ul>
+        
+    </div>
+</nav>

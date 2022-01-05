@@ -1,0 +1,18 @@
+<div>
+    <div class="stars d-inline-block">
+        <isloop items="${[1, 2, 3, 4, 5]}" var="star">
+            <span class="fa 
+            <isif condition=" ${product.rating >= star}"> 
+                fa-star checked
+            <iselseif condition="${(product.rating % 1 > 0) && (Math.ceil(product.rating) >= star)}">
+                    fa-star-o <iscomment> fa-star-half-o checked </iscomment>
+            <iselse>
+                    fa-star-o
+            </isif>" aria-hidden="true">
+            </span>
+        </isloop>
+    </div>
+    <p class="d-inline-block">
+        (${Resource.msgf('label.product.ratings', 'common', null, product.rating)})
+    </p>
+</div>

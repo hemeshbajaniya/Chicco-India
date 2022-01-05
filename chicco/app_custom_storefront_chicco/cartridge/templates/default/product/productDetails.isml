@@ -1,0 +1,574 @@
+<isdecorate template="common/layout/page">
+
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets');
+
+        assets.addCss('/css/layouts/product_listing.css');
+        assets.addCss('/css/main.css');
+        assets.addCss('/css/custom.css');
+        assets.addCss('/css/product/share.css');
+        assets.addCss('/css/discount-style.css');
+        assets.addJs('/js/jquery.min.js');
+        assets.addJs('/js/jquery.counterup.min.js');
+        assets.addJs('/js/popper.min.js');
+        assets.addJs('/js/bootstrap.min.js');
+        assets.addJs('/js/jquery.matchHeight-min.js');
+        assets.addJs('/js/jquery.payment.min.js');
+        assets.addJs('/js/main_design.js');
+        assets.addJs('/js/share_link.js');
+        assets.addJs('/js/jquery.fancybox.min.js');
+        assets.addJs('/css/jquery.fancybox.min.css');
+    </isscript>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+    "ecommerce": {
+        "detail": {
+        "actionField": {"list":"Listing", "action": "detail"},
+        "products":<isprint value="${pdict.products}" encoding="off"/>
+        }
+    }
+    });
+    </script>
+    <script>
+    fbq('track', 'ViewContent', {
+        content_name: ${pdict.viewContent.content_name},
+        content_category: ${pdict.viewContent.content_category},
+        content_ids: [<isprint value="${pdict.viewContent.content_ids}" encoding="off"/>],
+        content_type: ${pdict.viewContent.content_type},
+        value: ${pdict.viewContent.value},
+        currency: ${pdict.viewContent.currency}
+    });
+    </script>
+    <isset name="product" value="${pdict.product}" scope="page" />
+    <isset name="isQuickView" value="${false}" scope="page" />
+    <isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />
+    <isobject object="${product.raw}" view="detail" />
+
+
+
+
+    <!-- .breadcrumbs -->
+
+    <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
+    <!-- ./breadcrumbs -->
+
+    <!-- .product_details -->
+
+    <section class="product_details">
+        <div class="container product-detail product-wrapper" data-pid="${product.id}">
+            <div class="row">
+
+                <!-- Products Images -->
+                <div class="col-lg-6">
+                    <isinclude template="product/productImageTile" />
+                </div>
+
+                <!-- Products Details -->
+                <div class="col-lg-6">
+                    <div class="product_detail_content">
+
+                        <!-- Ratting + Whishlist + Share -->
+                        <div class="row">
+                            <div class="col-8">
+                                <isinclude template="product/components/pidRating" />
+                            </div>
+                            <div class="col-4 text-right">
+                                <div class="product_box share_link">
+                                    <a class="wishlistTile heart_icon pdp-wishlist"
+                                        href="${URLUtils.url('Wishlist-AddProduct')}"
+                                        title="${Resource.msg('wishlist.addto.wishlist.heart', 'wishlist', null)}">
+                                        <i class="fa fa-heart-o position-relative-t4"></i>
+                                    </a>
+                                    <isset name="escapedProductName" value="${encodeURIComponent(product.productName)}"
+                                        scope="page" />
+                                    <isset name="productImageLarge"
+                                        value="${encodeURIComponent(product.images['large'][0].absURL)}" scope="page" />
+                                    <isset name="productUrlencode"
+                                        value="${encodeURIComponent(URLUtils.https('Product-Show', 'pid', product.id))}"
+                                        scope="page" />
+
+
+
+
+
+                                    <span class="dropdown">
+                                        <span class="share_icon heart_icn" id="share">
+                                            <i class="fa fa-share-alt position-relative-t4" aria-hidden="true"></i>
+                                        </span>
+
+                                        <div class="sharing_options mr-5">
+                                            <div class="sharing_inner">
+                                                <ul class="social-icons social-icons d-flex justify-content-center"
+                                                    style="list-style: none;" id="share_list">
+                                                    <li>
+                                                        <a class="share"
+                                                            href="https://www.facebook.com/share.php?u=${productUrlencode}"
+                                                            title="${Resource.msgf('label.social.facebook', 'product', null, product.productName)}"
+                                                            data-share="facebook"
+                                                            aria-label="${Resource.msgf('label.social.facebook', 'product', null, product.productName)}"
+                                                            target="_blank" id="fb">
+                                                            <i
+                                                                class="fa fa-facebook-official position-relative-t4 icon icon-fb"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class="share"
+                                                            href="https://api.whatsapp.com/send?text=${productUrlencode}"
+                                                            title="${Resource.msgf('label.social.whatsapp', 'product', null, product.productName)}"
+                                                            data-share="whatsapp"
+                                                            aria-label="${Resource.msgf('label.social.whatsapp', 'product', null, product.productName)}"
+                                                            target="_blank" id="wp">
+                                                            <i
+                                                                class="fa fa-whatsapp position-relative-t4 icon icon-whatsapp"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class="share"
+                                                            href="https://pinterest.com/pin/create/button/?url=${productUrlencode}"
+                                                            title="${Resource.msgf('label.social.pinterest', 'product', null, product.productName)}"
+                                                            data-share="pinterest"
+                                                            aria-label="${Resource.msgf('label.social.pinterest', 'product', null, product.productName)}"
+                                                            target="_blank" id="pt">
+                                                            <i
+                                                                class="fa fa-pinterest position-relative-t4 icon icon-pinterest"></i>
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a class="share"
+                                                            href="https://twitter.com/share?url=${productUrlencode}"
+                                                            title="${Resource.msgf('label.social.twitter', 'product', null, product.productName)}"
+                                                            data-share="twitter"
+                                                            aria-label="${Resource.msgf('label.social.twitter', 'product', null, product.productName)}"
+                                                            target="_blank" id="tw">
+                                                            <i
+                                                                class="fa fa-twitter position-relative-t4 icon icon-tw"></i>
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </span>
+
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- Title + Description + Features -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="content">
+                                    <h1 class="text-capitalize Detailedproduct" data-pid="${product.id}">
+                                        ${product.productName}
+                                    </h1>
+
+                                    <!-- *****subtile***** -->
+                                    <p>
+                                        ${product.subtitle}
+                                    </p>
+                                    <p class="text_green">
+                                        ${Resource.msg('label.product.recommendedage', 'product', null)}
+                                        ${product.AgeGroup}
+                                    </p>
+
+                                    <!-- Price -->
+                                    <isset name="price" value="${product.price}" scope="page" />
+                                    <div class="prices">
+                                        <isinclude template="product/components/pricing/main" />
+                                    </div>
+                                    <isif condition="${product.promotions}">
+                                        <isloop items="${product.promotions}" var="promotion" status="promoStatus">
+                                            <isif condition="${promotion.calloutMsg !== '' && promoStatus.count == 1}">
+                                                <div class="discount">
+                                                    (
+                                                    <isprint value="${promotion.calloutMsg}" encoding="off" />)
+                                                </div>
+                                            </isif>
+                                        </isloop>
+                                    </isif>
+
+                                    <p>
+                                        ${Resource.msg('label.tax', 'product', null)}
+                                    </p>
+                                    <!-- loyaltypoints sections -->
+                                    <iscomment>
+                                        <div class="features mt-3">
+                                            <p>
+                                                ${Resource.msg('label.product.loyalty.msg', 'product', null)}
+                                                <strong class="product-total-points"></strong>
+                                                <span
+                                                    class="font-weight-bold">${Resource.msg('label.product.loyaltypoints', 'product', null)}</span>
+                                            </p>
+                                        </div>
+                                    </iscomment>
+
+                                    <!-- Colors -->
+                                    <div class="attributes pl-0">
+                                        <!-- Attributes and Quantity -->
+                                        <isinclude template="product/components/mainAttributes" />
+
+                                        <isset name="isBundle" value="${false}" scope="page" />
+                                        <isset name="loopState" value="${{
+                                                                       count: 1}}" scope="page" />
+                                        <isloop items="${product.variationAttributes}" var="attr"
+                                            status="attributeStatus">
+                                            <div class="row" data-attr="${attr.id}">
+                                                <div class="col-md-12">
+                                                    <isinclude template="product/components/variationAttribute" />
+                                                </div>
+                                            </div>
+                                        </isloop>
+                                    </div>
+
+                                    <!-- Stock -->
+                                    <div class="stocks mt-2">
+                                        <p>
+                                            <isinclude template="product/components/productAvailability" />
+                                        </p>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-sm-6">
+                                            <div class="row sizes qty mt-2 mb-2">
+                                                <div class="col-12 quantity">
+                                                    <div>
+                                                        <p class="d-inline-block">
+                                                            ${Resource.msg('label.product.swatch.qty', 'product', null)}
+                                                        </p>
+                                                        <div class="product_size_data d-inline-block">
+                                                            <button type="button" id="sub" class="minus">-</button>
+                                                            <input type="number" id="1" value="1" min="1"
+                                                                class="pdp-quantity text-center" max="10" readonly />
+                                                            <button type="button" id="add" class="plus">+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <isif condition="${product.rootCatId == 'Fashion'}">
+                                            <div class="col-sm-6">
+                                                <div class="size_chart pt-3">
+                                                    <p class="mb-0">
+                                                        <a href="#" data-toggle="modal" data-target="#size_guide">
+                                                            <img src="${URLUtils.staticURL('/images/product_guide.png')}"
+                                                                alt="product_guide" class="mr-1" loading="lazy" />
+                                                            ${Resource.msg('label.size.guide', 'product', null)}
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </isif>
+                                    </div>
+
+
+                                    <!-- Size -->
+
+
+
+                                    <!-- Check Delivery Details -->
+                                    <isinclude template="product/deliveryDetails" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Features Slider -->
+            <isif condition="${product.withOutFeatureCarouselCategory == 'Fashion' || product.withOutFeatureCarouselCategoryMain == 'Fashion' || empty(
+                             product.highlightsImages1.absURL)}">
+                <div class="row">
+                </div>
+            <iselse/>
+                <div class="row product_features mt-lg-5 mt-3">
+                    <div class="col-md-12">
+                        <h2>
+                            ${Resource.msg('label.features', 'product', null)}
+                        </h2>
+
+                        <div class="products_slider mt-4 pb-0">
+                            <div class="owl-carousel owl-theme">
+                                <isif condition="${product.highlightsImages1.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages1.absURL})">
+                                                <iscomment> <img src="${product.highlightsImages1.absURL}"
+                                                        alt="${product.highlightsTextTitle1}" class="" loading="lazy" />
+                                                </iscomment>
+                                            </div>
+
+                                            <h6>
+                                                ${product.highlightsTextTitle1}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription1}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages2.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages2.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages2.absURL}">
+                                                        <img src="${product.highlightsImages2.absURL}"
+                                                            alt="${product.highlightsTextTitle2}" class=""
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle2}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription2}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages3.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages3.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages3.absURL}">
+                                                        <img src="${product.highlightsImages3.absURL}"
+                                                            alt="${product.highlightsTextTitle3}" class=""
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle3}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription3}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages4.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages4.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages4.absURL}">
+                                                        <img src="${product.highlightsImages4.absURL}"
+                                                            alt="${product.highlightsTextTitle4}" class=""
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle4}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription4}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages5.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages5.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages5.absURL}">
+                                                        <img src="${product.highlightsImages5.absURL}"
+                                                            alt="${product.highlightsTextTitle5}" class="mb-3"
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle5}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription5}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages6.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages6.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages6.absURL}">
+                                                        <img src="${product.highlightsImages6.absURL}"
+                                                            alt="${product.highlightsTextTitle6}" class="mb-3"
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle6}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription6}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages7.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages7.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages7.absURL}">
+                                                        <img src="${product.highlightsImages7.absURL}"
+                                                            alt="${product.highlightsTextTitle7}" class="mb-3"
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle7}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription7}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages8.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages8.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages8.absURL}">
+                                                        <img src="${product.highlightsImages8.absURL}"
+                                                            alt="${product.highlightsTextTitle8}" class="mb-3"
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle8}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription8}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages9.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages9.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages9.absURL}">
+                                                        <img src="${product.highlightsImages9.absURL}"
+                                                            alt="${product.highlightsTextTitle9}" class="mb-3"
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle9}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription9}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <isif condition="${product.highlightsImages10.absURL}">
+                                    <div class="item">
+                                        <div class="feature_box">
+                                            <div class="img-box  mb-3"
+                                                style="background-image:url(${product.highlightsImages10.absURL})">
+                                                <iscomment>
+                                                    <isif condition="${product.highlightsImages10.absURL}">
+                                                        <img src="${product.highlightsImages10.absURL}"
+                                                            alt="${product.highlightsTextTitle10}" class="mb-3"
+                                                            loading="lazy" />
+                                                    </isif>
+                                                </iscomment>
+                                            </div>
+                                            <h6>
+                                                ${product.highlightsTextTitle10}
+                                            </h6>
+                                            <p>
+                                                ${product.highlightsTextDescription10}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </isif>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </isif>
+
+
+
+            <!-- Tabbings -->
+            <div class="row products_descriptions mt-lg-5 mt-4">
+                <isinclude template="product/productSpecs" />
+            </div>
+
+
+
+        </div>
+    </section>
+    <!-- ./product_details -->
+
+
+
+    <!-- .promotion_section -->
+    <iscomment>
+        <section class="promotion_section advice_section">
+            <isslot id="promotion-advice-content" context="global" description="" context-object="" preview-url="" />
+        </section>
+    </iscomment>
+    <!-- ./promotion_section -->
+
+
+    <!-- .product_section -->
+    <section class="product_filter_listing likes_products">
+        <div class="container">
+            <isslot id="product-recomendation-content" context="global" description="Product Recommendation on PDP"
+                context-object="" preview-url="" />
+        </div>
+    </section>
+    <!-- ./product_section -->
+</isdecorate>
+
+<div class="modal fade popup-modal popup-datamodel" id="size_guide" tabindex="-1" role="dialog"
+    aria-labelledby="size_guideTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <isslot id="size-gudie-content" context="global" description="" context-object="" preview-url="" />
+    </div>
+</div>

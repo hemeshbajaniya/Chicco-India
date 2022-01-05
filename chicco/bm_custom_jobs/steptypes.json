@@ -1,0 +1,34 @@
+{
+    "step-types": {
+        "script-module-step": [
+            {
+                "@type-id":"custom.createIncreffInventoryFiles",
+                "@supports-parallel-execution": "false",
+                "@supports-site-context": "true",
+                "@supports-organization-context": "false",
+                "description": "Create Incref inventoryFiles",
+                "module": "bm_custom_jobs/cartridge/scripts/jobs/createIncreffInventoryFiles.js",
+                "function": "execute",
+                "transactional": "false",
+                "parameters": {
+                    "parameter": [{
+                        "@name": "workingDir",
+                        "@type": "string",
+                        "@required": "true",
+                        "@trim": "true",
+                        "description": "Target folder path (in IMPEX)",
+                        "default-value": "IMPEX/src/increff/inventory/"
+                    },
+                    {
+                        "@name": "listId",
+                        "description": "The inventory list id",
+                        "@type": "string",
+                        "@required": "true",
+                        "@trim": "true",
+                        "default-value": "inventory_m"
+                    }]
+                }
+            }
+        ]
+    }
+}

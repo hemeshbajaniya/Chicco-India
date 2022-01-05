@@ -1,0 +1,41 @@
+<div class="row account_boxes mt-3">
+    
+    <div class="col-12 p-0 d-content">
+        <!---Profile--->
+        <isinclude template="account/profileCard"/>
+
+        <!---Order History--->
+        <isset name="order" value="${pdict.account.orderHistory}" scope="page"/>
+        <isinclude template="account/order/orderHistoryCard"/>
+
+        <!-- gift voucher -->
+        <iscomment> <isinclude template="account/giftVoucherCard"/> </iscomment>
+    </div>
+
+    <div class="col-12 p-0 d-content">
+        <!---Address Book--->
+        <isinclude template="account/addressBookCard"/>    
+
+        <!---Wishlist--->
+        <isinclude template="account/wishlist/listCards"/>
+        
+        <!-- Loyalty Points -->
+        <iscomment> <isinclude template="account/loyaltyPointsCard"/> </iscomment>
+    </div>
+
+    <div class="col-12 p-0 d-content">
+        <!-- baby Registry-->
+        <isinclude template="account/babyRegistryCard"/>
+
+        <!-- Rferral -->
+        <iscomment> <isinclude template="account/referralCard"/> </iscomment>
+    </div>
+    
+    <div class="col-12 p-0">
+        <!---Password--->
+        <isinclude template="account/passwordCard"/>
+    </div>
+    <!---Payment--->
+    <iscomment> <isinclude template="account/paymentCard"/> </iscomment>
+</div>
+

@@ -1,0 +1,129 @@
+{
+  "name": "ChiccoSFCC",
+  "version": "0.0.2",
+  "description": "Chicco SFCC website",
+  "engines": {
+    "node": ">=8.0"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "build:config": "node scripts/createjsonfile.js",
+    "scan:cartridges": "node scripts/cartridgescanner.js",
+    "watch:code": "npm run scan:cartridges && dwupload watch",
+    "upload:code": "npm run scan:cartridges && dwupload",
+    "upload": "npm run build && npm run scan:cartridges && dwupload",
+    "activate:code": "node scripts/activatecode.js",
+    "watch": "node scripts/start.js",
+    "test": "npm run test:unit",
+    "test:unit": "mocha **/test/unit/**/*.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Abrar <haroonrose150@gmail.com>",
+  "license": "UNLICENSED",
+  "homepage": "",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@tridnguyen/config": "^2.3.1",
+    "babel-loader": "^8.0.0-beta.3",
+    "chai": "^3.5.0",
+    "chai-subset": "^1.5.0",
+    "chalk": "^1.1.3",
+    "cheerio": "0.22.0",
+    "cldr-data": "32.0.1",
+    "css-loader": "^0.28.11",
+    "dwupload": "^3.8.2",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-sitegenesis": "~1.0.0",
+    "globalize": "^1.1.1",
+    "istanbul": "^0.4.4",
+    "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^0.4.2",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.15.0",
+    "moment-timezone": "^0.5.14",
+    "node-sass": "^4.9.4",
+    "postcss-loader": "^2.1.5",
+    "properties-parser": "^0.3.0",
+    "proxyquire": "1.7.4",
+    "react-dev-utils": "^5.0.1",
+    "request-promise": "^4.2.2",
+    "sass-loader": "^7.0.3",
+    "selenium-standalone": "^6.15.0",
+    "sgmf-scripts": "^2.1.1",
+    "shelljs": "^0.8.2",
+    "sinon": "^1.17.4",
+    "style-loader": "^0.21.0",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-scss": "^2.1.0",
+    "url": "^0.11.0",
+    "wdio-sauce-service": "^0.4.8",
+    "webdriverio": "^3.3.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "xml2js": "^0.4.17"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "bootstrap": "4.1.1",
+    "cleave.js": "1.0.2",
+    "flag-icon-css": "^2.3.0",
+    "font-awesome": "^4.6.3",
+    "jquery": "^3.1.1",
+    "malihu-custom-scrollbar-plugin": "^3.1.5",
+    "owl.carousel": "^2.3.4",
+    "sfra": "file:./storefront-reference-architecture/",
+    "slick-carousel": "^1.8.1",
+    "zoom-image": "^0.1.4"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 10"
+  ],
+  "tasks": [
+    {
+      "src": "node_modules/font-awesome/fonts",
+      "task": "scripts/compilefonts",
+      "args": {
+        "dest": "storefront-reference-architecture/cartridges/app_storefront_base/cartridge/static/default",
+        "flags": "node_modules/flag-icon-css/flags"
+      }
+    }
+  ],
+  "paths": {
+    "chicco": "./chicco",
+    "base": "./storefront-reference-architecture",
+    "payu": "./payu",
+    "wishlist": "./whislist"
+  },
+  "jsAliases": {
+    "base": "./storefront-reference-architecture/cartridges/app_storefront_base/cartridge/client/default/js",
+    "chicco": "./chicco/app_custom_storefront_chicco/cartridge/client/default/js",
+    "payu": "./payu/int_custom_payu/cartridge/client/default/js",
+    "wishlist": "./whislist/plugin_wishlists/cartridge/client/default/js",
+    "bootstrap": "./node_modules/bootstrap",
+    "lodash": "./node_modules/lodash",
+    "jquery": "./node_modules/jquery"
+  },
+  "scssAliases": {
+    "base": "./storefront-reference-architecture/cartridges/app_storefront_base/cartridge/client/default/scss",
+    "chicco": "./chicco/app_custom_storefront_chicco/cartridge/client/default/scss",
+    "wishlist": "./whislist/plugin_wishlists/cartridge/client/default/scss",
+    "bootstrap": "./node_modules/bootstrap"
+  },
+  "scssIncludePaths": [
+    "./node_modules/",
+    "./node_modules/flag-icon-css/sass"
+  ]
+}

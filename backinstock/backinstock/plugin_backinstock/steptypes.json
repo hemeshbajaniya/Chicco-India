@@ -1,0 +1,66 @@
+{
+    "step-types":{
+        "script-module-step":[
+            {
+                "@type-id":"custom.exportBackInstockSubscribersInformation",
+                "@supports-parallel-execution":"false",
+                "@supports-site-context":"true",
+                "@supports-organization-context":"false",
+                "description":"Export Back in Stock Subscribers to IBM",
+                "module":"int_custom_backinstock/cartridge/scripts/jobs/ExportSubscribersToIBM.js",
+                "function":"exportSubscribers",
+                "transactional":"false",
+                "timeout-in-seconds":"900",
+                "parameters":{
+                    "parameter":[]
+                },
+                "status-codes": {
+                    "status": [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        },
+                        {
+                            "@code": "FINISHED",
+                            "description": "Used when the step finished successfully."
+                        },
+                        {
+                            "@code": "FINISHED_WITH_WARNINGS",
+                            "description": "Used when the step finished with warnings."
+                        }
+                    ]
+                }
+            },
+            {
+                "@type-id":"custom.exportInventoryToIBM",
+                "@supports-parallel-execution":"false",
+                "@supports-site-context":"true",
+                "@supports-organization-context":"false",
+                "description":"Export Product Inventory to IBM",
+                "module":"int_custom_backinstock/cartridge/scripts/jobs/ExportInventoryToIBM.js",
+                "function":"exportInventory",
+                "transactional":"false",
+                "timeout-in-seconds":"900",
+                "parameters":{
+                    "parameter":[]
+                },
+                "status-codes": {
+                    "status": [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        },
+                        {
+                            "@code": "FINISHED",
+                            "description": "Used when the step finished successfully."
+                        },
+                        {
+                            "@code": "FINISHED_WITH_WARNINGS",
+                            "description": "Used when the step finished with warnings."
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

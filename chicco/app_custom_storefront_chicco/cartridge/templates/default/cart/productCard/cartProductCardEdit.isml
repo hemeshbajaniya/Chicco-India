@@ -1,0 +1,25 @@
+<!--- Edit product --->
+<iscomment> Custom Start: Add logic for free maternitykit </iscomment>
+<isif condition="${lineItem.freeMaternityKitEnabled }">
+    <isif condition="${!lineItem.freeMaternityKitEligible}">
+        <div class="product-edit">
+            <a href="${URLUtils.url('Cart-GetProduct', 'uuid', lineItem.UUID)}" class="edit"
+            data-toggle="modal" data-target="#editProductModal"
+            aria-label="${Resource.msgf('text.edit.line.item','cart', null, lineItem.productName)}"
+            title="${Resource.msg('link.edit.item', 'cart',null)}">
+                ${Resource.msg('link.edit.item', 'cart', null)}
+            </a>
+        </div>
+    </isif>
+<iselse>
+    <div class="product-edit">
+        <a href="${URLUtils.url('Cart-GetProduct', 'uuid', lineItem.UUID)}" class="edit"
+        data-toggle="modal" data-target="#editProductModal"
+        aria-label="${Resource.msgf('text.edit.line.item','cart', null, lineItem.productName)}"
+        title="${Resource.msg('link.edit.item', 'cart',null)}">
+            ${Resource.msg('link.edit.item', 'cart', null)}
+        </a>
+    </div>
+</isif>
+ <iscomment> Custom End </iscomment>
+

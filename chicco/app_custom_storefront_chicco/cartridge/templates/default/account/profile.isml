@@ -1,0 +1,49 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addJs('/js/profile.js');
+    </isscript>
+    <iscomment> <div class="hero slant-down account-image">
+        <h1 class="page-title">${Resource.msg('label.profile','account',null)}</h1>
+    </div> </iscomment>
+    
+<isinclude template="components/breadcrumbs/pageBreadcrumbs"/>
+<section class="my_account border_top pt-4">
+    <div class="container">
+        <div class="row align-items-center">   
+            <div class="col-12">
+                <h3>
+                    ${Resource.msg('label.profile','account',null)}
+                </h3>
+            </div>
+        </div>
+        <section class="login_otp_sec registarion_sec border-top-0 pt-4">
+            <div class="container px-0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="login_box">
+                            <div class="row">
+                                <div class="col-lg-8 offset-lg-2">
+                                    
+                                    <h3 class="text-center">${Resource.msg('label.profile.edit','account',null)}</h3>
+                               
+                                    <div class="card-body">
+                                        <isinclude template="account/editProfileForm"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-7 col-12 text-center">
+                <a href="${URLUtils.url('Account-Show')}" class="primary-btn font-18 d-block">${Resource.msg('link.profile.backtomyaccount','account',null)}</a>
+            </div>
+        </div>
+    </div>
+</section>
+</isdecorate>

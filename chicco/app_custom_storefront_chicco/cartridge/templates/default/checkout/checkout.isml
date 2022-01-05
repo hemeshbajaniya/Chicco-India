@@ -1,0 +1,197 @@
+<isdecorate template="common/layout/checkout">
+
+    <!----------------------------------------------------------------------------------->
+    <!-- Load Static Assets -->
+    <!----------------------------------------------------------------------------------->
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/checkout.js');
+        assets.addJs('/js/custom-checkout.js');
+        assets.addCss('/css/checkout/checkout.css');
+    </isscript>
+
+    <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
+        <isinclude template="reporting/reportingUrls" />
+    </isif>
+
+    <div class="breadcrumbs cart_breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <a class="active">
+                            <span>
+                                ${Resource.msg('stepper.count.one', 'checkout', null)}
+                            </span>
+                            ${Resource.msg('stepper.label.Cart', 'checkout', null)}
+                        </a>
+                        <a class="active">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <span>
+                                ${Resource.msg('stepper.count.two', 'checkout', null)}
+                            </span>
+                            ${Resource.msg('stepper.label.Address', 'checkout', null)}
+                        </a>
+                        <a>
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <span>
+                                ${Resource.msg('stepper.count.three', 'checkout', null)}
+                            </span>
+                            ${Resource.msg('stepper.label.OrderConfirmation', 'checkout', null)}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="shopping_shortlist_sec pb-3">
+        <div class="container">
+            <div id="checkout-main" class="container data-checkout-stage <isif condition="
+                ${pdict.order.usingMultiShipping && pdict.order.shipping.length > 1}">multi-ship</isif>"
+                data-customer-type="${pdict.customer.registeredUser ? 'registered' : 'guest'}"
+                data-checkout-stage="${pdict.currentStage}"
+                data-checkout-get-url="${URLUtils.https('CheckoutServices-Get')}">
+
+                <!-- Help and Phone -->
+                <iscomment> <div class="row hidden-xs-down">
+                    <div class="col-12 col-sm-5 offset-sm-7 col-md-5 offset-md-7">
+                        <div class="text-center">
+                            <span>${Resource.msg('info.need.help', 'cart', null)}</span>
+                            <span><a href="tel:${Resource.msg('info.phone.number', 'common', null)}">${Resource.msg('info.phone.number', 'common', null)}</a></span>
+                        </div>
+                    </div>
+                </div> </iscomment>
+
+                <iscomment> <div class="row d-sm-none">
+                    <div class="col-12">
+                        <span class="grand-total-label">${Resource.msgf('label.number.items.in.cart', 'cart', null, pdict.order.items.totalQuantity)}</span>
+                        <span class="grand-total-price">${pdict.order.totals.subTotal}</span>
+                    </div>
+                </div> </iscomment>
+
+                <div class="row">
+                    <div class="col-xl-8 col-lg-7 pl-0">
+                        <div class="tabbing">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="pill" href="">
+                                        ${Resource.msg('heading.checkout', 'checkout', null)}
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="container active shipping_product">
+                                    <div class="row">
+                                        <div class="col-xl-11 ml-xl-4 ml-0">
+                                            <div class="alert alert-danger error-message" role="alert">
+                                                <p class="error-message-text"></p>
+                                            </div>
+
+                                            <isinclude template="checkout/shipping/shipping" />
+                                            <div class="card border-0 shipping-summary row align-items-center main_title">
+                                                <div class="card-header clearfix border-0 col-md-12 pb-2">
+                                                    <h6 class="pull-left card-header-custom mb-0">
+                                                        ${Resource.msg('heading.checkout.shipping', 'checkout', null)}
+                                                    </h6>
+                                                    <button class="edit_btn edit-button pull-right" aria-label="${Resource.msg('action.edit.step.msg.shipping', 'checkout', null)}">
+                                                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i>${Resource.msg('action.edit.step', 'checkout', null)}
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <span class="border-bottom"></span>
+                                                </div>
+                                                <div class="card-body pt-2">
+                                                    <isinclude template="checkout/shipping/shippingSummary" />
+                                                </div>
+                                            </div>
+
+                                            <isinclude template="checkout/billing/billing" />
+                                            <div class="card border-0 payment-summary row align-items-center main_title">
+                                                <div class="card-header clearfix border-0 col-md-12 pb-2 pt-5">
+                                                    <h6 class="pull-left card-header-custom mb-0">
+                                                        ${Resource.msg('heading.payment', 'checkout', null)}
+                                                    </h6>
+                                                    <button class="edit_btn edit-button pull-right" aria-label="${Resource.msg('action.edit.step.msg.payment', 'checkout', null)}">
+                                                        <i class="fa fa-pencil mr-1" aria-hidden="true"></i>${Resource.msg('action.edit.step', 'checkout', null)}
+                                                    </button>
+                                                </div>
+                                                
+                                                <div class="col-12">
+                                                    <span class="border-bottom"></span>
+                                                </div>
+
+                                                <div class="card-body pt-2">
+                                                    <isinclude template="checkout/billing/billingSummary" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 next-step-button">
+                                <div class="my-sm-3 my-0">
+                                    <button id="checkout-shipping-address" class="blue-btn w-100 btn btn-primary btn-block submit-shipping"
+                                        type="submit" name="submit" value="submit-shipping" <isif
+                                        condition="${pdict.order.usingMultiShipping && !pdict.order.shippable}">disabled
+                                        </isif>>
+                                        ${Resource.msg('button.next.payment', 'checkout', null)}
+                                    </button>
+
+                                    <button id="checkout-place-order" class="blue-btn w-100 btn btn-primary btn-block submit-payment"
+                                        type="submit" name="submit" value="submit-payment">
+                                        ${Resource.msg('button.next.place.order', 'checkout', null)}
+                                    </button>
+
+                                    <button id="checkout-payment" class="blue-btn w-100 btn btn-primary btn-block place-order"
+                                        data-action="${URLUtils.url('CheckoutServices-PlaceOrder')}"
+                                        type="submit" name="submit"
+                                        value="place-order">${Resource.msg('button.place.order', 'checkout', null)}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-lg-5 left_paymet_boxes">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="boxes delevery_details">
+                                    <h6>
+                                        ${Resource.msg('label.deliverydetails', 'cart', null)}
+                                    </h6>
+                                    <form action="${URLUtils.url('ShipRocket-CheckService')}" method="GET" class="check-service-ability needs-validation" novalidate>  
+                                        <div class="row mt-3">
+                                            <div class="col-12 pincodes">
+                                                <div class="form-group mb-0">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                    <input type="text" name="pincode" id="pincode"
+                                                        placeholder="Enter Pincode" class="pincode-service-ability">
+                                                    <input type="submit" class="check_btn" name="check" value="Check">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="d-none error-response alert alert-danger"></div>
+                                    <p class="estimated-delievery-response">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-total-summary">
+                            <isinclude template="checkout/orderTotalSummary" />
+                        </div>
+                        <isinclude template="checkout/orderProductSummaryCheckout" />
+                    </div>
+                </div>
+            </div>
+            <isinclude template="checkout/shipping/shippingAddressTemplate" />
+        </div>
+    </section>
+
+</isdecorate>

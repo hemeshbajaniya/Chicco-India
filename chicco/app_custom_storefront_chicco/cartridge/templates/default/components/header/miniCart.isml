@@ -1,0 +1,33 @@
+
+
+<a href="${URLUtils.https('Cart-Show')}" class="shopping_cart minicart-link"
+	title="${Resource.msgf('minicart.count', 'common', null, pdict.quantityTotal)}"
+	aria-label="${Resource.msgf('minicart.count', 'common', null, pdict.quantityTotal)}" aria-haspopup="true">
+	<img src="${URLUtils.staticURL('/images/shopping_cart.svg')}" alt="shopping_cart" loading="lazy"/>
+	<div class="cart_items_count">
+		<p class="minicart-quantity color mini-cart-custom">
+			<isprint value="${pdict.quantityTotal}" formatter="##" />
+		</p>
+	</div>
+</a>
+<iscomment>
+	<!-- <a class="minicart-link" href="${URLUtils.https('Cart-Show')}" title="${Resource.msgf('minicart.count', 'common', null, pdict.quantityTotal)}" aria-label="${Resource.msgf('minicart.count', 'common', null, pdict.quantityTotal)}" aria-haspopup="true">
+        <i class="minicart-icon fa fa-shopping-bag"></i>
+        <img src="${URLUtils.staticURL('/images/shopping_cart.svg')}" alt="shopping_cart" />
+        <span class="minicart-quantity">
+            <isprint value="${pdict.quantityTotal}" formatter="##" />
+        </span>
+    </a> -->
+</iscomment>
+
+<iscomment>
+	<!-- <a href="${URLUtils.https('Cart-Show')}" class="shopping_cart minicart-link" title="${Resource.msgf('minicart.count', 'common', null, pdict.quantityTotal)}" aria-label="${Resource.msgf('minicart.count', 'common', null, pdict.quantityTotal)}" aria-haspopup="true">
+	<img src="${URLUtils.staticURL('/images/shopping_cart.svg')}" alt="shopping_cart" />
+	<div class="cart_items_count">
+    	<span class="minicart-quantity">
+            <isprint value="${pdict.quantityTotal}" formatter="##" />
+        </span>  
+	</div>
+</a> -->
+</iscomment>
+<iscomment> <div class="popover popover-bottom"></div> </iscomment>

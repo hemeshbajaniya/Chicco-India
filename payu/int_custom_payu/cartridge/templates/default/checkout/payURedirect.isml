@@ -1,0 +1,37 @@
+<div class="checkout">
+    <div class="payerauth">
+        <form action="${pdict.checkoutURL}" method="post" id="payUForm" name="payUForm">
+            <input type="hidden" name="key" value="${pdict.key}">
+            <input type="hidden" name="txnid" value="${pdict.txnid}">
+            <input type="hidden" name="amount" value="${pdict.amount}">
+            <input type="hidden" name="productinfo" value="${pdict.productinfo}">
+            <input type="hidden" name="firstname" value="${pdict.customerInfo.firstname}">
+            <input type="hidden" name="phone" value="${pdict.customerInfo.phone}">
+            <input type="hidden" name="email" value="${pdict.customerInfo.email}">
+            <input type="hidden" name="surl" value="${pdict.surl}">
+            <input type="hidden" name="furl" value="${pdict.furl}">
+             <input type="hidden" name="curl" value="${pdict.furl}">
+            <input type="hidden" name="hash" value="${pdict.hash}">
+            <input type="hidden" name="lastname" value="${pdict.customerInfo.lastname}">
+            <input type="hidden" name="address1" value="${pdict.customerInfo.address1}">
+            <input type="hidden" name="address2" value="${pdict.customerInfo.address2}">
+            <input type="hidden" name="city" value="${pdict.customerInfo.city}">
+            <input type="hidden" name="state" value="${pdict.customerInfo.state}">
+            <input type="hidden" name="country" value="${pdict.customerInfo.country}">
+            <input type="hidden" name="zipcode" value="${pdict.customerInfo.zipcode}">
+            <input type="hidden" name="udf1" value="${pdict.udf1}">
+            <input type="hidden" name="udf2" value="${pdict.udf2}">
+            <input type="hidden" name="udf3" value="${pdict.udf3}">
+            <input type="hidden" name="udf4" value="${pdict.udf4}">
+            <input type="hidden" name="udf5" value="${pdict.udf5}">
+        </form>
+        <script language="javascript">
+            var loaded = false;
+            function load(){
+                document.getElementById('payUForm').submit();
+                loaded = true;
+            }
+            load();
+        </script>
+    </div>
+</div>

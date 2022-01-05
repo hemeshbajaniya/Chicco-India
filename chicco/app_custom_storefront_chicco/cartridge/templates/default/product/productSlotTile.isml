@@ -1,0 +1,55 @@
+<isscript>
+        var assets = require('*/cartridge/scripts/assets');
+        assets.addJs('/js/search.js');
+        assets.addCss('/css/main.css'); 
+        //assets.addCss('/css/search.css');
+        //assets.addCss('/css/homePage.css'); 
+</isscript>
+<div class="item">
+    <div class="product_box text-center">
+        <a class="wishlistTile" href="${URLUtils.url('Wishlist-AddProduct')}" title="${Resource.msg('wishlist.addto.wishlist.heart', 'wishlist', null)}">
+            <span class="heart_icon">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </span>
+        </a>
+        <a href="${pdict.urls.product}">
+            <img src="${product.images.medium[0].url}" alt="${product.productName}"
+                title="${product.images.medium[0].title}" loading="lazy"/>
+        </a>
+        <isif condition="${pdict.display.showQuickView !== false}">
+            <a class="quickview hidden-sm-down" href="${pdict.urls.quickView}" data-toggle="modal"
+                data-target="#quickViewModal"
+                title="${Resource.msgf('button.quickview', 'common', null, product.productName)}"
+                aria-label="${Resource.msgf('button.quickview', 'common', null, product.productName)}">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-inverse fa-stack-2x"></i>
+                    <i class="fa fa-expand fa-stack-1x"></i>
+                </span>
+            </a>
+        </isif>
+        <a href="${pdict.urls.product}">
+            <h6>
+                ${product.productName}
+            </h6>
+        </a>
+        <div class="price">
+            <isset name="price" value="${product.price}" scope="page" />
+            <isif condition="${product.productType === 'set'}">
+                <isinclude template="product/components/pricing/setPrice" />
+                <iselse>
+                    <isinclude template="product/components/pricing/main" />
+            </isif>
+        </div>
+        <isif condition="${pdict.display.swatches == true}">
+            <isinclude template="product/components/productTileSwatch" />
+        </isif>
+        <isinclude template="widget/yotpoRatingsWidget" />
+        <isif condition="${pdict.display.showAddToCart}">
+            <input type="hidden" class="add-to-cart-url" value="${URLUtils.url('Cart-AddProduct')}">
+            <button id="add-to-cart" class="primary-btn d-inline-block add-to-cart-plp home-product pointer"
+                data-pid="${product.defaultVariant ? product.defaultVariant.ID : product.id}">
+                ${Resource.msg('button.addtocart', 'common', null)}
+            </button>
+        </isif>
+    </div>
+</div>

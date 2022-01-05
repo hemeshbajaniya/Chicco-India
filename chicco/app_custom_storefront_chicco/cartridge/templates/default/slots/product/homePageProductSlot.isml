@@ -1,0 +1,36 @@
+<isinclude template="/components/modules" />
+
+<section class="product_section">
+	<div class="container">
+
+		<div class="row text-center">
+			<div class="col-12">
+				<h2>${Resource.msg('homeproduct.msg.mostloved', 'home_product', null)}</h2>
+			</div>
+			<div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-10 offset-md-1">
+				<p>${Resource.msg('homeproduct.msg.description', 'home_product', null)}</p>
+			</div>
+		</div>
+
+		<div class="row mt-lg-5 mt-3">
+			<div class="col-md-12">
+				<div class="products_slider pb-0">
+					<div class="owl-carousel owl-theme">
+						<isloop items="${slotcontent.content}" var="product" status="loopState">
+							<div class="item">
+								<div class="product_box text-center">
+									<isinclude
+										url="${URLUtils.url('Tile-Show', 'pid', product.ID, 'pview', 'tile', 'ratings', true, 'swatches', true)}" />
+									<a href="https://bgmm-001.sandbox.us01.dx.commercecloud.salesforce.com/s/RefArch/feeding/sterilisers%20and%20disinfectants/8058664044962.html?lang=default"
+										class="primary-btn d-inline-block"> ${Resource.msg('button.addtocart', 'common', null)} </a>
+								</div>
+							</div>
+						</isloop>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</section>

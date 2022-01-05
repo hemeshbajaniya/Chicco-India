@@ -1,0 +1,8 @@
+<isobject object="${pdict.apiProductSearch}" view="none">
+
+    ${Resource.msgf('label.results', 'search', null, pdict.productSearch.count)}
+    
+    <isif condition="${!pdict.productSearch.productIds.length}">    
+        <isinclude template="search/noResultsProduct"/>
+    </isif>
+</isobject>

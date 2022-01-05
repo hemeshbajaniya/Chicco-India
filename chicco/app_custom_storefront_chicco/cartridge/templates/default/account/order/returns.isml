@@ -1,0 +1,147 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/orderHistory.js');
+        assets.addCss('/css/account/profile.css');
+        assets.addCss('/css/layouts/orders.css');
+    </isscript>
+
+    <!---Breadcrumbs--->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>
+                        <a href="${URLUtils.url('Home-Show')}">
+                            ${Resource.msg('lable.breadcrums.home', 'account', null)}
+                        </a>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="${URLUtils.url('Order-History')}">
+                            ${Resource.msg('lable.breadcrums.myorders', 'account', null)}
+                        </a>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <a href="" class="active">
+                            ${Resource.msg('page.title.returnorder', 'account', null)}
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="order_track_sec my_oder_sec return_order_sec border-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="mb-5">
+                        ${Resource.msg('page.title.returnorder', 'account', null)}
+                    </h2>
+                </div>
+                <div class="col-12">
+
+                    <isloop items="${pdict.LineItems}" var="item" status="index">
+                        <div class="d-md-flex d-block shopping_shortlist_sec">
+                            <div class="order_img">
+                                <img src="${item.imageURL}" alt="${item.name}" title="${item.name}" loading="lazy"/>
+                            </div>
+                            <div class="order_list">
+                                <div class="row align-items-md-start align-items-center">
+                                    <div class="col-md-5 col-12">
+                                        <h5>${item.name}</h5>
+                                        <p> ${Resource.msg('label.orderhistory.quantity', 'account', null)}
+                                            <isprint value="${item.quantity}" formatter="#" />
+                                        </p>
+                                        <p> ${Resource.msg('label.orderhistory.price', 'account', null)}
+                                            <strong>${item.price}</strong>
+                                        </p>
+                                    </div>
+                                    <isif condition="${!item.returnStatus === 'PASS'}">
+                                        <h5 class="px-3">${item.returnReason}</h5>
+                                    </isif>
+                                    <isif condition="${item.isReturnAllowed}">
+                                        <isif condition="${item.isdelivered}">
+                                            <isif condition="${!item.isReturnDateRestricted}">
+                                                <isif condition="${item.isRefuned}">
+                                                    <h5 class="px-3">${Resource.msg('lable.order.return.already', 'account', null)}</h5>
+                                                <iselse/>
+                                                    <form
+                                                        action="${URLUtils.url('Increff-CreateReturns')}" method="POST"
+                                                        class="return-form forms-data">
+                                                        <input type="hidden" name="productId" value="${item.productID}" />
+                                                        <input type="hidden" name="orderID" value="${pdict.orderID}" />
+                                                        <div
+                                                            class="col-md-4 col-12 text-md-center text-left shipping_product form-group">
+                                                            <h5>
+                                                                <label for="reason">${Resource.msg('label.order.retunrs.reason', 'account', null)}
+                                                                </label>
+                                                            </h5>
+                                                            <div class="main_title">
+                                                                <select class="reason form-control" name="reason">
+                                                                    <option
+                                                                        value="${Resource.msg('label.order.return.reason1', 'account', null)}"
+                                                                        selected>
+                                                                        ${Resource.msg('label.order.return.reason1', 'account', null)}
+                                                                    </option>
+                                                                    <option
+                                                                        value="${Resource.msg('label.order.return.reason2', 'account', null)}">
+                                                                        ${Resource.msg('label.order.return.reason2', 'account', null)}
+                                                                    </option>
+                                                                    <option
+                                                                        value="${Resource.msg('label.order.return.reason3', 'account', null)}">
+                                                                        ${Resource.msg('label.order.return.reason3', 'account', null)}
+                                                                    </option>
+                                                                    <option
+                                                                        value="${Resource.msg('label.order.return.reason4', 'account', null)}">
+                                                                        ${Resource.msg('label.order.return.reason4', 'account', null)}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 col-12 text-lg-right text-center">
+
+                                                            <button class="primary-btn d-inline-block mt-3"
+                                                                type="submit">${Resource.msg('lable.order.return', 'account', null)}</button>
+
+                                                        </div>
+
+                                                    </form>
+                                                    <h5 class="px-3">${Resource.msgf('label.order.return.returndate', 'account', null)} <strong>${item.returnsDateString}</strong></h5>
+                                                </isif>
+                                            <iselse/>
+                                                <h5 class="px-3">${Resource.msgf('label.order.return.datevalidate', 'account', null)} <strong>${item.returnsDateString}</strong></h5>
+                                            </isif>
+                                        <iselse/>
+                                            <h5 class="px-3">${item.deliveredMsg}</h5>
+                                        </isif>
+                                        <h5 class="px-3 mt-3 response-return"></h5>
+                                    <iselse/>
+                                        <h5 class="px-3">${item.message}</h5>
+                                    </isif>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 pt-4 pb-4 pl-0 pr-0">
+                            <span class="border_bottom_primary d-block"></span>
+                        </div>
+
+                    </isloop>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-8 col-md-6 text-center">
+                            <a class="primary-btn normal" href="${URLUtils.url('Account-Show')}">
+                                ${Resource.msg('link.profile.backtomyaccount', 'account', null)}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+</isdecorate>

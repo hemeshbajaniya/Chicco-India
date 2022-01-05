@@ -1,0 +1,81 @@
+<iscomment>
+
+    Template Notes:
+
+    - This template is intended to be referenced from an <isinclude> tag within an <isloop> in another
+            source template. The <isloop> is expected to have a "status" attribute, named "attributeStatus".
+                - ${attributeStatus.last} is checked to see whether a particular attribute row should include the
+                Quantity drop-down menu
+
+</iscomment>
+
+<div class="attribute">
+    <isif condition="${attr.swatchable}">
+
+        <div class="colors mt-3">
+            <p class="${attr.id}">
+                <strong>${Resource.msg('label.select', 'common', null)} ${attr.displayName}</strong>
+            </p>
+
+            <div class="row pl-4">
+                <isloop items="${attr.values}" var="attrValue">
+                    <isif condition="${!(isBundle && product.productType === 'variant' && !attrValue.selected)}">
+                        <div class="col-xl-4 col-lg-4 col-md-3 col-6 mb-3">
+                            <button class="color-attribute"
+                                aria-label="${Resource.msg('label.select', 'common', null)} ${attr.displayName} ${attrValue.displayValue}"
+                                aria-describedby="${attrValue.id}" data-url="${attrValue.url}" data-swatchable="true"
+                                ${product.productType === "variant" && isBundle ? "disabled" : ""}>
+                                <span data-attr-value="${attrValue.value}"  class="
+                              swatches-value
+                              swatch-circle
+                              swatch-value
+                              ${attrValue.selected ? 'selected' : ''}
+                              ${attrValue.selectable ? 'selectable' : 'unselectable'}">
+                                    <div class="row swatch-image-container">
+                                        <div class="col-6 swatch-image-box">
+                                            <img class="swatch-image"
+                                                src="${attrValue.images['swatch'].length > 0 ? attrValue.images['swatch'][0].url : ''}"
+                                                alt="" loading="lazy"/>
+                                        </div>
+                                        <div class="col-6 swatch-price-value ${attrValue.selected ? 'selected' : ''}">
+                                            <h6 class="${attrValue.selected ? 'selected' : ''}">${attrValue.displayValue}</h6>
+                                            <span class="${attrValue.selected ? 'selected' : ''}"></span>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span id="${attrValue.id}" class="sr-only selected-assistive-text">
+                                    ${attrValue.selected ? Resource.msg('msg.assistive.selected.text', 'common', null) : ''}
+                                </span>
+                            </button>
+                        </div>
+                    </isif>
+                </isloop>
+            </div>
+        </div>
+
+    <iselse/>
+
+
+        <div class="sizes mt-1 product-size-select-list">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <p class="${attr.id}  d-inline-block">
+                        <strong>${Resource.msg('label.select', 'common', null)} ${attr.displayName}</strong>
+                    </p>
+                    <div class="d-inline-block">
+                        <isloop items="${attr.values}" var="attrValue">
+                            <button
+                                class="product-size-options select-variation-product ${attrValue.selected ? 'active' : ''} "
+                                value="${attrValue.url}" data-swatchable="false" data-attr-value="${attrValue.value}"
+                                ${product.productType === "variant" && isBundle ? "disabled" : ""} ${attrValue.selected ? 'selected' : ''}>
+                                <span class="">
+                                    ${attrValue.value}
+                                </span>
+                            </button>
+                        </isloop>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </isif>
+</div>

@@ -1,0 +1,42 @@
+<isif condition="${!empty(pdict.customer.profile)}">
+    <div class="row card col-md-12 loyalty-point-card-summary payment-form align-items-center main_title border-0 mb-2 px-0">
+    <div class="form-group payment_radio">
+        <div class="card-header clearfix border-0 p-0 col-md-12">
+            <input type="radio" name="loyalty_card" id="loyalty_card" class="select_card" />
+            <label for="loyalty_card " class="main_lable loyalty_card">
+                ${Resource.msg('label.loyalty.point.heading', 'checkout', null)}
+            </label>
+        </div>
+        <div class="card-body card_details">
+            <div class="row pb-2">
+                <div class="col-6">
+                    <label class="form-control-label" for="loyalty-point-value">
+                            ${Resource.msg('label.loyalty.points.points', 'checkout', null)} <span class="loyalty-points-avalible">${pdict.customer.loyaltyPoints.availablePoints}</span>
+                    </label>
+                </div>
+                <div class="col-6">
+                    <label class="form-control-label" for="loyalty-point-worth">
+                            ${Resource.msg('label.loyalty.points.blance', 'checkout', null)} <span class="loyalty-points-worth">${pdict.customer.loyaltyPoints.pointValue}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group required mb-3">
+                        <label class="form-control-label" for="loyalty-point-value-input">
+                            ${Resource.msg('lable.loyalty.point.input', 'checkout', null)}
+                        </label>
+                        <input type="number" class="form-control" id="loyalty-point-number">
+                        <div class="invalid-feedback">${Resource.msg('message.loyalty.point.invalid', 'checkout', null)}</div>
+                    </div>
+                </div>
+                <div class="col-sm-6 pt-2">
+                     <label class="form-control-label" for="loyalty-point-value-input"></label>
+                    <button data-action="${URLUtils.url('LoyaltyPoints-RedeemPoints')}" type="button" name="apply" class="blue-btn py-2 btn btn-loyalty-point-redeem btn-block btn-primary">${Resource.msg('label.loyalty.point.button.redeem', 'checkout', null)}</button>
+                </div>
+                <div class="loyalty-response-msg alert alert-danger d-none"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</isif>

@@ -1,0 +1,113 @@
+<div class="delivery_details mt-1">
+    <div class="row align-items-center">
+        <div class="col-md-12">
+            <p class="d-inline-block mr-1">
+                ${Resource.msg('Check.delivery.details', 'product', null)}
+            </p>
+            <div class="forms d-inline-block">
+                <form action="${URLUtils.url('ShipRocket-CheckService')}" method="GET"
+                    class="check-service-ability needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-12 pincodes">
+                            <div class="form-group mb-0 required">
+                                <input type="text" name="pincode" id="pincode" class="pincode-service-ability"
+                                    placeholder="Enter Pincode" aria-describedby="form-shiprocket-error"
+                                    data-missing-error="${Resource.msg('label.missing.fields.error', 'product', null)}" />
+                                <input type="submit" class="check_btn" name="check" value="Check" />
+                                <div class="invalid-feedback" id="form-shiprocket-error"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="order_boxes mt-0">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box mb-4 estimate">
+                    <div class="img">
+                        <img src="${URLUtils.staticURL("/images/delivery1.png")}" alt="" />
+                    </div>
+                    <div class="content ml-2">
+                        <p class="estimated-delievery-response">
+                            ${Resource.msg('label.estimate.delivery', 'product', null)}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="img">
+                        <img src="${URLUtils.staticURL("/images/delivery2.png")}" alt="" />
+                    </div>
+                    <div class="content ml-2">
+                        <p>
+                            <strong> ${Resource.msg('Free.delivery.label', 'product', null)}
+                            </strong>
+                        </p>
+                        <p>
+                            ${Resource.msg('for.orders.over', 'product', null)}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="img">
+                        <img src="${URLUtils.staticURL("/images/return-box.png")}" alt="" />
+                    </div>
+                    <div class="content ml-2">
+                        <p>
+                            <strong> ${Resource.msg('lable.returnable', 'product', null)}
+                            </strong>
+                        </p>
+                        <p>
+                            <isprint value=" ${product.returnPolicy}" encoding="off" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-md-2">
+            <div class="col-md-6">
+                <button id="buy-now"class="buy-now-pdp blue-border-btn d-block w-100"
+                    data-pid="${product.defaultVariant ? product.defaultVariant.ID : product.id}"
+                    ${!product.readyToOrder || !product.available ? "disabled" : ""}>
+                    <isif condition="${!product.readyToOrder}">
+                        ${Resource.msg('label.addtocart.button.style.select', 'product', null)}
+                    <iselseif condition="${!product.available}">
+                            ${Resource.msg('label.addtocart.button.out.of.stock', 'product', null)}
+                        <iselse/>
+                            ${Resource.msg('Buy.Now.btn', 'product', null)}
+                    </isif>
+                </button>
+            </div>
+            <div class="col-md-6">
+                <input type="hidden" class="add-to-cart-url" value="${URLUtils.url('Cart-AddProduct')}">
+                <button id="add-to-cart" class="add-to-cart-plp blue-btn d-block w-100 pointer"
+                    data-pid="${product.defaultVariant ? product.defaultVariant.ID : product.id}"
+                    ${!product.readyToOrder || !product.available ? "disabled" : ""}>
+                    <isif condition="${!product.available}">
+                        ${Resource.msg('label.addtocart.button.out.of.stock', 'product', null)}
+                    <iselse/>
+                        ${Resource.msg('button.addtocart', 'common', null)}
+                    </isif>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <isif condition="${!product.available || !product.productType == 'master'}">
+                <div class="backinstock-widget">
+                    <isinclude template="backinstockwidget" />
+                </div>
+            </isif>
+        </div>
+    </div>
+</div>

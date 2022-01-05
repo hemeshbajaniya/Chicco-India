@@ -1,0 +1,23 @@
+<isdecorate template="common/layout/page">
+    <isprint value="${pdict.content.body}" encoding="off" />
+    <isslot id="chicco-article" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-2" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-3" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-4" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-5" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-6" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-7" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-8" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-9" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-10" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-11" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-12" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-13" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-14" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-15" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-16" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-17" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-18" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-19" description="Chicco Article" context="global" />
+    <isslot id="chicco-article-20" description="Chicco Article" context="global" />
+</isdecorate>

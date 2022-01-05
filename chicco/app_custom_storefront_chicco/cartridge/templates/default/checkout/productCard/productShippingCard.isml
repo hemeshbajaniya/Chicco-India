@@ -1,0 +1,31 @@
+<div class="product-line-item mt-3">
+
+    <isif condition="${lineItem.productType === 'bundle'}">
+        <div class="bundle-includes">${Resource.msg('msg.bundle.includes', 'cart', null)}</div>
+        <!--- individual bundled line items --->
+        <isinclude template="cart/productCard/cartProductCardBundledItems" />
+    <iselse/>
+        <div class="product-line-item-details d-flex flex-row">
+            <div class="col-4 p-0 item-image">
+                <img class="product-image" src="${lineItem.images.small[0].url}" alt="${lineItem.images.small[0].alt}"
+                    title="${lineItem.images.small[0].title}" loading="lazy"/>
+            </div>
+            <div class="col-8 p-0 line-item-header pl-2">
+                <isinclude template="checkout/productCard/productCardProductName" />
+            <div class="item-attributes">
+                <isloop items="${lineItem.variationAttributes}" var="attribute">
+                    <p class="line-item-attributes mb-0">${attribute.displayName}: ${attribute.displayValue}</p>
+                </isloop>
+                 <p class="line-item-attributes mb-0">${Resource.msg('label.product.attributes.quantity', 'checkout', null)} <isprint value="${lineItem.quantity}" formatter="##" /></p>
+
+                <div class="item-options mb-0">
+                    <isloop items="${lineItem.options}" var="option">
+                        <div class="line-item-option">${option.displayName}</div>
+                    </isloop>
+                </div>
+            </div>
+            </div>
+        </div>
+    </isif>
+
+</div>

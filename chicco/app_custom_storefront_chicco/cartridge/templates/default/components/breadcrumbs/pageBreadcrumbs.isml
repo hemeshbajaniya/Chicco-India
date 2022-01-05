@@ -1,0 +1,42 @@
+<iscomment> <div class="row hidden-xs-down">
+    <div class="col" role="navigation" aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+            <isloop items="${pdict.breadcrumbs}" var="breadcrumbValue" status="loopState">
+                <li class="breadcrumb-item">
+                    <isif condition="${loopState.last}">
+                        <a href="${breadcrumbValue.url}" aria-current="page">
+                            ${breadcrumbValue.htmlValue}
+                        </a>
+                    <iselse>
+                        <a href="${breadcrumbValue.url}">
+                            ${breadcrumbValue.htmlValue}
+                        </a>
+                    </isif>
+                </li>
+            </isloop>
+        </ol>
+    </div>
+</div>  </iscomment>
+
+ <div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <isloop items="${pdict.breadcrumbs}" var="breadcrumbValue" status="loopState">
+                        <isif condition="${loopState.last}">
+                            <a href="${breadcrumbValue.url}" aria-current="page">
+                                ${breadcrumbValue.htmlValue}
+                            </a>
+                        <iselse>
+                            <a href="${breadcrumbValue.url}">
+                                ${breadcrumbValue.htmlValue}
+                            </a>
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </isif>
+                    </isloop>
+                </p>
+            </div> 
+        </div>
+    </div>                
+</div>

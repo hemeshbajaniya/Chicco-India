@@ -1,0 +1,11 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "../common/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
+.form-group {
+    &.required .form-control-label::before {
+        content: "*";
+        color: $danger;
+    }
+}

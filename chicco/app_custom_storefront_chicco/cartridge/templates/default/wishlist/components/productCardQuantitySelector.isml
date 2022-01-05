@@ -1,0 +1,57 @@
+<div class="quantity">
+    <div class="quantity-form-wishlist mt-2">
+        <span class="qty d-inline-block line-item-pricing-info quantity-label" for="quantity"> ${Resource.msg('wl.selectquantity','wishlist',null)}</span>
+       <div class="d-inline-block qty_box ml-2">
+           <select class="form-control quantity custom-select"
+                data-uuid="${item.UUID}"
+                data-pid="${item.pid}"
+                data-pre-select-qty="${item.qty}"
+                id="quantity"
+                name="quantity">
+            <isloop begin="${item.minOrderQuantity}"
+                    end="${item.maxOrderQuantity}"
+                    status="status">
+                    <isif condition="${item.qty === status.index}">
+                        <option selected>${status.index}</option>
+                    <iselse/>
+                        <option>${status.index}</option>
+                    </isif>
+                </isloop>
+            </select>
+       </div>
+    </div>
+</div>
+
+ 
+<iscomment> 
+ <div class="row price_qut_delet_wishlist">
+    <div class="col-12 quantity">
+        <div class="mt-2">
+            <span class="d-inline-block">${Resource.msg('wl.selectquantity','wishlist',null)}</span>
+            <div class="d-inline-block qty_box ml-2">
+
+                <button type="button" class="minus decreased-btn"
+                    data-pid="pid-${lineItem.id}" id="${lineItem.id}" ${lineItem.quantity > 1 ? '' : 'disabled'}>-</button>
+
+                <input class="form-control quantity quantity-select custom-select pid-${lineItem.id}"
+                    data-uuid="${lineItem.UUID}" data-pid="${lineItem.id}"
+                    data-action="${pdict.actionUrls.updateQuantityUrl}" data-pre-select-qty="${lineItem.quantity}"
+                    value="${Number(lineItem.quantity.toString()).toFixed()}" name="quantity" type="number" />
+
+                <button type="button" class="plus increased-btn" data-pid="pid-${lineItem.id}"
+                    id="${lineItem.id}">+</button>
+
+            </div>
+        </div>
+    </div>
+</div> </iscomment>
+
+<iscomment> 
+<div class="quantity-form-wishlist">
+        
+    <iscomment> create div quantity-field </iscomment>
+        <iscomment> <div class="quantity-field">
+            
+        </div>
+        
+</div> </iscomment> 

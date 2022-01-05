@@ -1,0 +1,235 @@
+<div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="boxes">
+        <div class="title">
+            <div class="row">
+                <div class="col-7">
+                    <h5 class="text-white mb-0">${Resource.msg('label.register.product', 'account', null)}</h5>
+                </div>
+                <div class="col-5 text-right">
+                    <a href="#" class="box_links text-white" aria-label="${Resource.msg('link.view', 'account', null)}"
+                        data-toggle="modal" data-target="#add_registered">${Resource.msg('link.view', 'account', null)}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade popup-modal gift_voucher_popup" id="add_registered" tabindex="-1" role="dialog"
+    aria-labelledby="add_registeredTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close_btn text-uppercase" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h3 class="text-center">
+                    ${Resource.msg('label.register.product', 'account', null)}
+                </h3>
+                <div class="row mt-4 products_list">
+                    <div class="col-md-6">
+                        <div class="product_details d-flex">
+                            <iscomment> <div class="product_img">
+                                <img src="assets/images/product22.png">
+                            </div> </iscomment>
+                            <div class="product_Desc">
+                                <h6>
+                                    Simplicity Baby Stroller | 0m+
+                                </h6>
+                                <p class="product_id">
+                                    Code: #123456790
+                                </p>
+                                <p class="sale_content">
+                                    Purchase Date: 14-June-2021
+                                </p>
+                                <p class="colors">
+                                    Warranty valid: 20-June-2022
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product_details d-flex border-0">
+                            <div class="product_img">
+                                <iscomment> <img src="assets/images/product22.png"> </iscomment>
+                            </div>
+                            <div class="product_Desc">
+                                <h6>
+                                    Simplicity Baby Stroller | 0m+
+                                </h6>
+                                <p class="product_id">
+                                    Code: #123456790
+                                </p>
+                                <p class="sale_content">
+                                    Purchase Date: 14-June-2021
+                                </p>
+                                <p class="colors">
+                                    Warranty valid: 20-June-2022
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <span class="border_bottom"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product_details d-flex">
+                            <div class="product_img">
+                                <iscomment> <img src="assets/images/product22.png"> </iscomment>
+                            </div>
+                            <div class="product_Desc">
+                                <h6>
+                                    Simplicity Baby Stroller | 0m+
+                                </h6>
+                                <p class="product_id">
+                                    Code: #123456790
+                                </p>
+                                <p class="sale_content">
+                                    Purchase Date: 14-June-2021
+                                </p>
+                                <p class="colors">
+                                    Warranty valid: 20-June-2022
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product_details d-flex border-0">
+                            <div class="product_img">
+                                <iscomment> <img src="assets/images/product22.png"> </iscomment>
+                            </div>
+                            <div class="product_Desc">
+                                <h6>
+                                    Simplicity Baby Stroller | 0m+
+                                </h6>
+                                <p class="product_id">
+                                    Code: #123456790
+                                </p>
+                                <p class="sale_content">
+                                    Purchase Date: 14-June-2021
+                                </p>
+                                <p class="colors">
+                                    Warranty valid: 20-June-2022
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <span class="border_bottom mb-4"></span>
+                    </div>
+                    <div class="col-12 text-center">
+                        <a href="#" class="primary-btn">
+                            ${Resource.msg('label.register.product.RegisterAnotherProduct', 'account', null)}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="shopping_shortlist_sec delete_cart_item_popup ">
+                    <div class="shipping_product">
+                        <form>
+                            <div class="row mt-4 register_product_form main_title">
+                                <div class="col-lg-8 offset-lg-2">
+                                    <div class="form-group search_data">
+                                        <input type="text" name="search" id="search" placeholder="Search Products..."
+                                            class="w-100 field" required />
+                                        <button class="search_icon">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-0">
+                                        <label>${Resource.msg('label.register.Purchasedfrom', 'account', null)}</label>
+                                        <label class="radio-img">
+                                            <input type="radio" name="product_Data" value="Online">
+                                            <span>${Resource.msg('label.register.Online', 'account', null)}</span>
+                                        </label>
+                                        <label class="radio-img">
+                                            <input type="radio" name="product_Data" value="Offline">
+                                            <span>${Resource.msg('label.register.Offline', 'account', null)}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.Vendorname', 'account', null)}</label>
+                                        <input type="text" name="name" id="name" placeholder="Vendor name"
+                                            class="w-100 field" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.City', 'account', null)}</label>
+                                        <input type="text" name="city" id="city" placeholder="City" class="w-100 field"
+                                            required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.BatchNo', 'account', null)}</label>
+                                        <input type="number" name="batch_no" id="batch_no" placeholder="Batch No"
+                                            class="w-100 field" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.ManufacturingDate', 'account', null)}</label>
+                                        <input type="date" name="manufacturing" id="manufacturing"
+                                            placeholder="Manufacturing Date" class="w-100 field" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.InvoiceNumber', 'account', null)}</label>
+                                        <input type="number" name="invoice_number" id="invoice_number"
+                                            placeholder="Invoice Number" class="w-100 field" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.InvoiceDate', 'account', null)}</label>
+                                        <input type="date" name="invoice_date" id="invoice_date"
+                                            placeholder="Invoice Date" class="w-100 field" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <label>${Resource.msg('label.register.UploadInvoice', 'account', null)}Upload
+                                            Invoice</label>
+                                        <div class="upload-files w-100 field">
+                                            <input type="file" id="file-upload" required="">
+                                            <div id="file-upload-filename">
+                                                ${Resource.msg('label.register.Uploadyourinvoiceimagehere', 'account', null)}
+                                            </div>
+                                            <label for="file-upload">
+                                                ${Resource.msg('label.register.Upload', 'account', null)}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <button type="submit" name="submit" class="primary-btn w-100">
+                                            ${Resource.msg('button.save', 'account', null)}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-3">
+                                        <button class="close-btn w-100" data-dismiss="modal" aria-label="Close">
+                                            ${Resource.msg('button.close', 'account', null)}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="d-md-flex d-block account-wishlist-item">
+    <div class="col-3 p-0 account-wl-image pull-left">
+        <img class="product-image img-fluid pr-3" src="${item.imageObj.small[0].url}" alt="${item.imageObj.small[0].alt}"
+            title="${item.imageObj.small[0].title}"/>
+    </div>
+    <div class="col-md-9 col-9 p-0 pull-right">
+
+        <p class="line-item-name">${item.name}</p>
+        <div class="account-wl-attributes">
+            <isloop items="${item.variationAttributes}" var="attribute">
+                <isloop items="${attribute.values}" var="eachValue">
+                    <isif condition="${!!eachValue.selected}">
+                    <p class="line-item-attributes">${attribute.displayName}: ${eachValue.displayValue}</p>
+                    </isif>
+                </isloop>
+            </isloop>
+            <isif condition="${item.options}">
+                <isloop items="${item.options}" var="option">
+                    <isif condition="${!!option}">
+                    <p class="line-item-attributes">${option.displayName}:${option.displayValue}</p>
+                    </isif>
+                </isloop>
+            </isif>
+            <div class="line-item-availability availability-${item.UUID}">
+                <isloop items="${item.availability.messages}" var="message">
+                    <p class="line-item-attributes pull-left">${message}</p>
+                    <iscomment> <button type="button" class="d-md-none d-sm-block pull-right delete remove-btn remove-from-wishlist btn bg-transparent border-0"
+                        data-url="${URLUtils.url('Wishlist-RemoveProductAccount','pid', item.pid)}"
+                        aria-label="remove">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button> </iscomment>
+                </isloop>
+                <isif condition="${item.availability.inStockDate}">
+                    <p class="line-item-attributes line-item-instock-date">
+                        ${item.availability.inStockDate}
+                    </p>
+                </isif>
+            </div>
+        </div>
+    </div>
+    <iscomment> <div class="col-1 p-0">
+        <div class="hide">
+            <button type="button" class="delete remove-btn remove-from-wishlist btn bg-transparent border-0"
+                data-url="${URLUtils.url('Wishlist-RemoveProductAccount','pid', item.pid)}"
+                aria-label="remove">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div> </iscomment>
+</div>

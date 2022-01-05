@@ -1,0 +1,23 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets');
+        
+        assets.addCss('/css/main.css');
+        assets.addCss('/css/custom.css');
+        assets.addCss('/css/search.css');
+        assets.addCss('/css/discount-style.css');
+        assets.addJs('/js/search.js');
+        assets.addJs('/js/jquery.min.js');
+        assets.addJs('/js/jquery.counterup.min.js');
+        assets.addJs('/js/popper.min.js');
+        assets.addJs('/js/jquery.matchHeight-min.js');
+        assets.addJs('/js/jquery.payment.min.js');
+        assets.addJs('/js/slick.js');
+        assets.addJs('/js/owl.carousel.js');
+        assets.addJs('/js/main_design.js');
+        <iscomment> assets.addJs('/js/main.js'); </iscomment>
+
+    </isscript>
+
+    <isinclude template="search/searchResultsNoDecorator" />
+</isdecorate>

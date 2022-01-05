@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-12 d-sm-none">
+        <p class="optional-promo">${Resource.msg('action.enter.promo.code', 'cart', null)}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form class="promo-code-form" action="${pdict.actionUrls.submitCouponCodeUrl}" name="promo-code-form">
+            <div class="form-group">
+                <h6 class="couponCode">${Resource.msg('label.promo.code', 'cart', null)}</h6>
+                <div class="row">
+                    <div class="col-md-8 pincodes">
+                        <input type="text" class="form-control coupon-code-field" id="couponCode" name="couponCode"
+                            placeholder="${Resource.msg('placholder.text.promo.code.input', 'cart', null)}"/>
+
+                    </div>
+
+                    <input type="hidden" name="${pdict.csrf.tokenName}" value="${pdict.csrf.token}" />
+                    <input type="hidden" name="sendRenderedCart" value="true"/>
+                    <div class="col-md-4 promo-code-submit">
+                        <button type="button" class="mt-md-0 mt-3 btn blue-btn promo-code-btn" data-action="${pdict.actionUrls.submitCouponCodeUrl}">
+                            ${Resource.msg('button.submit.promo.code', 'cart', null)}
+                        </button>
+                    </div>
+
+                </div>
+                <div class="coupon-error">
+                    <p class="coupon-missing-error" id="missingCouponCode" role="alert">
+                        ${Resource.msg('error.missing.coupon.code', 'cart', null)}</p>
+                    <p class="coupon-error-message" id="invalidCouponCode" role="alert"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="coupons-and-promos">
+    <isinclude template="cart/cartCouponDisplay" />
+</div>

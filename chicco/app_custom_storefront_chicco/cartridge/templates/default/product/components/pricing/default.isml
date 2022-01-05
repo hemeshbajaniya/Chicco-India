@@ -1,0 +1,35 @@
+<span>
+    <isset name="finalOrigPrice" value="${price}" scope="page" />
+
+    <isset name="price" value="${finalOrigPrice.sales}" scope="page" />
+    <span class="sales">
+        <isif condition="${isLowPrice == 'range-low'}">
+            <span class="value product-sales-price" data-price="${price.decimalPrice}" content="${price.decimalPrice}">
+        </isif>
+        <isif condition="${isLowPrice == 'range-high'}">
+            <span class="value product-sales-price" data-price="${price.decimalPrice}" content="${price.decimalPrice}">
+        </isif>
+        <isif condition="${isLowPrice == null}">
+            <span class="value product-sales-price" data-price="${price.decimalPrice}" content="${price.decimalPrice}">
+        </isif>
+        <isinclude template="/product/components/pricing/formatted" />
+        </span>
+    </span>
+
+    <isif condition="${finalOrigPrice.list !== null}">
+        <isset name="price" value="${finalOrigPrice.list}" scope="page" />
+        <del>
+            <span class="strike-through list <isif condition="${isLowPrice == null || isLowPrice == 'range-low' || isLowPrice == 'range-high'}">cut-price</isif>">
+                <span class="value" content="${price.decimalPrice}">
+                    <iscomment> <span class="sr-only">
+                        ${Resource.msg('label.price.reduced.from', 'pricing', null)}
+                    </span> </iscomment>
+                    <isinclude template="/product/components/pricing/formatted" />
+                    <iscomment> <span class="sr-only">
+                        ${Resource.msg('label.price.to', 'pricing', null)}
+                    </span> </iscomment>
+                </span>
+            </span>
+        </del>
+    </isif>
+</span>

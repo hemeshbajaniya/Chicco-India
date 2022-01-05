@@ -1,0 +1,40 @@
+
+<div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="boxes">
+        <div class="title">
+            <div class="row">
+                <div class="col-7">
+                    <h5 class="text-white mb-0">
+                        <img src="${URLUtils.staticURL('/images/my_accounts/address.png')}" alt="address" class="mr-1" loading="lazy" />
+                        ${Resource.msg('label.addressbook', 'account', null)}
+                    </h5>
+                </div>
+                <div class="col-5 text-right">
+                    <isif condition="${!empty(pdict.account.preferredAddress.address.ID)}">
+                         <a href="${URLUtils.url('Address-List')}" class="box_links text-white"
+                            aria-label="${Resource.msg('label.addressbook.manageaddress', 'account', null)}">${Resource.msg('label.addressbook.manageaddress', 'account', null)}</a>
+                    <iselse/>
+                        <a href="${URLUtils.url('Address-AddAddress')}" class="box_links text-white" aria-label="${Resource.msg('label.addressbook.addnewaddress','account',null)}">
+                            ${Resource.msg('link.addnew','account',null)}
+                        </a>
+                    </isif>
+                </div>
+            </div>
+        </div>
+        <isif condition="${pdict.account.preferredAddress}">
+            <div class="card-body card-min-height">
+                <div class="dashboard-info">${pdict.account.preferredAddress.address.ID}</div>
+                <div>${pdict.account.preferredAddress.address.firstName}
+                    ${pdict.account.preferredAddress.address.lastName}</div>
+                <div>${pdict.account.preferredAddress.address.address1}</div>
+                <div>${pdict.account.preferredAddress.address.city}, ${pdict.account.preferredAddress.address.stateCode}
+                    ${pdict.account.preferredAddress.address.postalCode}</div>
+                <div>${pdict.account.preferredAddress.address.phone}</div>
+            </div>
+            <iselse/>
+            <div class="card-body card-min-height">
+                <p class="text-center">${Resource.msg('message.emptycard', 'account', null)}</p>
+            </div>
+        </isif>
+    </div>
+</div>

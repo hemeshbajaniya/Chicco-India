@@ -1,0 +1,20 @@
+<div class="colors_list color-box-height">
+    <isif condition="${product.variationAttributes && product.variationAttributes.length > 0}">
+    <isif condition="${!empty(product.variationAttributes[0].values)}">
+        <p class="d-inline-block">
+            ${Resource.msg('label.product.swatch.color', 'product', null)}
+        </p>
+    </isif>
+        <isloop items="${product.variationAttributes[0].values}" var="swatch" status="loopState">
+            <isif condition="${swatch.displayValue != null}">
+                <div class="colors d-inline-block ml-1">
+                    <label>
+                        <span class="round round-border" style="background:${swatch.displayValue}; border-color:${swatch.displayValue}"></span>
+                        <iscomment> <p class="select_round" style="background-image: url(${swatch.images.swatch[0].url})"
+                            src="${swatch.images.swatch[0].url}"></p> </iscomment>
+                    </label>
+                </div>
+            </isif>
+        </isloop>
+    </isif>
+</div>

@@ -1,0 +1,26 @@
+<isif condition="${pdict.account.loyaltyPoints}">
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="boxes">
+            <div class="title">
+                <div class="row">
+                    <div class="col-7">
+                        <h5 class="pull-left profile-header text-white mb-0">
+                            <img src="${URLUtils.staticURL('/images/my_accounts/rich.png')}" alt="rich" class="mr-1" loading="lazy"/>
+                            ${Resource.msg('label.referral.heading','account',null)}
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        <isif condition="${!pdict.account.referral.error}">
+            <div class="card-body card-min-height">
+               <p>${Resource.msg('label.referral.code.heading','account',null)} ${pdict.account.referral.ReferralCode}</p>
+            </div>
+            <iselse/>
+            <div class="card-body card-min-height">
+                <p class="text-center">${Resource.msg('message.emptycard', 'account', null)}</p>
+            </div>
+        </isif>
+        <iscontentasset aid="account-referral-terms" />
+        </div>
+    </div>
+ </isif>

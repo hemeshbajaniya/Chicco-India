@@ -1,0 +1,69 @@
+<form class="request-otp-form" action="${URLUtils.url('Login-GenerateOtp', 'mobile', pdict.mobile)}" method="POST"
+    name="request-otp-form" id="request-otp-form">
+    <div class="request-otp-error-message alert alert-danger d-none"></div>
+    <div class="row">
+        <div class="col-md-12 request-password-body">
+            <div class="form-group required">
+                <label class="form-control-label" for="reset-password-email">
+                    <isprint value="${Resource.msg('label.input.login.mobilenumber', 'login', null)}"
+                        encoding="htmlcontent" />
+                    <button type="button" class="info-icon">
+                        <span class="icon" aria-hidden="true">i</span>
+                        <span class="sr-only">${Resource.msg('button.help.assistive.text','common',null)}</span>
+                        <span class="tooltip d-none">
+                            ${Resource.msg('tooltip.phonenumber','registration',null)}
+                        </span>
+                    </button>    
+                </label>
+                <input id="phonNumber" type="tel" class="form-control w-100 field" name="phoneNumber"
+                    aria-describedby="emailHelp" maxlength="10"
+                    placeholder="${Resource.msg('placeholder.input.login.mobile', 'login', null)}" required>
+                <div class="invalid-feedback">${Resource.msg('lable.otp.form.required', 'otp', null)}</div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group send-email-btn">
+                <button type="submit" id="submitEmailButton"
+                    class="btn btn-primary btn-block blue-btn d-block w-100 get_otp_btn">
+                    ${Resource.msg('button.text.getotp', 'login', null)}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form class="request-otp-verify-form d-none" action="${URLUtils.url('Login-VerifyOtp', 'mobile', pdict.mobile)}"
+    method="POST" name="otp-verify-form" id="otp-verfiy-form">
+    <div class="verify-otp-error-message alert alert-danger d-none"></div>
+    <div class="request-password-body">
+        <p class="sucess-otp-message"></p>
+        <div class="form-group required">
+            <input id="otp-code" type="text" class="form-control" name="otp" aria-describedby="emailHelp"
+                placeholder="${Resource.msg('lable.otp.form.otp', 'otp', null)}">
+            <div class="invalid-feedback">${Resource.msg('lable.otp.form.otp.required', 'otp', null)}</div>
+        </div>
+        <input type="hidden" class="otp-phoneNumber" name="phoneNumber" />
+        <input type="hidden" class="otp-requestID" name="requestID" />
+    </div>
+    <div class="send-email-btn">
+        <button type="submit" id="submitOtp" class="btn btn-primary btn-block">
+            ${Resource.msg('lable.otp.form.otp.verify', 'otp', null)}
+        </button>
+    </div>
+
+    <div class="clearfix pt-4">
+        <div class="form-group custom-control custom-checkbox pull-left remember-me">
+            <a href="${URLUtils.url('Login-Show', 'mobile', pdict.mobile)}"
+                title="${Resource.msg('label.otp.form.email.login', 'otp', null)}">
+                ${Resource.msg('label.otp.form.email.login', 'otp', null)}
+            </a>
+        </div>
+        <div class="pull-right forgot-password text-right">
+            <a href="${URLUtils.url('Login-GenerateOtp', 'mobile', pdict.mobile)}" class='resend-otp'
+                title="${Resource.msg('label.otp.form.resend', 'otp', null)}">
+                ${Resource.msg('label.otp.form.resend', 'otp', null)}
+            </a>
+        </div>
+    </div>
+
+</form>

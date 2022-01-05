@@ -1,0 +1,42 @@
+@import "../common/variables";
+
+.gift_guide_sec {
+
+    .product_filter {
+
+        h5 {
+            color: $background_color;
+        }
+
+        .show_more {
+            color: $primary_color;
+            font-size: 14px;
+
+            i {
+                font-weight: 400;
+                position: relative;
+                top: 1px;
+                margin-left: 3px;
+            }
+        }
+
+    }
+
+
+    .select_variant select {
+        border: 1px solid $background_color;
+        font-weight: 500;
+        font-size: 15px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("../images/arrow_dropup.svg");
+        background-size: 10px;
+        background-position: calc(100% - 10px) 10px;
+        background-repeat: no-repeat;
+        color: $background_color;
+        padding: 3px 8px;
+        width: 60%;
+    }
+
+}

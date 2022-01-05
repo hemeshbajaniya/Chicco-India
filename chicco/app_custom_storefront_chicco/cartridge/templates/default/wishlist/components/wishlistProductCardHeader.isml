@@ -1,0 +1,5 @@
+
+    <!--- product name--->
+        <h6 class="my-0 pb-2">${item.name}</h6> 
+    
+

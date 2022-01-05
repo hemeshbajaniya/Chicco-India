@@ -1,0 +1,21 @@
+<isif condition="${slotcontent && !!slotcontent.content.length}">
+    <section class="product_section">
+        <div class="container">
+            <isif condition="${slotcontent.custom && !empty(slotcontent.custom.carouselDetails)}">
+                <isprint value="${slotcontent.custom.carouselDetails.markup}" encoding="off" />
+            </isif>
+            <div class="row mt-lg-5 mt-3">
+                <div class="col-md-12">
+                    <div class="products_slider pb-0">
+                        <div class="owl-carousel owl-theme">
+                            <isloop items="${slotcontent.content}" var="product" status="loopState">
+                                <isinclude url="${URLUtils.url('Tile-Show', 'pid', product.ID, 'pview', 'tile', 'ratings', false, 'swatches', true, 'slotTile', true,
+                                                'showQuickView', false, 'showAddToCart', true)}" />
+                            </isloop>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</isif>

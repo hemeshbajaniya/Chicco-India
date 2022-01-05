@@ -1,0 +1,9 @@
+<iscomment> <div class="ratting">
+    <div class="stars d-inline-block">
+        <isinclude template="product/components/ratings" />
+    </div>
+    <p class="d-inline-block">
+        (${Resource.msgf('label.product.ratings', 'common', null, product.rating)})
+    </p>
+</div>  </iscomment>
+

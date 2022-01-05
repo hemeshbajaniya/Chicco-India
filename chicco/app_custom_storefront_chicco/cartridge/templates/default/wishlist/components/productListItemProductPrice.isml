@@ -1,0 +1,7 @@
+<!---item unit price --->
+<iscomment> <p class="line-item-price-info">${Resource.msg('label.each.item.price', 'cart', null)}</p> </iscomment>
+<isset name="price" value="${item.priceObj}" scope="page" />
+<isinclude template="/product/components/pricing/main" />
+
+<!--- quantity --->
+<isinclude template="wishlist/components/productCardQuantitySelector" />

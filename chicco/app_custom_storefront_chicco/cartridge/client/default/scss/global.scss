@@ -1,0 +1,45 @@
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/variables";
+@import "font-awesome/scss/font-awesome";
+@import "flag-icon";
+
+// COMMON
+//----------------------------------*/
+@import "common/variables";
+@import "common/slick";
+@import "common/owl_carousel_min";
+@import "common/owl_theme_default_min";
+@import "common/global";
+
+@import "components/spinner";
+
+// Components
+//----------------------------------*/
+@import "components/buttons";
+@import "components/tooltips";
+@import "components/quickView";
+
+// LAYOUT
+//----------------------------------*/
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/home";
+@import "layouts/product_listing";
+@import "layouts/product_detail";
+@import "layouts/cart";
+@import "layouts/static_info";
+@import "layouts/orders";
+@import "layouts/gift_guide";
+@import "layouts/login";
+@import "product/detail";
+
+// ACCOUNT
+//----------------------------------*/
+@import "account/account";
+// Checkout 
+//----------------------------------*/
+@import "checkout/checkout";
+@import "font-awesome";
+@import "login";
+@import "discount-style";
+@import "productCard";

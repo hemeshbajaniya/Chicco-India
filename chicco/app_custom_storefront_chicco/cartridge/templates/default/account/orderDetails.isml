@@ -1,0 +1,66 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addCss('/css/account/orderTrack.css');
+        assets.addCss('/css/account/profile.css');
+        assets.addCss('/css/layouts/cart.css');
+    </isscript>
+
+    <!--- Replace image once UX has given images --->
+    <iscomment> <div class="hero slant-down account-image">
+        <h1 class="page-title">${Resource.msg('heading.order.details','order',null)}</h1>
+    </div> </iscomment>
+    <div class="container receipt <isif condition="${pdict.order.shipping.length > 1}">multi-ship</isif>">
+        <!---Breadcrumbs--->
+        <isinclude template="components/breadcrumbs/pageBreadcrumbs"/>
+        <section class="shopping_shortlist_sec order_confirm_sec pb-3 pt-3">
+            <div class="row align-items-center">   
+                <div class="col-12">
+                    <h3 class="px-3">
+                        ${Resource.msg('heading.order.details','order',null)}
+                    </h3>
+                </div>
+            </div>
+            <isif condition="${!empty(pdict.orderTracking)}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            ${Resource.msg('label.order.tracking.heading', 'account', null)}
+                            <isif condition="${!pdict.orderTracking.error}">
+                                <isif condition="${pdict.orderTracking.response.track_status === 1}">
+                                    <isif condition="${pdict.orderTracking.response.shipment_status}">
+                                        <strong> ${Resource.msg('lable.order.tracking.' + pdict.orderTracking.response.shipment_status, 'account', null)}</strong>
+                                    </isif>
+                                <iselse/>
+                                     ${Resource.msg('label.order.tracking.not.found', 'account', null)}
+                                </isif>
+                            </isif>
+                        </div>
+                    </div>
+                </div>
+            </isif>
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 order_date">
+                        <strong>
+                            <span class="summary-details order-number">${Resource.msg('label.order.number','confirmation',null)} ${pdict.order.orderNumber}</span>
+                        </strong>
+                    </div>
+                    <div class="col-6 text-right order_date">
+                        <strong>
+                            ${Resource.msg('label.order.date', 'confirmation', null)} <isprint value="${pdict.order.creationDate}" style="DATE_LONG" timezone="SITE"/>
+                        </strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <isinclude template="checkout/confirmation/confirmationDetails" />
+                    <div class="col-12 my-4 justify-content-center my-account">
+                        <a class="primary-btn" href="${pdict.exitLinkUrl}" title="${Resource.msg('link.orderdetails.myaccount','account',null)}" aria-label="${Resource.msg('link.orderdetails.myaccount','account',null)}">
+                            ${pdict.exitLinkText}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>   
+    </div>
+</isdecorate>

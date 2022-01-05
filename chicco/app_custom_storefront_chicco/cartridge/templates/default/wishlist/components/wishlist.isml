@@ -1,0 +1,49 @@
+<isif condition="${!empty(pdict.wishlist.items)}">
+    <div class="container my_account border_top pt-4">
+        <div id="view_wishlist" class="row gift_voucher_popup">
+            <div class="col-12">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <h2 class="text-center mb-4 wishlist-owner">${Resource.msgf('wishlist.owner.name', 'wishlist', null, pdict.wishlist.owner.firstName)}</h2>
+                    </div>
+                    <iscomment> <div class="col-lg-3 text-lg-right">
+                        <a href="#" class="blue-btn w-100">
+                            <i class="fa fa-share-alt mr-2" aria-hidden="true"></i>${Resource.msg('wl.socialshare.button', 'wishlist', null)}
+                        </a>
+                    </div> </iscomment>
+                </div>
+                <iscomment> <isif condition="${!pdict.wishlist.publicView}">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custom-control custom-checkbox wishlist-hide">
+                                <input ${!pdict.wishlist.publicList ? 'checked="checked"' : ''}
+                                    class="custom-control-input" type="checkbox" value="" id="isPublicList"
+                                    name="isPublicList" data-id="${pdict.wishlist.UUID}"
+                                    data-url="${URLUtils.url('ProductList-TogglePublic', 'type', 10)}"/>
+                                <label for="isPublicList" class="custom-control-label wishlist-checkbox">
+                                    ${Resource.msg('checkbox.makePublic', 'wishlist', null)}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </isif> </iscomment>
+            </div>
+            <div class="col-xl-8 offset-xl-2">
+                <isinclude template="wishlist/components/list"/>
+            </div>
+
+            <isif condition="${!pdict.wishlist.publicView}">
+                <div class="my-account text-center col-12 mb-4">
+                    <a class="primary-btn font-18" href="${URLUtils.url('Account-Show')}"
+                        title="${Resource.msgf('link.wishlist.myaccount', 'wishlist', null)}">
+                        ${Resource.msgf('link.wishlist.myaccount', 'wishlist', null)}
+                    </a>
+                </div>
+            </isif>
+        </div>
+    </div>
+    <iselse/>
+    <div class="col-12 text-center">
+        <p>${Resource.msg('wishlist.empty.text', 'wishlist', null)}</p>
+    </div>
+</isif>

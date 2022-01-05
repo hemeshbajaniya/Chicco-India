@@ -1,0 +1,81 @@
+<iscomment>
+    <h6 class="pull-left">${Resource.msg('label.orderhistory.orderno', 'account', null)} ${order.orderNumber}</h6>
+</iscomment>
+
+<div class="d-md-flex d-block">
+
+    <div class="order_img">
+        <img class="img-fluid" src="${order.firstLineItem.imageURL}" alt="${order.firstLineItem.alt}"
+            title="${order.firstLineItem.title}" loading="lazy">
+    </div>
+
+    <div class="order_list">
+        <div class="row align-items-md-start align-items-center">
+            <div class="col-md-4 col-12">
+                <h5>
+                    <strong> ${order.productName}</strong>
+                </h5>
+                <p>
+                    ${Resource.msg('label.orderhistory.quantity', 'account', null)}
+                    <strong>
+                        <isprint value="${order.productQuantityTotal}" formatter="#" /> </strong>
+                    <br />
+                    ${Resource.msg('label.orderhistory.ordertotal', 'account', null)}
+                    <strong>${order.priceTotal}</strong>
+                </p>
+
+                <isinclude template="account/order/shippingTitle" />
+            </div>
+
+            <div class="col-md-3 col-6 text-md-center text-left">
+                <h5>
+                    ${Resource.msg('label.orderhistory.orderstatus', 'account', null)}
+                </h5>
+                <p class="status red_text">
+                    ${order.createdOrder}
+                </p>
+            </div>
+            <isif condition="${order.createdOrder == "FAILED"}">
+            <iselse/>
+                <div class="col-md-3 col-6 text-md-center text-left">
+                    <h5>
+                        ${Resource.msg('label.shipping.status', 'account', null)}
+                    </h5>
+                    <p class="status">
+                        ${order.shippingStatus}
+                    </p>
+                </div>
+            </isif>
+            <isif condition="${order.createdOrder == "FAILED"}">
+            <iselse/>
+                <div class="col-md-2 col-12 text-lg-right text-left">
+                    <isif condition="${pdict.accountlanding}">
+                        <div class="card-header clearfix">
+                            <h2 class="pull-left">${Resource.msg('label.orderhistory', 'account', null)}</h2>
+                            <a href="${URLUtils.url('Order-History')}" class="pull-right"
+                                aria-label="${Resource.msg('label.orderhistory.vieworderhistory', 'account', null)}">${Resource.msg('link.view', 'account', null)}</a>
+                        </div>
+                    <iselse/>
+                        <a href="${URLUtils.url('Order-Details', 'orderID', order.orderNumber, 'orderFilter', pdict.orderFilter)}"
+                            class="pull-right view_details"
+                            aria-label="${Resource.msgf('label.orderhistory.vieworderdetails', 'account', null, order.orderNumber)}">${Resource.msg('link.view', 'account', null)}</a>
+                        <br /><a href="${URLUtils.url('Account-TrackMyOrder', 'orderID', order.orderNumber)}"
+                            data-order-id="${order.orderNumber}"
+                            class="view_details">${Resource.msg('lable.order.tracking', 'account', null)}</a>
+                        <br /><a href="${URLUtils.url('Increff-GetOrderInvoice')}" data-order-id="${order.orderNumber}"
+                            class="account-get-invoice view_details">${Resource.msg('lable.order.invoice', 'account', null)}</a>
+                        <isif condition="${dw.system.Site.current.preferences.custom.returnAllowed}">
+                            <br /><a href="${URLUtils.url('Account-Retruns', 'orderID', order.orderNumber)}"
+                                data-order-id="${order.orderNumber}"
+                                class="view_details">${Resource.msg('label.order.retunrs', 'account', null)}</a>
+                        </isif>
+                        <br /><a href="${URLUtils.url('Increff-CustomerCancellation')}"
+                            data-order-id="${order.orderNumber}"
+                            class="account-cancelled-order view_details">${Resource.msg('label.order.cancelle', 'account', null)}</a>
+                    </isif>
+                </div>
+            </isif>
+        </div>
+        <div class="pl-3 row invoice-response-${order.orderNumber}"></div>
+    </div>
+</div>

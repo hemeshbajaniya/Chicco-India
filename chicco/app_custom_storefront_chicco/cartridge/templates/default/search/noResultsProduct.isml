@@ -1,0 +1,21 @@
+<iscomment>
+    <isslot id="noresults-help" description="Recommendations for no result search" context="global" />
+
+    <isslot id="noresult-recommendations" description="Recommendations for no result search" context="global" />
+</iscomment>
+<section class="info_pages">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center mt-5">
+                <h2>
+                    ${Resource.msg('label.noresult', 'search', null)}
+                </h2>
+                <p>
+                    ${Resource.msg('label.noresult.tip', 'search', null)}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<isslot id="home-products-m" description="Product tiles on the home page." context="global" />

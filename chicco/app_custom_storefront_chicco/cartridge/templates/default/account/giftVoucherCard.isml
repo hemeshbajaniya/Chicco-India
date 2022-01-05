@@ -1,0 +1,252 @@
+ <isif condition="${!empty(pdict.account.gVHistory)}">
+    <div class="card border-0 col-xl-4 col-lg-6 col-md-6">
+        <div class="boxes">
+            <div class="card-header clearfix title">
+                <div class="row">
+                    <div class="col-7">
+                        <h5 class="pull-left profile-header text-white mb-0">
+                            <img src="${URLUtils.staticURL('/images/my_accounts/gift_box.png')}" alt="gift_box" class="mr-1" loading="lazy"/>
+                            ${Resource.msg('label.gift.vc.heading','account',null)}
+                        </h5>
+                    </div>
+                    <div class="col-5 text-right">
+                        <a href="#add_new_gift_voucher" data-toggle="modal" data-target="#add_new_gift_voucher" class="pull-right box_links text-white" aria-label="${Resource.msg('lable.gift.vc.add.new.heading','account',null)}" > ${Resource.msg('lable.gift.vc.add.new.heading','account',null)}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body card-min-height">
+                <isif condition="${!empty(pdict.account.savedGV)}">
+                    <isloop items="${pdict.account.savedGV}" var="gv" status="index">
+                        <div class="row border-bottom mx-1 mb-3 display-flow-root">
+                            <p class="pull-left">${gv}</p>
+                            <a data-gv-number="${gv}" href="${URLUtils.url('GiftCard-Remove')}" class="pull-right gift-vc-remove" aria-label="${Resource.msg('lable.gift.vc.remove','account',null)}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        </div>
+                    </isloop>
+                    <iselse/>
+                        <p class="text-center">${Resource.msg('message.emptycard', 'account', null)}</p>
+                </isif>
+            </div>
+        </div>
+    </div>
+ </isif>
+ 
+ <!-- Model -->
+
+ <div class="modal fade popup-modal gift_voucher_popup show" id="add_new_gift_voucher" tabindex="-1" role="dialog" aria-labelledby="add_new_gift_voucherTitle">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">                            
+                    <div class="modal-body">
+                        <button type="button" class="close_btn text-uppercase" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                        <h3 class="text-center">
+                            ${Resource.msg('label.gift.vc.heading','account',null)}
+                        </h3>
+                        <div class="tabbing mt-4">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#my_wallet">
+                                        ${Resource.msg('label.gift.vc.tabs.wallet','account',null)}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active show" data-toggle="pill" href="#addgift_voucher">
+                                        ${Resource.msg('label.gift.vc.add.gv','account',null)}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="pill" href="#sendgift_voucher">
+                                        ${Resource.msg('label.gift.vc.send','account',null)}
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content mt-4">
+                                <div class="tab-pane container" id="my_wallet">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <isif condition="${pdict.account.gVHistory.error}">
+                                                <p>
+                                                    ${pdict.account.gVHistory.response}
+                                                </p>
+                                            <iselse>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                         ${Resource.msg('label.gift.vc.history.sr.no','account',null)}
+                                                    </div>
+                                                    <div class="col-3">
+                                                         ${Resource.msg('label.gift.vc.history.transation.id','account',null)}
+                                                    </div>
+                                                    <div class="col-3">
+                                                         ${Resource.msg('label.gift.vc.history.amount','account',null)}
+                                                    </div>
+                                                    <div class="col-3">
+                                                        ${Resource.msg('label.gift.vc.history.date','account',null)}
+                                                    </div>
+                                                </div>
+
+                                                <isif condition="${typeof pdict.account.gVHistory.response.MemberTransactionResponseListDTO === 'object'(pdict.account.gVHistory.response.MemberTransactionResponseListDTO)}">
+                                                   
+                                                <isloop items="${pdict.account.gVHistory.response.MemberTransactionResponseListDTO}" var="gvHistory" status="loopStatus">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <isprint value="${loopStatus.index + 1}" style="INTEGER" >
+                                                        </div>
+                                                        <div class="col-3">
+                                                            ${gvHistory.BillNo}
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <isprint value="${gvHistory.TotalBilledAmount}" style="INTEGER" >
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <isprint value="${new Date(gvHistory.BillDate)}" style="DATE_LONG" timezone="SITE" >
+                                                        </div>
+                                                    </div>
+                                                </isloop>
+                                            </isif>
+                                        </isif>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane container active show" id="addgift_voucher">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <form method='POST' action='${URLUtils.url('GiftCard-SaveGV')}' id='add-gv-form'>
+                                                <div class="row align-items-center main_title mt-4">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group mb-4">
+                                                            <label>${Resource.msg('lable.gift.vc.already.have','account',null)}</label>
+                                                            <input type="text" name="gvNumber" id="gift_card" placeholder="${Resource.msg('lable.gift.vc.already.have','account',null)}" class="field form-control" required>                                                        
+                                                        </div>
+                                                    </div>
+                                                    <div class='gc-response alert alert-danger d-none'></div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group mb-3">
+                                                            <button type="submit" class="blue-btn w-100 d-block">
+                                                                ${Resource.msg('label.gift.vc.add.gv','account',null)}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Send -->
+                               <div class="tab-pane container" id="sendgift_voucher">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <form method='POST' action='${URLUtils.url('GiftCard-SendToFriend')}' id='send-gv-form'>
+                                                <h5>${Resource.msg('lable.gift.vc.send.heading','account',null)}</h5>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group required">
+                                                            <input
+                                                                type="email"
+                                                                class="form-control"
+                                                                id="recipient-email"
+                                                                data-missing-error="${Resource.msg('label.gift.vc.fields.require','account',null)}"
+                                                                aria-describedby="form-name-error"
+                                                                placeholder="${Resource.msg('label.gift.vc.recipient.email','account',null)}"
+                                                                required>
+                                                            <div class="invalid-feedback" id="form-recipient-email-error"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2">
+                                                    <div class="col">
+                                                        <div class="form-group required">
+                                                            <input
+                                                                type="email"
+                                                                class="form-control"
+                                                                id="recipient-email-confirm"
+                                                                data-missing-error="${Resource.msg('label.gift.vc.fields.require','account',null)}"
+                                                                aria-describedby="form-name-error"
+                                                                placeholder="${Resource.msg('lable.gift.vc.recipient.email.confirm','account',null)}"
+                                                                required>
+                                                            <div class="invalid-feedback" id="form-recipient-email-confirm-error"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2">
+                                                    <div class="col">
+                                                        <label class="form-control-label">
+                                                            ${Resource.msg('label.gift.vc.amount.choose','account',null)}
+                                                        </label>
+                                                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                                            <li class="nav-item pr-1 pl-1"  role="presentation">
+                                                                <button class="nav-link active js-gv-sent-amount" data-pid="1100" data-bs-toggle="pill" type="button" role="tab" aria-selected="true">${Resource.msg('label.gift.vc.amount.1100','account',null)}</button>
+                                                            </li>
+                                                            <li class="nav-item pr-1 pl-1" role="presentation">
+                                                                 <button class="nav-link js-gv-sent-amount" data-pid="gv2100" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">${Resource.msg('label.gift.vc.amount.2100','account',null)}</button>
+                                                            </li>
+                                                            <li class="nav-item pr-1 pl-1" role="presentation">
+                                                                 <button class="nav-link js-gv-sent-amount"  data-pid="gv5000" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">${Resource.msg('label.gift.vc.amount.5000','account',null)}</button>
+                                                            </li>
+                                                            <li class="nav-item pr-1 pl-1" role="presentation">
+                                                                 <button class="nav-link js-gv-sent-amount"  data-pid="gv7000" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">${Resource.msg('label.gift.vc.amount.7000','account',null)}</button>
+                                                            </li>
+                                                            <li class="nav-item pr-1 pl-1" role="presentation">
+                                                                 <button class="nav-link js-gv-sent-amount"  data-pid="gv10000" data-bs-toggle="pill" type="button" role="tab" aria-selected="false">${Resource.msg('label.gift.vc.amount.10000','account',null)}</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                 <div class="row pt-2">
+                                                    <div class="col">
+                                                        <div class="form-group required">
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="gv-sent-to"
+                                                                data-missing-error="${Resource.msg('label.gift.vc.fields.require','account',null)}"
+                                                                aria-describedby="form-name-error"
+                                                                placeholder="${Resource.msg('label.gift.vc.to','account',null)}"
+                                                                required>
+                                                            <div class="invalid-feedback" id="form-gv-sent-to-error"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row pt-2">
+                                                    <div class="col">
+                                                        <div class="form-group required">
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="gv-sent-from"
+                                                                data-missing-error="${Resource.msg('label.gift.vc.fields.require','account',null)}"
+                                                                aria-describedby="form-name-error"
+                                                                placeholder="${Resource.msg('label.gift.vc.from','account',null)}"
+                                                                required>
+                                                            <div class="invalid-feedback" id="form-gv-sent-from-error"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2">
+                                                    <div class="col">
+                                                       <textarea class="form-control" rows="2" cols="0" id="gv-msg" placeholder="${Resource.msg('label.gift.vc.msg','account',null)}"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                 <div class="row pt-2">
+                                                    <div class="col">
+                                                            <div class="form-group mb-3">
+                                                                <button type="submit" class="blue-btn w-100 d-block">
+                                                                    ${Resource.msg('label.gift.vc.pay','account',null)}
+                                                                </button>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <div class="alert alert-danger d-none sent-gv-response"></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

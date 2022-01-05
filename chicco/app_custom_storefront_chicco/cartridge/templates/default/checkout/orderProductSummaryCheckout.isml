@@ -1,0 +1,46 @@
+<isset name="miniCart" value="${false}" scope="page" />
+<div class="row">
+    <div class="col-12">
+        <div class="boxes payment_info">
+            <div class="card order-product-summary border-0">
+                <div class="card-body">
+                    <div class="row leading-lines">
+                        <div class="col-6 start-lines p-0">
+                            <label class="order-receipt-label grand-total-label">${Resource.msgf('label.number.items.in.cart','cart', null, pdict.order.items.totalQuantity)}</label>
+                        </div>
+                        <div class="col-6 end-lines text-right p-0">
+                            <label class="grand-total-price">${pdict.order.totals.subTotal}</label>
+                        </div>
+                    </div>
+                    <div class="row multi-shipping">
+                        <isloop items="${pdict.order.shipping}" var="shippingModel" status="shipmentLoopState">
+                            <isloop items="${shippingModel.productLineItems.items}" var="lineItem">
+                                <div class="card border-0 w-100" data-shipment-uuid="${shippingModel.UUID}">
+                                    <div class="card-header pb-3 border-dark p-0">
+                                        <isinclude template="checkout/productCard/productShippingCard" />
+                                    </div>
+
+                                </div>
+                            </isloop>
+                        </isloop>
+                    </div>
+                    <iscomment> <div class="product-summary-block">
+                        <isloop items="${pdict.order.shipping}" var="shippingModel">
+                            <isloop items="${shippingModel.productLineItems.items}" var="lineItem">
+                                <isif condition="${lineItem.bonusProductLineItemUUID === 'bonus'}">
+                                    <div class="card ${miniCart ? 'bonus-product-line-item' : ''} uuid-${lineItem.UUID}">
+                                        <div class="card-body">
+                                            <isinclude template="checkout/productCard/bonusProductCard" />
+                                        </div>
+                                    </div>
+                                <iselse/>
+                                    <isinclude template="checkout/productCard/productCard" />
+                                </isif>
+                            </isloop>
+                        </isloop>
+                    </div> </iscomment>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

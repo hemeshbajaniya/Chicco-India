@@ -1,0 +1,33 @@
+<section class="promotion_section bg_gray">
+        <div class="container">
+            <div class="row article-list">
+                <isif condition="${slotcontent != null}">
+                    <isloop items="${slotcontent.content}" var="contentAsset">
+                        <div class="col-lg-4 mb-4">
+                            <div class="prmotion_box article-box">
+                                <a href="${contentAsset.custom.buttonUrl}">
+                                    <img src="${contentAsset.custom.backgroundImg.url}" alt="" loading="lazy"/>
+                                </a>
+                                <div class="promotion_content">
+                                    <a href="${contentAsset.custom.buttonUrl}">
+                                        <h3 class="mb-3 article-head">
+                                            ${contentAsset.name}
+                                        </h3>
+                                    </a>
+                                    <div class="pb-3 data">
+                                        <p class="article-desc">
+                                            ${contentAsset.description}
+                                        </p>
+                                    </div>
+                                    <div class="read-btn">
+                                        <a href="${contentAsset.custom.buttonUrl}" class="text-uppercase text-white">${Resource.msg('label.article.Readbtn', 'account', null)}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </isloop>
+                </isif>
+            </div>
+        </div>
+    </section>
+

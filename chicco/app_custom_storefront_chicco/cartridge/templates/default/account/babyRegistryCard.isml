@@ -1,0 +1,50 @@
+<isif condition="${pdict.account.babyRegistry}">
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="boxes">
+            <div class="title">
+                <div class="row">
+                    <div class="col-7">
+                        <h5 class="pull-left profile-header text-white mb-0">
+                            <img src="${URLUtils.staticURL('/images/my_accounts/baby.png')}" alt="babyRegistry"
+                                class="mr-1" loading="lazy" />
+                            ${Resource.msg('label.register.baby.form.title', 'babyregistry', null)}
+                        </h5>
+                    </div>
+                    <div class="col-5 text-right">
+                        <a href="${URLUtils.url('Account-UpdateBabyRegistry')}"
+                            class="pull-right baby-registry-account-edit box_links text-white"
+                            aria-label="${Resource.msg('label.profile.edit', 'account', null)}"
+                            data-baby-registry="${JSON.stringify(pdict.account.babyRegistry)}">${Resource.msg('link.edit', 'account', null)}</a>
+                    </div>
+                </div>
+            </div>
+            <isif condition="${!empty(pdict.account.babyRegistry)}">
+                <div class="desc">
+                    <div class="row">
+                        <div class="col-9">
+                            <isloop items="${pdict.account.babyRegistry}" var="babyRegistry">
+                                <dl>
+                                    <dd>${Resource.msg('label.register.baby.form.name', 'babyregistry', null)}
+                                        ${babyRegistry.name}</dd>
+                                </dl>
+                                <dl>
+                                    <dd>${Resource.msg('label.register.baby.form.age', 'babyregistry', null)}
+                                        ${babyRegistry.age}</dd>
+                                </dl>
+                                <dl>
+                                    <dd>${Resource.msg('label.register.baby.form.gender', 'babyregistry', null)}
+                                        ${babyRegistry.gender}</dd>
+                                </dl>
+                                <hr />
+                            </isloop>
+                        </div>
+                    </div>
+                </div>
+            <iselse/>
+                <div class="card-body card-min-height">
+                    <p class="text-center">${Resource.msg('message.emptycard', 'account', null)}</p>
+                </div>
+            </isif>
+        </div>
+    </div>
+</isif>
