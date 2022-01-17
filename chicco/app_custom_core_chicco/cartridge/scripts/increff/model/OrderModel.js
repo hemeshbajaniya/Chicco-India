@@ -321,12 +321,15 @@ function createOrder(order) {
     try {
         var payLoad = prepareCreateOrderPayLoad(order);
         var response = increffServiceRegistry.executeAPI(payLoad, 'orders/outward', 'POST');
+        Logger.info('(OrderModel~createOrder) -> Going to send order information to increff API, against order: {0}', order.orderNo);
         Transaction.wrap( function() {
             order.custom.increffRequest = JSON.stringify(payLoad);
             order.custom.increffResponse = JSON.stringify(response);
             if (response.status == 'OK') {
+                Logger.info('(OrderModel~createOrder) -> Order information sent to increff API!!!, against order: {0}', order.orderNo);
                 order.setExportStatus(dw.order.Order.EXPORT_STATUS_EXPORTED);
             } else {
+                Logger.error('(OrderModel~createOrder) -> failed to sent the order information to increff API, against order: {0} and response is:{1}', order.orderNo, JSON.stringify(response));
                 order.custom.increffExportedFailed = true;
             }
         });

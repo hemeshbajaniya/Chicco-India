@@ -32,11 +32,11 @@
     </script>
     <script>
     fbq('track', 'ViewContent', {
-        content_name: ${pdict.viewContent.content_name},
-        content_category: ${pdict.viewContent.content_category},
+        content_name: ${pdict.viewContent.content_name}
+        content_category: ${pdict.viewContent.content_category}
         content_ids: [<isprint value="${pdict.viewContent.content_ids}" encoding="off"/>],
-        content_type: ${pdict.viewContent.content_type},
-        value: ${pdict.viewContent.value},
+        content_type: ${pdict.viewContent.content_type}
+        value: ${pdict.viewContent.value}
         currency: ${pdict.viewContent.currency}
     });
     </script>

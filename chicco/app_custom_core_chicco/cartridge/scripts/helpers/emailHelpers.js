@@ -1,5 +1,7 @@
 'use strict';
 var Site = require('dw/system/Site');
+var Logger = require('dw/system/Logger').getLogger('emailHelper');
+
 
 /**
  * Helper that sends an email to a customer. This will only get called if hook handler is not registered
@@ -23,51 +25,54 @@ function send(emailObj, template, context) {
     email.send();
 
     if (Site.current.preferences.custom.textLocalnabled) {
-        // Custom Start: SMS Integeration
-        var sendSMSModel = require('*/cartridge/scripts/textlocal/model/sendSMSModel');
-        var CustomerMgr = require('dw/customer/CustomerMgr');
-        var customer = CustomerMgr.getCustomerByLogin(emailObj.to);
+        try {
+              // Custom Start: SMS Integeration
+            var sendSMSModel = require('*/cartridge/scripts/textlocal/model/sendSMSModel');
+            var CustomerMgr = require('dw/customer/CustomerMgr');
+            var customer = CustomerMgr.getCustomerByLogin(emailObj.to);
 
-        // get current logged in customer phone number
-        var phoneNumber = customer.profile ? customer.profile.phoneHome : '';
-        var messageType;
-        var params = {
-            customerName: '',
-            orderNo: '',
-            amount: '',
-            trackingURL: ''
+            // get current logged in customer phone number
+            var phoneNumber = customer.profile ? customer.profile.phoneHome : '';
+            var messageType;
+            var params = {
+                customerName: '',
+                orderNo: '',
+                amount: '',
+                trackingURL: ''
+            }
+            switch (emailObj.type) {
+                case 1:
+                    messageType = 'accountCreation';
+                    params.customerName = context.firstName;
+                    break;
+                case 2:
+                    messageType = 'passwordReset';
+                    break;
+                case 3:
+                    messageType = 'accountEdit';
+                    break;
+                case 4:
+                    messageType = 'orderConfirmation';
+                    params.orderNo = context.order.orderNumber;
+                    params.amount = context.order.totals.grandTotal;
+                    params.trackingURL = dw.web.URLUtils.http('Account-Show');
+                    break;
+                case 5:
+                    messageType = 'accountLocked';
+                    break;
+                case 6:
+                    messageType = 'accountEdit';
+                    break;
+                case 7:
+                    // Needs to be hanlde speically in terms of phone number
+                    messageType = 'orderCancellation';
+                    break;
+            }
+
+            sendSMSModel.sendSMS(messageType, phoneNumber, params);
+        } catch (ex) {
+            Logger.error('(emailHelper~sendEmail)-> Error occured while try to send sms to customer: {0} and error is:{1} in line {2} at file:{3}', phoneNumber, ex.toString(), ex.lineNumber, ex.fileName)
         }
-        switch (emailObj.type) {
-            case 1:
-                messageType = 'accountCreation';
-                params.customerName = context.firstName;
-                break;
-            case 2:
-                messageType = 'passwordReset';
-                break;
-            case 3:
-                messageType = 'accountEdit';
-                break;
-            case 4:
-                messageType = 'orderConfirmation';
-                params.orderNo = context.order.orderNumber;
-                params.amount = context.order.totals.grandTotal;
-                params.trackingURL = dw.web.URLUtils.http('Account-Show');
-                break;
-            case 5:
-                messageType = 'accountLocked';
-                break;
-            case 6:
-                messageType = 'accountEdit';
-                break;
-            case 7:
-                // Needs to be hanlde speically in terms of phone number
-                messageType = 'orderCancellation';
-                break;
-        }
-
-        sendSMSModel.sendSMS(messageType, phoneNumber, params);
-
     }
     
     // Custom End : SMS Integeration

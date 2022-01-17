@@ -89,9 +89,8 @@ function hanldePayUPaymentState(order, status, orderPayLoad) {
                 result.error = false;
             }
          } catch (error) {
-            var exception = error;
-		    var message = "An error occured with status code " + error;
-            Logger.error('(payuHelper~hanldePayUPaymentState) -> error occured while try to check the payment status for order no:{1} and error:{2} at line:{3} in file:{4}', order.orderNo, error.toString(), error.lineNumber, error.fileName);
+            Logger.error('(payuHelper~hanldePayUPaymentState) -> error occured while try to check the payment status for order no:{0} and error:{1} at line:{2} in file:{3}', order.orderNo, error.toString(), error.lineNumber, error.fileName);
+            result.error = false;
          }
          break;
        default:

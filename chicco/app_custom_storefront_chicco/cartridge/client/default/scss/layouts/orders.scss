@@ -10,6 +10,15 @@
         font-weight: 600;
     }
 
+    .order_date_id{
+        .order_number{
+            color: $price_color;
+        }
+        .order_date{
+            color: $price_color;
+        }
+    }
+
     .order_img {
         width: 100px;
 

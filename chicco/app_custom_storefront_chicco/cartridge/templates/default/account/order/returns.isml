@@ -61,55 +61,55 @@
                                     </isif>
                                     <isif condition="${item.isReturnAllowed}">
                                         <isif condition="${item.isdelivered}">
-                                            <isif condition="${!item.isReturnDateRestricted}">
-                                                <isif condition="${item.isRefuned}">
-                                                    <h5 class="px-3">${Resource.msg('lable.order.return.already', 'account', null)}</h5>
-                                                <iselse/>
-                                                    <form
-                                                        action="${URLUtils.url('Increff-CreateReturns')}" method="POST"
-                                                        class="return-form forms-data">
-                                                        <input type="hidden" name="productId" value="${item.productID}" />
-                                                        <input type="hidden" name="orderID" value="${pdict.orderID}" />
-                                                        <div
-                                                            class="col-md-4 col-12 text-md-center text-left shipping_product form-group">
-                                                            <h5>
-                                                                <label for="reason">${Resource.msg('label.order.retunrs.reason', 'account', null)}
-                                                                </label>
-                                                            </h5>
-                                                            <div class="main_title">
-                                                                <select class="reason form-control" name="reason">
-                                                                    <option
-                                                                        value="${Resource.msg('label.order.return.reason1', 'account', null)}"
-                                                                        selected>
-                                                                        ${Resource.msg('label.order.return.reason1', 'account', null)}
-                                                                    </option>
-                                                                    <option
-                                                                        value="${Resource.msg('label.order.return.reason2', 'account', null)}">
-                                                                        ${Resource.msg('label.order.return.reason2', 'account', null)}
-                                                                    </option>
-                                                                    <option
-                                                                        value="${Resource.msg('label.order.return.reason3', 'account', null)}">
-                                                                        ${Resource.msg('label.order.return.reason3', 'account', null)}
-                                                                    </option>
-                                                                    <option
-                                                                        value="${Resource.msg('label.order.return.reason4', 'account', null)}">
-                                                                        ${Resource.msg('label.order.return.reason4', 'account', null)}
-                                                                    </option>
-                                                                </select>
-                                                            </div>
+                                            <isif condition="${!item.isReturnDateRestricted && !item.isRefuned}">
+                                                <form
+                                                    action="${URLUtils.url('Increff-CreateReturns')}" method="POST"
+                                                    class="return-form forms-data">
+                                                    <input type="hidden" name="productId" value="${item.productID}" />
+                                                    <input type="hidden" name="orderID" value="${pdict.orderID}" />
+                                                    <div
+                                                        class="col-md-4 col-12 text-md-center text-left shipping_product form-group">
+                                                        <h5>
+                                                            <label for="reason">${Resource.msg('label.order.retunrs.reason', 'account', null)}
+                                                            </label>
+                                                        </h5>
+                                                        <div class="main_title">
+                                                            <select class="reason form-control" name="reason">
+                                                                <option
+                                                                    value="${Resource.msg('label.order.return.reason1', 'account', null)}"
+                                                                    selected>
+                                                                    ${Resource.msg('label.order.return.reason1', 'account', null)}
+                                                                </option>
+                                                                <option
+                                                                    value="${Resource.msg('label.order.return.reason2', 'account', null)}">
+                                                                    ${Resource.msg('label.order.return.reason2', 'account', null)}
+                                                                </option>
+                                                                <option
+                                                                    value="${Resource.msg('label.order.return.reason3', 'account', null)}">
+                                                                    ${Resource.msg('label.order.return.reason3', 'account', null)}
+                                                                </option>
+                                                                <option
+                                                                    value="${Resource.msg('label.order.return.reason4', 'account', null)}">
+                                                                    ${Resource.msg('label.order.return.reason4', 'account', null)}
+                                                                </option>
+                                                            </select>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="col-md-3 col-12 text-lg-right text-center">
+                                                    <div class="col-md-3 col-12 text-lg-right text-center">
 
-                                                            <button class="primary-btn d-inline-block mt-3"
-                                                                type="submit">${Resource.msg('lable.order.return', 'account', null)}</button>
+                                                        <button class="primary-btn d-inline-block mt-3"
+                                                            type="submit">${Resource.msg('lable.order.return', 'account', null)}</button>
 
-                                                        </div>
+                                                    </div>
 
-                                                    </form>
-                                                    <h5 class="px-3">${Resource.msgf('label.order.return.returndate', 'account', null)} <strong>${item.returnsDateString}</strong></h5>
-                                                </isif>
-                                            <iselse/>
+                                                </form>
+                                                <h5 class="px-3">${Resource.msgf('label.order.return.returndate', 'account', null)} <strong>${item.returnsDateString}</strong></h5>
+                                            <iselseif condition="${!item.isReturnDateRestricted && item.isRefuned}" />
+                                                <h5 class="px-3">${Resource.msg('lable.order.return.already', 'account', null)}</h5>
+                                            <iselseif condition="${item.isReturnDateRestricted && item.isRefuned}" />
+                                                <h5 class="px-3">${Resource.msg('lable.order.return.already', 'account', null)}</h5>
+                                            <iselseif condition="${item.isReturnDateRestricted && !item.isRefuned}" />
                                                 <h5 class="px-3">${Resource.msgf('label.order.return.datevalidate', 'account', null)} <strong>${item.returnsDateString}</strong></h5>
                                             </isif>
                                         <iselse/>

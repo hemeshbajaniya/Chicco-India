@@ -40,7 +40,7 @@ server.post('Success',server.middleware.https, function (req, res, next) {
     var paymentStatus = queryString.status.value;
     var order = '';
     if (!empty(session.privacy.orderID) && session.privacy.orderID !== orderID) {
-        Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderId);
+        Logger.info('(PayU~Success) -> Session timeout: Error occured while try to process order {0}' , orderId);
         res.redirect(URLUtils.url('Checkout-Begin', 'stage', 'payment', 'paymentError', Resource.msg('error.payment.not.valid', 'checkout', null)).toString());
         return next();
     }
@@ -126,7 +126,7 @@ server.post('Success',server.middleware.https, function (req, res, next) {
                             var IncreffOrderModel = require('*/cartridge/scripts/increff/model/OrderModel');
                             IncreffOrderModel.createOrder(order);
                         } catch (ex) {
-                            Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderID);
+                            Logger.info('(PayU~Success) -> Error catch in IncreffOrderModel occured while try to process order {0}' , orderID);
                             Logger.getLogger('PayU').error('(PayU~Success) Error occured while try to send order information  to increff and exception is: {0}', ex);
                         }
                         Logger.info('(PayU~Success) -> order is successfully placed now redirecting customer to confirmation page for order no {0}' , orderID);
@@ -135,7 +135,7 @@ server.post('Success',server.middleware.https, function (req, res, next) {
                     }
                 }
             } else {
-                Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderID);
+                Logger.info('(PayU~Success) -> Error Order Empty occured while try to process order {0}' , orderID);
                 payUHelper.failOrder(order);
                 res.redirect(URLUtils.url('Checkout-Begin', 'stage', 'payment', 'paymentError', Resource.msg('error.payment.not.valid', 'checkout', null) + " status:" + paymentStatus).toString());
                 return next();
@@ -144,14 +144,14 @@ server.post('Success',server.middleware.https, function (req, res, next) {
             res.redirect(URLUtils.url('Checkout-Begin', 'stage', 'payment', 'paymentError', Resource.msg('error.payment.not.valid', 'checkout', null) + " status:" + paymentStatus).toString());
             return next();
         } catch (ex) {
-            Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderID);
+            Logger.info('(PayU~Success) -> Error catched empty order and orderToken while try to process order {0}' , orderID);
             Logger.getLogger('PayU').error('(PayU~Success) Error occured while try to save order information and exception is: {0}', ex);
             // Redirect to payment step
             res.redirect(URLUtils.url('Checkout-Begin', 'stage', 'payment', 'paymentError', Resource.msg('error.payment.not.valid', 'checkout', null) + " status:" + paymentStatus).toString());
             return next();
         }
     } else {
-        Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderID);
+        Logger.info('(PayU~Success) -> Error empty order and orderToken occured while try to process order {0}' , orderID);
         // Redirect to payment step
         res.redirect(URLUtils.url('Checkout-Begin', 'stage', 'payment', 'paymentError', Resource.msg('error.payment.not.valid', 'checkout', null) + " status:" + paymentStatus).toString());
         return next();
@@ -168,13 +168,13 @@ server.post('Error',server.middleware.https, function (req, res, next) {
             res.redirect(URLUtils.url('Checkout-Begin', 'stage', 'payment', 'paymentError', Resource.msg('error.payment.not.valid', 'checkout', null)).toString());
             return next();
         } catch (ex) {
-            Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderID);
+            Logger.info('(PayU~Error) -> Error catched empty order and orderToken while try to process order {0}' , orderID);
             Logger.getLogger('PayU').error('(PayU~Error) Error occured while try to render the payU error and exception is: {0}', ex);
             res.redirect(URLUtils.url('Error-ErrorCode', 'err', Resource.msg('error.technical', 'checkout', null)).toString());
             return next();
         }
     } else {
-        Logger.info('(PayU~Success) -> Error occured while try to process order {0}' , orderID);
+        Logger.info('(PayU~Error) -> Error empty order and orderToken occured while try to process order {0}' , orderID);
         res.redirect(URLUtils.url('Error-ErrorCode', 'err', Resource.msg('error.technical', 'checkout', null)).toString());
         return next();
     }
