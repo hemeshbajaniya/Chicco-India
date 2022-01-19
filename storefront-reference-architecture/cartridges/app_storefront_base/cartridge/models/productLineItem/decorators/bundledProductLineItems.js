@@ -13,7 +13,7 @@ function getBundledProductLineItems(bundledProductLineItems, productFactory) {
         bundledProductLineItems,
         function (bundledProductLineItem) {
             return productFactory.get({
-                pid: bundledProductLineItem.product.ID,
+                //pid: bundledProductLineItem.product.ID,
                 pview: 'productLineItem',
                 lineItem: bundledProductLineItem,
                 quantity: bundledProductLineItem.quantity.value,

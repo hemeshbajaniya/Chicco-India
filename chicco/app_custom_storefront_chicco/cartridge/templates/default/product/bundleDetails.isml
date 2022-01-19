@@ -1,0 +1,231 @@
+<isdecorate template="common/layout/page">
+
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets');
+        assets.addJs('/js/productDetail.js');
+
+
+        assets.addCss('/css/layouts/product_listing.css');
+        assets.addCss('/css/main.css');
+        assets.addCss('/css/custom.css');
+        assets.addCss('/css/product/share.css');
+        assets.addCss('/css/discount-style.css');
+        assets.addJs('/js/jquery.min.js');
+        assets.addJs('/js/jquery.counterup.min.js');
+        assets.addJs('/js/popper.min.js');
+        assets.addJs('/js/bootstrap.min.js');
+        assets.addJs('/js/jquery.matchHeight-min.js');
+        assets.addJs('/js/jquery.payment.min.js');
+        assets.addJs('/js/main_design.js');
+        assets.addJs('/js/share_link.js');
+        assets.addJs('/js/jquery.fancybox.min.js');
+        assets.addJs('/css/jquery.fancybox.min.css');
+
+        
+    </isscript>
+
+    <iscomment>
+        It is necessary to set both "bundle" and "product" to pdict.product here as the downstream,
+        reusable templates expect "product" for certain properties. "product" can be the "bundle"
+        or a bundle product item. We need to set "product" back to equal "bundle" in the
+        .bundle-footer section below.
+    </iscomment>
+    <isset name="bundle" value="${pdict.product}" scope="page" />
+    <isset name="product" value="${pdict.product}" scope="page" />
+    <isobject object="${product.raw}" view="detail" />
+    <section class="product_details">
+        <div class="container product-detail product-wrapper" data-pid="${product.id}">
+            <div class="row">
+
+                <!-- Products Images -->
+                <div class="col-lg-6">
+                    <isinclude template="product/productImageTile" />
+                </div>
+
+                <!-- Products Details -->
+                <div class="col-lg-6">
+                    <div class="product_detail_content">
+
+                        <!-- Ratting + Whishlist + Share -->
+                        <div class="row">
+                            <div class="col-8">
+                                <isinclude template="product/components/pidRating" />
+                            </div>
+                        </div>
+
+                        <!-- Title + Description + Features -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="content">
+
+                                    <h1 class="text-capitalize Detailedproduct" data-pid="${product.id}">
+                                        ${product.productName}
+                                    </h1>
+                                    <p>
+                                        ${product.subtitle}
+                                    </p>
+                                    <p class="text_green">
+                                        ${Resource.msg('label.product.recommendedage', 'product', null)}
+                                        ${product.AgeGroup}
+                                    </p>
+                                    <isset name="price" value="${product.price}" scope="page" />
+                                    <div class="prices">
+                                        <isinclude template="product/components/pricing/main" />
+                                    </div>
+                                    <isif condition="${product.promotions}">
+                                        <isloop items="${product.promotions}" var="promotion" status="promoStatus">
+                                            <isif condition="${promotion.calloutMsg !== '' && promoStatus.count == 1}">
+                                                <div class="discount">
+                                                    (
+                                                    <isprint value="${promotion.calloutMsg}" encoding="off" />)
+                                                </div>
+                                            </isif>
+                                        </isloop>
+                                    </isif>
+
+                                    <p>
+                                        ${Resource.msg('label.tax', 'product', null)}
+                                    </p>
+                                    <div class="attributes pl-0">
+                                        <!-- Attributes and Quantity -->
+                                        <isinclude template="product/components/mainAttributes" />
+
+                                        <isset name="isBundle" value="${false}" scope="page" />
+                                        <isset name="loopState" value="${{
+                                                                       count: 1}}" scope="page" />
+                                        <isloop items="${product.variationAttributes}" var="attr"
+                                            status="attributeStatus">
+                                            <div class="row" data-attr="${attr.id}">
+                                                <div class="col-md-12">
+                                                    <isinclude template="product/components/variationAttribute" />
+                                                </div>
+                                            </div>
+                                        </isloop>
+                                    </div>
+                                    <div class="stocks mt-2">
+                                        <p>
+                                            <isinclude template="product/components/productAvailability" />
+                                        </p>
+                                    </div>
+
+                                    <div class="row mt-2">
+                                        <div class="col-sm-6">
+                                            <div class="row sizes qty mt-2 mb-2">
+                                                <div class="col-12 quantity">
+                                                    <div>
+                                                        <p class="d-inline-block">
+                                                            ${Resource.msg('label.product.swatch.qty', 'product', null)}
+                                                        </p>
+                                                        <div class="product_size_data d-inline-block">
+                                                            <button type="button" id="sub" class="minus">-</button>
+                                                            <input type="number" id="1" value="1" min="1"
+                                                                class="pdp-quantity text-center" max="10" readonly />
+                                                            <button type="button" id="add" class="plus">+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <isif condition="${product.rootCatId == 'Fashion'}">
+                                            <div class="col-sm-6">
+                                                <div class="size_chart pt-3">
+                                                    <p class="mb-0">
+                                                        <a href="#" data-toggle="modal" data-target="#size_guide">
+                                                            <img src="${URLUtils.staticURL('/images/product_guide.png')}"
+                                                                alt="product_guide" class="mr-1" loading="lazy" />
+                                                            ${Resource.msg('label.size.guide', 'product', null)}
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </isif>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row product-bundle">
+                <!-- Product Images Carousel -->
+                <iscomment>
+                    <isinclude template="product/components/imageCarousel" />
+                </iscomment>
+
+
+
+
+                <div class="col-12 col-sm-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <isinclude template="product/components/pidRating" />
+                        </div>
+                    </div>
+
+                    <!-- Applicable Promotions -->
+                    <div class="row promotions">
+                        <div class="col-12 align-self-center">
+                            <isinclude template="product/components/promotions" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <isinclude template="product/components/bundleItems" />
+
+            <hr>
+
+
+
+            <div class="row">
+                <div class="col-12 col-sm-6 offset-sm-6 bundle-footer">
+                    <!-- Quantity -->
+                    <isset name="loopState" value="${{
+                                                   count: 1}}" scope="page" />
+                    <isset name="product" value="${bundle}" scope="page" />
+                    <isinclude template="product/components/quantity" />
+
+                    <!-- Availability -->
+                    <div class="availability clearfix global-availability" data-ready-to-order="${bundle.readyToOrder}">
+                        <isinclude template="product/components/availabilityBundleContainer" />
+                    </div>
+
+                    <div class="col-12 prices-add-to-cart-actions">
+                        <!-- Prices -->
+                        <div class="prices">
+                            <isset name="price" value="${product.price}" scope="page" />
+                            <isinclude template="product/components/pricing/main" />
+                        </div>
+
+                        <!-- Cart and [Optionally] Apple Pay -->
+                        <isinclude template="product/components/addToCartGlobal" />
+                    </div>
+
+                    <!-- Social Sharing Icons -->
+                    <isinclude template="product/components/socialIcons" />
+                </div>
+            </div>
+
+
+
+            <iscomment>
+                <isinclude template="product/components/descriptionAndDetails" />
+            </iscomment>
+
+            <div class="row products_descriptions mt-lg-5 mt-4">
+                <isinclude template="product/productSpecs" />
+            </div>
+
+            <div class="recommendations">
+                <isslot id="product-recommendations-m" description="Recommended products" context="global" />
+            </div>
+        </div>
+
+    </section>
+</isdecorate>

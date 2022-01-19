@@ -12,39 +12,43 @@
         assets.addJs('/js/main_design.js');
     </isscript>
 
-
+        <h1>
+            <a href="${URLUtils.url('Home-ShowCustomForm')}"> RENDER THIS FORM</a></h1>
     <main>
-        <!-- .site-banner -->
-        <isslot id="home-banner-m" description="Home page banner." context="global" />
-        <!-- .site-banner -->
 
-        <!-- .select_child_age_sec -->
-        <section class="select_child_age_sec">
-            <div class="container">
-                <isslot id="home-select-age" context="global" description="HomePage Child-Age Selection" />
-            </div>
-        </section>
-        <iscomment> <isinclude template="home/home_selectChildAge" />  </iscomment>
-        <!-- ./select_child_age_sec -->
+                <!-- .site-banner -->
+                <isslot id="home-banner-m" description="Home page banner." context="global" />
+                <!-- .site-banner -->
 
-        <!-- .collection_offer -->
-        <isslot id="home-promo-banner-m" description="Homepage Promotion banner." context="global" />
-        <!-- ./collection_offer -->
+                <!-- .select_child_age_sec -->
+                <section class="select_child_age_sec">
+                    <div class="container">
+                        <isslot id="home-select-age" context="global" description="HomePage Child-Age Selection" />
+                    </div>
+                </section>
+                <iscomment>
+                    <isinclude template="home/home_selectChildAge" />
+                </iscomment>
+                <!-- ./select_child_age_sec -->
 
-        <!-- .product_section -->
-        <isslot id="home-products-m" description="Product tiles on the home page." context="global" />
-        <!-- ./product_section -->
+                <!-- .collection_offer -->
+                <isslot id="home-promo-banner-m" description="Homepage Promotion banner." context="global" />
+                <!-- ./collection_offer -->
 
-
-        <!-- .promotion_section -->
-        <isslot id="home-promotion-slider" description="home page promotion slider" context="global" />
-        <!-- ./promotion_section -->
+                <!-- .product_section -->
+                <isslot id="home-products-m" description="Product tiles on the home page." context="global" />
+                <!-- ./product_section -->
 
 
+                <!-- .promotion_section -->
+                <isslot id="home-promotion-slider" description="home page promotion slider" context="global" />
+                <!-- ./promotion_section -->
 
-        <!-- .advice_section -->
-        <isslot id="home-advice" context="global" description="Our Advice article" />
-        <!-- ./advice_section -->
+
+
+                <!-- .advice_section -->
+                <isslot id="home-advice" context="global" description="Our Advice article" />
+                <!-- ./advice_section -->
 
 
 

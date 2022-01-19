@@ -8,8 +8,8 @@
 
     <iscomment>
         It is necessary to set both "bundle" and "product" to pdict.product here as the downstream,
-        reusable templates expect "product" for certain properties.  "product" can be the "bundle"
-        or a bundle product item.  We need to set "product" back to equal "bundle" in the
+        reusable templates expect "product" for certain properties. "product" can be the "bundle"
+        or a bundle product item. We need to set "product" back to equal "bundle" in the
         .bundle-footer section below.
     </iscomment>
     <isset name="bundle" value="${pdict.product}" scope="page" />
@@ -21,7 +21,7 @@
             <div class="col-12">
                 <!---Breadcrumbs--->
                 <div class="product-breadcrumb">
-                    <isinclude template="components/breadcrumbs/pageBreadcrumbs"/>
+                    <isinclude template="components/breadcrumbs/pageBreadcrumbs" />
                 </div>
 
                 <!-- Product Name -->
@@ -62,7 +62,8 @@
         <div class="row">
             <div class="col-12 col-sm-6 offset-sm-6 bundle-footer">
                 <!-- Quantity -->
-                <isset name="loopState" value="${{count: 1}}" scope="page" />
+                <isset name="loopState" value="${{
+                                               count: 1}}" scope="page" />
                 <isset name="product" value="${bundle}" scope="page" />
                 <isinclude template="product/components/quantity" />
 

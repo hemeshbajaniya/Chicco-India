@@ -1,0 +1,32 @@
+<isdecorate template="common/layout/page">
+<form action="${URLUtils.url('Home-ShowCustomFormSubmit')}" method="GET">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                ${pdict.form.firstName.label}
+                <input type="text" class="form-control" <isprint value="${pdict.form.firstName.attributes}" encoding="off"/>/>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                ${pdict.form.lastName.label}
+                <input type="text" class="form-control" <isprint value="${pdict.form.lastName.attributes}" encoding="off"/>/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                ${pdict.form.phone.label}
+                <input type="text" class="form-control" <isprint value="${pdict.form.phone.attributes}" encoding="off"/>/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                ${pdict.form.email.label}
+                <input type="text" class="form-control" <isprint value="${pdict.form.email.attributes}" encoding="off"/>/>
+            </div>
+        </div>
+    </div>
+    <button class="primary-btn">Submit</button>
+</form>
+</isdecorate>

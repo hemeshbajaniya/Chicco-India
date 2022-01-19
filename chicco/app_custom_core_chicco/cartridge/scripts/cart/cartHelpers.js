@@ -85,7 +85,7 @@ function addProductToCart(currentBasket, productId, quantity, childProducts, opt
         perpetual = product.availabilityModel.inventoryRecord.perpetual;
         canBeAdded =
             (perpetual
-            || totalQtyRequested <= product.availabilityModel.inventoryRecord.ATS.value);
+                || totalQtyRequested <= product.availabilityModel.inventoryRecord.ATS.value);
     }
 
     if (!canBeAdded) {
@@ -111,7 +111,7 @@ function addProductToCart(currentBasket, productId, quantity, childProducts, opt
                 : Resource.msg('error.alert.selected.quantity.cannot.be.added', 'product', null);
             return result;
         }
-          
+
         productQuantityInCart = productInCart.quantity.value;
         quantityToSet = quantity ? quantity + productQuantityInCart : productQuantityInCart + 1;
         availableToSell = productInCart.product.availabilityModel.inventoryRecord.ATS.value;

@@ -1,0 +1,6 @@
+<isdecorate template="common/layout/page">
+    ${pdict.form.lastName.value}
+    ${pdict.form.firstName.value}
+    ${pdict.form.phone.value}
+    ${pdict.form.email.value}
+</isdecorate>
