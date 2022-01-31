@@ -1,17 +1,17 @@
 <isif condition="${pdict.inStock == true}">
         <isloop items="${pdict.inStockProductData}" var="ID">
-            <div class="col-md-4">
+            
                     <isinclude url="${URLUtils.url('Tile-Show', 'pid', ID, 'swatches', true, 'ratings', true)}" />
-            </div>
+        
         </isloop>
 <iselse/>
         <isloop items="${pdict.productSearch.productIds}" var="product">
-            <div class="col-md-4">
+            
                 <isobject object="${product.productSearchHit}" view="searchhit">
                     <isinclude
                         url="${URLUtils.url('Tile-Show', 'pid', product.productID, 'swatches', true, 'ratings', true)}" />
                 </isobject>
-            </div>
+           
         </isloop>
 </isif>
 

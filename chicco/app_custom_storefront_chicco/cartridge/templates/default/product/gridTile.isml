@@ -1,9 +1,24 @@
 <isset name="showQuickView" value="${true}" scope="page" />
 <isset name="product" value="${pdict.product}" scope="page" />
+<isif condition="${pdict.rootCatId === 'Fashion' && product.available}">
+<div class="col-md-4">
 <div class="product" data-pid="${product.id}">
     <isif condition="${pdict.display.slotTile == true}">
         <isinclude template="product/productSlotTile" />
         <iselse>
             <isinclude template="product/productTile" />
     </isif>
+</div>  
 </div>
+<iselseif condition="${pdict.rootCatId != 'Fashion'}" />
+    
+<div  class="col-md-4">
+<div class="product" data-pid="${product.id}">
+<isif condition="${pdict.display.slotTile == true}">
+        <isinclude template="product/productSlotTile" />
+        <iselse>
+            <isinclude template="product/productTile" />
+    </isif>
+</div>
+</div>
+</isif>
