@@ -317,6 +317,37 @@ function sendCancellationEmail(order) {
     emailHelpers.sendEmail(emailObj, 'checkout/cancellation/cancellationEmail', orderObject);
 }
 
+/**
+ * Send cancellation Email to customer's
+ * @param order {dw.order.Order}: API Order
+ * @param productID {string}: productID
+ * @param productName {string}: productName
+ * @param productPrice {string}: productPrice
+ * @param productQuantity {string}: Productquantity
+
+ * 
+ */
+function sendReturnEmail(order, productID, productName, productPrice, productQuantity) {
+    var Resource = require('dw/web/Resource');
+    var emailHelpers = require('*/cartridge/scripts/helpers/emailHelpers');
+    var productObject = {
+        order: order,
+        productID: productID,
+        productName: productName,
+        productPrice: productPrice,
+        productQuantity: productQuantity
+    }
+    var emailObj = {
+        to: order.customerEmail,
+        subject: Resource.msg('subject.order.return.email', 'confirmation', null),
+        from: Site.current.getCustomPreferenceValue('customerServiceEmail') || 'no-reply@testorganization.com',
+        type: emailHelpers.emailTypes.orderReturn
+    };
+
+    // TODO: change the template which is design for returns
+    emailHelpers.sendEmail(emailObj, 'account/order/orderReturnEmail', productObject);
+}
+
 function createOrder(order) {
     try {
         var payLoad = prepareCreateOrderPayLoad(order);
@@ -516,15 +547,23 @@ function createCustomerReturns(orderid, productID, reason) {
     }
     if (!result.error) {
         var orderLineItemsItr = order.getAllProductLineItems().iterator();
+        var productPrice = 0;
+        var productName = '';
+        var productQuantity = 1;
         while(orderLineItemsItr.hasNext()) {
             var productLineItem = orderLineItemsItr.next();
             if (productLineItem.productID === productID) {
                 Transaction.wrap( function() {
                     // found the product update the attributes
                    productLineItem.custom.increffRefund = true;
+                   productPrice = productLineItem.adjustedGrossPrice.valueOrNull;
+                   productName = productLineItem.product.name;
+                   productQuantity = productLineItem.quantityValue;
                 });
             }
         }
+        // Send the return emails
+        sendReturnEmail(order, productID, productName, productPrice, productQuantity)
     }
     return result;
 }

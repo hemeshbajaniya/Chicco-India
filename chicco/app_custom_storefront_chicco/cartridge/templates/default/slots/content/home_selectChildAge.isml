@@ -1,9 +1,8 @@
 <!-- .select_child_age_sec -->
-<section class="select_child_age_sec">
-    <div class="container">
+
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-capitalize">
+                <h2 class="text-capitalize mb-0">
                     ${Resource.msg('home.msg.choose', 'home_selectChildAge', null)}
                 </h2>
             </div>
@@ -45,7 +44,7 @@
                     </div>
     
                     <!-- Tab panes -->
-                    <div class="tab-content mt-lg-5 mt-4">
+                    <div class="tab-content mt-lg-3 mt-4">
     
                         <!-- Tab panes 1 -->
                         <div class="tab-pane container p-0" id="tab1">
@@ -80,7 +79,5 @@
             </div>
         </div>
         
-    </div>
-        
-</section>
+
 <!-- ./select_child_age_sec -->

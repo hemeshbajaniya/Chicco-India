@@ -101,7 +101,8 @@ module.exports = {
         orderConfirmation: 4,
         accountLocked: 5,
         accountEdited: 6,
-        orderCancellation: 7
+        orderCancellation: 7,
+        orderReturn: 8
     },
     validateEmail: validateEmail
 };

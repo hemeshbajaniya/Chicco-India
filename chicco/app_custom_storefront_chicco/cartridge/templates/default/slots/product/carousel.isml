@@ -1,10 +1,10 @@
 <isif condition="${slotcontent && !!slotcontent.content.length}">
-    <section class="product_section">
+    <section class="product_section p-0">
         <div class="container">
             <isif condition="${slotcontent.custom && !empty(slotcontent.custom.carouselDetails)}">
                 <isprint value="${slotcontent.custom.carouselDetails.markup}" encoding="off" />
             </isif>
-            <div class="row mt-lg-5 mt-3">
+            <div class="row mt-0">
                 <div class="col-md-12">
                     <div class="products_slider pb-0">
                         <div class="owl-carousel owl-theme">

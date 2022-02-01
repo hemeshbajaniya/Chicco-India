@@ -7,7 +7,7 @@
                         <isloop items="${slotcontent.content}" var="contentAsset" status="banner">
                             <iscomment> <isprint value="${contentAsset.custom.body}" encoding="off" /></iscomment>
                             <div class="item">
-                                <style type="text/css">
+                                <iscomment> <style type="text/css">
                                     @media (max-width: 767px) {
                                     .banner_content .image_${banner.count} {
                                             height: auto;
@@ -28,11 +28,13 @@
                                             background-image: url(${contentAsset.custom.backgroundImg.url});
                                         }
                                     }
-                                </style> 
+                                </style>  </iscomment>
                                 <div class="banner_content">
-                                    <div class="image_${banner.count} w-100" loading="lazy"></div>
-                                    <iscomment> <img src="${contentAsset.custom.backgroundImg.url}" alt="banner_img"
-                                        class="w-100" loading="lazy"/>   </iscomment>
+                                    <iscomment> <div class="image_${banner.count} w-100" loading="lazy"></div> </iscomment>
+                                    <img src="${contentAsset.custom.backgroundImg.url}" alt="banner_img"
+                                        class="w-100 d-none d-md-block" loading="lazy"/>
+                                    <img src="${contentAsset.custom.backgroundImgMobile.url}" alt="banner_img"
+                                        class="w-100 d-block d-md-none" loading="lazy"/>
                                     <div class="content">
                                         <h1 class="text-dark">
                                             <isprint value="${contentAsset.custom.bannerTitle}" encoding="off" />

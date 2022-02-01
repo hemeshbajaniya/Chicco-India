@@ -101,7 +101,7 @@
         .nav-pills {
             background-color: $background_color;
             border-radius: 10px;
-            padding: 10px;
+            padding: 6px !important;
 
             li.nav-item {
                 flex: 1;
@@ -136,7 +136,7 @@
                     color: $white;
                     font-size: 16px;
                     font-weight: 500;
-                    padding: 8px;
+                    padding: 5px !important;
                     transition: 0.5s;
 
                     &:hover,
@@ -301,12 +301,23 @@
 
 
 }
+.promotion_slider{
+    .owl-dots{
+        margin-top: 0px !important;
+    }
+}
 
 // Home Section4
 .product_section {
 
     .products_slider {
         padding-bottom: 25px;
+        .colors_list{
+            display: none;
+        }
+        .owl-dots{
+            margin-top: 0px !important;
+        }
     }
 
     .product_box {

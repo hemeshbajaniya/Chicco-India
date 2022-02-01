@@ -1,6 +1,6 @@
 <isif condition="${slotcontent != null}">
     <h2 class="text-center">${Resource.msg('our.advice.title', 'home', null)}</h2>
-    <section class="advice_section">
+    <section class="advice_section py-4">
         <div class="container">
             <div class="row">
                 <isloop items="${slotcontent.content}" var="contentAsset">

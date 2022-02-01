@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="google-site-verification" content="Prw9dOFDrqFN8elAPYa4hkds99XwRpyayJ2iyDR8TrM" />
-<meta name="facebook-domain-verification" content="3m78zrwbe8z6ejki2vf8h0i6zyv5ny" />
+<meta name="facebook-domain-verification" content="fx36x7w9drag7odxxboivkkwq4igb8" />
 <iscomment>The page meta data will be replaced by rule based content if it's available</iscomment>
 <isif condition="${dw.system.System.getInstanceType() != dw.system.System.PRODUCTION_SYSTEM}">
     <title>${pdict.CurrentPageMetaData.title} | ${Resource.msg('global.site.name', 'version', null)} | ${Resource.msg('global.version.number', 'version', null)}</title>

@@ -20,26 +20,22 @@
         assets.addJs('/css/jquery.fancybox.min.css');
     </isscript>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-    "ecommerce": {
-        "detail": {
-        "actionField": {"list":"Listing", "action": "detail"},
-        "products":<isprint value="${pdict.products}" encoding="off"/>
-        }
-    }
-    });
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            "ecommerce": {
+                "detail": {
+                    "actionField": {"list":"Listing", "action": "detail"},
+                    "products":<isprint value="${pdict.products}" encoding="off"/>
+                }
+            }
+        });
     </script>
-    <script>
-    fbq('track', 'ViewContent', {
-        content_name: ${pdict.viewContent.content_name}
-        content_category: ${pdict.viewContent.content_category}
-        content_ids: [<isprint value="${pdict.viewContent.content_ids}" encoding="off"/>],
-        content_type: ${pdict.viewContent.content_type}
-        value: ${pdict.viewContent.value}
-        currency: ${pdict.viewContent.currency}
-    });
-    </script>
+    <input id="viewContentName" type="hidden" name="" value="${pdict.viewContent.content_name}"/>
+    <input id="viewContentCategory" type="hidden" name="" value="${pdict.viewContent.content_category}"/>
+    <input id="viewContentIds" type="hidden" name="" value="<isprint value="${pdict.viewContent.content_ids}" encoding="off"/>"/>
+    <input id="viewContentType" type="hidden" name="" value="${pdict.viewContent.content_type}"/>
+    <input id="viewContentValue" type="hidden" name="" value="${pdict.viewContent.value}"/>
+    <input id="viewContentCurrency" type="hidden" name="" value="${pdict.viewContent.currency}"/>
     <isset name="product" value="${pdict.product}" scope="page" />
     <isset name="isQuickView" value="${false}" scope="page" />
     <isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />

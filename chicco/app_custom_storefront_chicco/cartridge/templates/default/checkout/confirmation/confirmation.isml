@@ -25,6 +25,7 @@
     }
     });
     </script>
+    <input id="purchaseValue" type="hidden" value="${pdict.order.totals.subTotal}"/>
     <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
         <isinclude template="reporting/reportingUrls" />
     </isif>

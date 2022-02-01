@@ -178,7 +178,7 @@
                                               <tr valign="center">
                                                 <td style="text-align: left;" width="25%">
                                                   <a href='${URLUtils.http('Product-Show','pid',lineItem.id)}' target='_blank' style="color:#000001;" >
-                                                    <img src="${lineItem.images.small[0].url}" alt="${lineItem.productName}" title="${lineItem.productName}"  width="120px"/>
+                                                    <img src="${lineItem.images.small[0].url}" alt="${lineItem.images.small[0].alt}" title="${lineItem.images.small[0].title}" width="120px"/>
                                                   </a>
                                                 </td>
                                                 <td style="padding-left: 20px;" width="75%">
@@ -231,7 +231,7 @@
                                             <tr valign="center">
                                               <td style="text-align: left;" width="25%">
                                                 <a href='${URLUtils.http('Product-Show','pid',lineItem.id)}' target='_blank' style="color:#000001;" >
-                                                  <img src="${lineItem.images.small[0].absURL}" alt=""  width="120px"/>
+                                                  <img src="${lineItem.images.small[0].url}" alt="${lineItem.images.small[0].alt}" title="${lineItem.images.small[0].title}" width="120px"/>
                                                 </a>
                                               </td>
                                               <td style="padding-left: 20px;" width="75%">

@@ -1,0 +1,176 @@
+<body bgcolor="#eee">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="center" valign="top">
+                <table border="0" cellpadding="0" cellspacing="0" width="750" style="background-color: #ffffff;">
+                    <tr>
+                        <td class="td"
+                            style="width:750px; min-width:750px;font-size:0pt; line-height:16px;padding:0; margin:0; font-weight:normal;background:#fff;font-family: Helvetica, Arial, sans-serif;">
+
+                            <div style="padding: 20px 35px; border-bottom: 1px solid #5B5360;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr valign="center">
+                                            <td style="text-align: left;" width="35%">
+                                                <img src="${URLUtils.httpStatic('/images/logo.png')}" width="115px"
+                                                    alt="site-logo" class="site-logo" />
+                                            </td>
+                                            <td style="text-align: right;" width="65%">
+                                                <a href="${URLUtils.https('Account-Show')}" role="menuitem"
+                                                    style="display: inline-block;margin-left: 25px;font-size: 16px;text-decoration: none; color: #5B5360; font-weight: 600;">
+                                                    ${Resource.msg('link.header.myaccount', 'account', null)}
+                                                </a>
+                                                <a href="${URLUtils.https('Order-History')}" role="menuitem"
+                                                    style="display: inline-block;margin-left: 25px;font-size: 16px;text-decoration: none; color: #5B5360; font-weight: 600;">
+                                                    ${Resource.msg('label.orederstatus', 'account', null)}
+                                                </a>
+                                                <a href="${URLUtils.https('Home-Show')}" role="menuitem"
+                                                    style="display: inline-block;margin-left: 25px;font-size: 16px;text-decoration: none; color: #5B5360; font-weight: 600;">
+                                                    ${Resource.msg('label.shopnow', 'account', null)}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div style="padding: 20px 35px 0;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr valign="center">
+                                            <td style="text-align: left;" width="100%">
+                                                <div style="margin-bottom: 30px;">
+                                                    <h2
+                                                        style="color: #5B5360;font-size: 25px;line-height: 32px;font-weight: 700;margin-bottom: 15px;">
+                                                        ${Resource.msg('email.msg.new.registration.dear', 'registration', null)}&nbsp;${pdict.order.customerName},
+                                                    </h2>
+                                                    <p
+                                                        style="font-size: 16px;font-weight:500;line-height: 24px;color: #5B5360; margin-bottom: 15px;">
+                                                        ${Resource.msg('email.msg.order.confirmation.body1', 'orderReturnEmail', null)}
+                                                    </p>
+                                                    <p
+                                                        style="font-size: 16px;font-weight:500;line-height: 24px;color: #5B5360; margin-bottom: 15px;">
+                                                        ${Resource.msg('email.msg.order.confirmation.body2', 'orderReturnEmail', null)}
+                                                    </p>
+                                                    <p
+                                                        style="font-size: 16px;font-weight:500;line-height: 24px;color: #5B5360; margin-bottom: 15px;">
+                                                        ${Resource.msg('email.msg.order.confirmation.body3', 'orderReturnEmail', null)}
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr valign="center">
+                                            <td>
+                                                <div
+                                                    style="padding: 0; border: 1px solid #5B5360; border-radius: 10px;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <thead style="background-color: #1B3582;">
+                                                            <tr>
+                                                                <th
+                                                                    style="color: #ffffff; border-top-left-radius: 7px; padding: 15px 0;font-size: 16px; line-height: 20px;">
+                                                                    <span>${Resource.msg('label.order.products', 'confirmation', null)}</span>
+                                                                </th>
+                                                                <th
+                                                                    style="color: #ffffff; padding: 15px 0;font-size: 16px; line-height: 20px;">
+                                                                    ${Resource.msg('field.selectquantity', 'cart', null)}
+                                                                </th>
+                                                                <th
+                                                                    style="color: #ffffff; border-top-right-radius: 7px; padding: 15px 0;font-size: 16px; line-height: 20px;">
+                                                                    ${Resource.msg('label.orderhistory.price', 'account', null)}
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr style="border-bottom: 1px solid #5B5360">
+                                                                <td style="border-right: 1px solid #5b535b;"
+                                                                    width="60%">
+                                                                    <div style="padding: 15px;">
+                                                                        <table border="0" cellpadding="0"
+                                                                            cellspacing="0" width="100%">
+                                                                            <tbody>
+                                                                                <tr valign="center">
+                                                                                    <td style="padding-left: 20px;"
+                                                                                        width="100%">
+                                                                                        <p class="address-detail-tag">
+                                                                                            <b style="font-size:initial; color:#222222">${pdict.productName}</b>
+                                                                                        </p>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="border-right: 1px solid #5b535b; text-align: center;"
+                                                                    width="20%">
+                                                                    <div style="padding: 15px;">
+                                                                        <p
+                                                                            style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                                                            <isprint value="${pdict.productQuantity}"
+                                                                                formatter="##" />
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="text-align: center;" width="20%">
+                                                                    <div style="padding: 15px;">
+                                                                        <p
+                                                                            style="color: #5B5360; font-size: 16px; line-height: 20px; font-weight: 600; margin: 0;">
+                                                                            ${pdict.productPrice}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr valign="center">
+                                            <td>
+                                                <div style="padding-top: 20px;">
+                                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody>
+                                                            <tr valign="top">
+                                                                <td width="100%">
+                                                                    <p
+                                                                        style="font-size: 15px;font-weight:500;line-height: 20px;color: #5B5360; margin: 0; padding: 0;">
+                                                                        ${Resource.msg('email.msg.order.confirmation.body5', 'confirmation', null)}.
+                                                                    </p>
+                                                                    <a href="https://www.chicco.in/"
+                                                                        style="color: #5B5360;font-size: 22px;line-height: 32px;font-weight: 700;margin: 0 0 15px; text-decoration: none;">
+                                                                        <b>${Resource.msg('email.msg.order.confirmation.message1', 'confirmation', null)}</b>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div style="padding: 18px 35px 20px;">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td width="50%">
+                                            <div style="border-top: 1px solid #5B5360;">
+                                                <div
+                                                    style="text-align: center;font-size: 15px;font-weight:500;line-height: 20px;color: rgba(91, 83, 96, 0.75);padding-top: 20px;width: 70%;margin: 0 auto;">
+                                                    ${Resource.msg('email.msg.order.confirmation.body3', 'confirmation', null)}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>

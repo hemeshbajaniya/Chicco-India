@@ -72,6 +72,30 @@ $(document).on(
         method: 'POST',
         data: form,
         success: function (data) {
+          try {
+            if(data.products){
+              window.dataLayer =  window.dataLayer  ||  [];
+              window.dataLayer.push={
+                  "event": "addToCart",
+                  "ecommerce": {
+                      "currencyCode": data.products[0].currencyCode,
+                      'add': {
+                          'products': data.products
+                      }
+                  }
+              };
+              fbq('track', 'AddToCart', {
+                content_name: data.products[0].name,
+                content_category: data.products[0].category,
+                content_ids: [data.products[0].id],
+                content_type: data.products[0].type,
+                value: data.products[0].price,
+                currency: data.products[0].currencyCode,
+              });  
+            }
+          } catch (error) {
+              
+          }
           $('.minicart-quantity').empty().text(data.quantityTotal);
           handlePostCartAdd(data);
           $('body').trigger('product:afterAddToCart', data);

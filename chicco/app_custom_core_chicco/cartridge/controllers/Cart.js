@@ -22,28 +22,12 @@ server.append('AddProduct', function(req, res, next) {
 
     if (viewData) {
         viewData = getGTMData.getGTMData(viewData);
+        viewData.productID = productId
         res.setViewData(viewData);
     } else {
-        var addToCartGtm = res
+        var addToCartGtm = res;
+        addToCartGtm.viewData.productId = productId
         var viewData = getGTMData.getGTMData(addToCartGtm.viewData);
-      
-        try {
-            var dataLayer =  window.dataLayer  ||  [];
-            dataLayer ={
-                "event": "addToCart",
-                "ecommerce": {
-                    "currencyCode": viewData.products[0].currencyCode,
-                    'add': {
-                        'products': viewData.products
-                    }
-                }
-            };
-            // dataLayer["event"] = "addToCart";
-            // dataLayer["ecommerce"]['currencyCode'] = viewData.products[0].currencyCode;
-            // dataLayer["ecommerce"]['add']['products'] = viewData.products;
-        } catch (error) {
-            
-        }
     }
     res.setViewData(viewData);
 
