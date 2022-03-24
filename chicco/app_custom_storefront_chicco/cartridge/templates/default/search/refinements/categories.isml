@@ -19,7 +19,7 @@
     </div>
 </isloop> </iscomment>
 <ul class="values content filter-category p-0">
-    <isloop items="${categories}" var="category">
+    <isloop items="${categories}" var="category" status="loopCounter">
         <li class="list_cat categ sub_cat mt-0 p-0">
             <button data-href="${category.url}" class="checkboxes-data">
                 <iscomment> <isif condition="${category.selected}">

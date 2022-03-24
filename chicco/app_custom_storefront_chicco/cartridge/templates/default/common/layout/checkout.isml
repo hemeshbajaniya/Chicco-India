@@ -12,6 +12,9 @@
         <isactivedatahead/>
     </head>
     <body>
+    <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55VQFTK" height="0" width="0" style=" display:none; visibility:hidden"></iframe>
+</noscript>
         ${dw.system.HookMgr.callHook('app.template.beforeHeader', 'beforeHeader', pdict) || ''}
 
         <div class="page">

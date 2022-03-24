@@ -15,6 +15,7 @@ $(document).ready(function () {
     processInclude(require('./component/giftCard'));
     processInclude(require('./font-awesome-5-pro'));
     processInclude(require('./facebookpixel'));
+    //processInclude(require('./googleTag'));
     // processInclude(require('font-awesome/fonts'));
     processInclude(require("./component/wishlistCart"));
     processInclude(require('./component/wishlistDetail'));

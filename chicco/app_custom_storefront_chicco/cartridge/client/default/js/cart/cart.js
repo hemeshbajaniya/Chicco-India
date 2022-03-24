@@ -192,7 +192,7 @@ function updateApproachingDiscounts(approachingDiscounts) {
   if (approachingDiscounts.length > 0) {
     approachingDiscounts.forEach(function (item) {
       $html +=
-        "<div class='single-approaching-discount text-center'>" +
+        "<div class='single-approaching-discount text-center text-dangers pb-2 mb-3 border-bottom'>" +
         item.discountMsg +
         "</div>";
     });
@@ -571,7 +571,7 @@ $('body').on('afterRemoveFromCart', function (e, data) {
         }
 
         $('body').trigger('cart:update');
-
+        removeproductGtm(data);
         $.spinner().stop();
       },
       error: function (err) {
@@ -585,6 +585,12 @@ $('body').on('afterRemoveFromCart', function (e, data) {
     });
   });
 
+  function removeproductGtm(data) {
+    (function() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(data.GTMDataLayer[0]);
+    }());
+  }
   /**
    * This is new click event function on the decreased quantity button.
    * It will get the decreased-btn data attribute and builds the quantitySelector

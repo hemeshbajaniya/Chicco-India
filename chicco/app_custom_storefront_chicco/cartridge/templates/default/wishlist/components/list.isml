@@ -1,5 +1,5 @@
 <isif condition="${!empty(pdict.wishlist.items)}">
-    <div class="shopping_shortlist_sec delete_cart_item_popup w-100">
+    <div class="delete_cart_item_popup w-100">
         <div class="shipping_product">
             <div class=" wishlistItemCards" data-error-msg="${Resource.msg('wishlist.remove.error', 'wishlist', null)}">
                 <isloop items="${pdict.wishlist.items}" var="item" status="productItems">

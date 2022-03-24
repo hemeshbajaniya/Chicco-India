@@ -42,7 +42,10 @@
             </div>
         </div>
     </section>
-
+    
+    <div class="mt-5">
+        <isslot id="promotion-page-banner" context="global" description="promotion page banner" />
+    </div>
     <isslot id="home-promotion-slider" description="home page promotion slider" context="global" />
 
 </isdecorate>

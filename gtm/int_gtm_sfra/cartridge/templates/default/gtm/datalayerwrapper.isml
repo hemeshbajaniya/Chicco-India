@@ -1,0 +1,8 @@
+<iscomment> <isif condition="${pdict.GTMInlineDataLayer}">
+<!-- gdl:${pdict.GTMInlineDataLayer.ID} -->
+<isinclude template="${pdict.WrappedTemplate}">
+<script>window._gdl=window._gdl||[];window._gdl.push(<isprint value="${JSON.stringify(pdict.GTMInlineDataLayer)}" encoding="off">);</script>
+<!-- endgdl -->
+<iselse>
+<isinclude template="${pdict.WrappedTemplate}">
+</isif> </iscomment>

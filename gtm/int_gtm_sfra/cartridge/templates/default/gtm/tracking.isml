@@ -1,0 +1,27 @@
+<isif condition="${!empty(pdict.gtmAdditionalScripts)}">
+<isprint value="${pdict.gtmAdditionalScripts}" encoding="off" />
+</isif>
+<isif condition="${!empty(pdict.gtmContainerID)}">
+
+
+<script>
+
+window.onload = (event) => {
+localStorage.removeItem("gtmVar");
+};
+
+var curCookie = localStorage.getItem("gtmVar");
+var myOldUrl = window.location.href;
+
+ if(curCookie != myOldUrl){
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${pdict.gtmContainerID}');
+localStorage.setItem("gtmVar",myOldUrl);
+}
+</script>
+
+</isif>
+

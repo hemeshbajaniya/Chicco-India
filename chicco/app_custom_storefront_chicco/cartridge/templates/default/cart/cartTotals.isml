@@ -21,7 +21,7 @@
                 <label>${Resource.msg('label.sales.tax', 'cart', null)}</label>
             </div>
             <div class="col-6 text-right">
-                <label class="text-orange tax-total"> ${pdict.totals.totalTax}</label>
+                <label class="text-dangers tax-total"> ${pdict.totals.totalTax}</label>
             </div>
         </div>
     </iscomment>
@@ -30,7 +30,7 @@
             <label>${Resource.msg('label.shipping.cost', 'cart', null)}</label>
         </div>
         <div class="col-6 text-right">
-            <label class="text-orange shipping-cost">${pdict.totals.totalShippingCost}</label>
+            <label class="text-dangers shipping-cost">${pdict.totals.totalShippingCost}</label>
         </div>
     </div>
     <div class="row shipping-discount <isif condition="${pdict.totals.shippingLevelDiscountTotal.value === 0}">hide-shipping-discount</isif>">

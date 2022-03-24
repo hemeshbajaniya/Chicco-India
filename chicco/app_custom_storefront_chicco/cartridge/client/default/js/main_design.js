@@ -363,6 +363,18 @@ jQuery(document).ready(function (jQuery) {
 
 });
 
+$('.yotpo-open-tab').on('click', function () { 
+  $('.tabbing li a').each(function () {    
+    $(this).removeClass('active');
+	var temp = $(this).attr('href');
+	if(temp == '#Reviews'){
+	$(this).addClass('active');
+	}
+    })
+    $('#Description,#Shipping_Returns').removeClass('active show'); 
+    $('#Reviews').addClass('active show');
+  })
+
   $( '.payment_details .payment_radio label.gift_card' ).on('click', function() {
     if($( '.payment_details .gift-card-summary .payment_radio' ).hasClass( 'active' )){
       console.log("remove frmo gift")

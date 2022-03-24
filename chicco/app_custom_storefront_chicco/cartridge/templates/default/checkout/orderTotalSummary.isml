@@ -29,7 +29,7 @@
                         <label>${Resource.msg('label.GST', 'checkout', null)}</label>
                     </div>
                     <div class="col-6 text-right">
-                        <label class="text-orange tax-total">${pdict.order.totals.totalTax}</label>
+                        <label class="text-dangers tax-total">${pdict.order.totals.totalTax}</label>
                     </div>
                 </div> </iscomment>
                 <div class="row shipping-item">
@@ -37,7 +37,7 @@
                         <label>${Resource.msg('label.Shipping', 'checkout', null)}</label>
                     </div>
                     <div class="col-6 text-right">
-                        <label class="text-orange shipping-total-cost">${pdict.order.totals.totalShippingCost}</label>
+                        <label class="text-dangers shipping-total-cost">${pdict.order.totals.totalShippingCost}</label>
                     </div>
                 </div>
                 

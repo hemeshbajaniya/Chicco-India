@@ -28,7 +28,7 @@
                     </div>
                 </isif> </iscomment>
             </div>
-            <div class="col-xl-8 offset-xl-2">
+            <div class="col-xl-8 shopping_shortlist_sec offset-xl-2">
                 <isinclude template="wishlist/components/list"/>
             </div>
 

@@ -59,6 +59,19 @@
                 </div>
             </isif>
             <isif condition="${order.createdOrder == "FAILED"}">
+                <div class="col-md-5 col-12 text-lg-right text-left row mx-0">
+                    <isif condition="${pdict.accountlanding}">
+                        <div class="card-header clearfix">
+                            <h2 class="pull-left">${Resource.msg('label.orderhistory', 'account', null)}</h2>
+                            <a href="${URLUtils.url('Order-History')}" class="pull-right"
+                                aria-label="${Resource.msg('label.orderhistory.vieworderhistory', 'account', null)}">${Resource.msg('link.view', 'account', null)}</a>
+                        </div>
+                    <iselse/>
+                        <a href="${URLUtils.url('Order-Details', 'orderID', order.orderNumber, 'orderFilter', pdict.orderFilter)}"
+                            class="col-6 col-md-12 px-3 px-md-0 view_details"
+                            aria-label="${Resource.msgf('label.orderhistory.vieworderdetails', 'account', null, order.orderNumber)}">${Resource.msg('link.view', 'account', null)}</a>
+                    </isif>
+                </div>
             <iselse/>
                 <div class="col-md-2 col-12 text-lg-right text-left row mx-0">
                     <isif condition="${pdict.accountlanding}">

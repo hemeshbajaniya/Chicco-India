@@ -49,9 +49,11 @@
                                                 <isprint value="${contentAsset.custom.subtitle}" encoding="off" />
                                             </p>
 
-                                            <a href="${contentAsset.custom.buttonUrl}" class="primary-btn-banner d-inline-block">
-                                                <isprint value="${contentAsset.custom.buttonText}" encoding="off" />
-                                            </a>
+                                            <isif condition="${!empty(contentAsset.custom.buttonText)}">
+                                                <a href="${contentAsset.custom.buttonUrl}" class="primary-btn-banner d-inline-block">
+                                                    <isprint value="${contentAsset.custom.buttonText}" encoding="off" />
+                                                </a>
+                                            </isif>
                                         </div>
                                     </div>
                                 </div>

@@ -12,23 +12,23 @@ server.append('Show', function(req, res, next) {
 
     var products = [];
     var viewContent = {};
-
+    var cost = !empty(viewData.product.price.sales) ? viewData.product.price.sales.formatted : '';
     products.push({
         id: !empty(viewData.product.id) ? viewData.product.id : '',
         name: !empty(viewData.product.productName) ? viewData.product.productName : '',
-        price: !empty(viewData.product.price.sales) ? viewData.product.price.sales.formatted : '',
+        price: Number(cost.replace(/[^0-9.-]+/g,"")),
         brand: !empty(viewData.product.brand) ? viewData.product.brand : '',
         category: !empty(viewData.product.rootCatId) ? viewData.product.rootCatId : '',
         variant: !empty(viewData.product.variationAttributes) ? viewData.product.variationAttributes : '',
         quantity: !empty(viewData.product.selectedQuantity) ? viewData.product.selectedQuantity : '',
         coupon: ''
     });
-
+    var amount = !empty(viewData.product.price.sales) ? viewData.product.price.sales.formatted : '';
     viewContent.content_name = !empty(viewData.product.productName) ? viewData.product.productName : '',
     viewContent.content_category = !empty(viewData.product.rootCatId) ? viewData.product.rootCatId : '',
     viewContent.content_ids = !empty(viewData.product.id) ? viewData.product.id : '',
     viewContent.content_type = 'product',
-    viewContent.value = !empty(viewData.product.price.sales) ? viewData.product.price.sales.formatted : '',
+    viewContent.value = Number(amount.replace(/[^0-9.-]+/g,"")),
     viewContent.currency = !empty(viewData.product.price.sales) ? viewData.product.price.sales.currency : '',
 
     products = JSON.stringify(products);

@@ -1,11 +1,14 @@
-<script>//common/scripts.isml</script>
+
 <script defer type="text/javascript" src="${URLUtils.staticURL('/js/main.js')}"></script>
-<iscomment> <script defer type="text/javascript" src="${URLUtils.staticURL('/js/main_design.js')}"></script> </iscomment>
 <script defer type="text/javascript" src="${URLUtils.staticURL('/js/font-awesome-5-pro.js')}"></script>
-<script defer type="text/javascript" src="${URLUtils.staticURL('/js/googleTag.js')}"></script>
 <isloop items="${ require('*/cartridge/scripts/assets.js').scripts }" var="script">
     <script defer type="text/javascript" src="${script.src}"
         <isif condition="${script.integrity != null}">integrity="${script.integrity}" crossorigin="anonymous"></isif>
         >
     </script>
 </isloop>
+<isinclude template="gtm/globaldatalayer">
+<isinclude url="${URLUtils.url('GTM-Tracking')}">
+
+<iscomment> <script defer type="text/javascript" src="${URLUtils.staticURL('/js/main_design.js')}"></script> </iscomment>
+<iscomment> <script defer type="text/javascript" src="${URLUtils.staticURL('/js/googleTag.js')}"></script> </iscomment>

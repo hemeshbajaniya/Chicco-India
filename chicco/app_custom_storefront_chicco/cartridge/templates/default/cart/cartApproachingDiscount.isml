@@ -1,0 +1,9 @@
+<div class="approaching-discounts">
+    <isif condition="${pdict.approachingDiscounts.length > 0}">
+        <isloop items="${pdict.approachingDiscounts}" var="approachingDiscount">
+            <div class="single-approaching-discount text-center text-dangers pb-2 mb-3 border-bottom">
+                ${approachingDiscount.discountMsg}
+            </div>
+        </isloop>
+    </isif>
+</div>

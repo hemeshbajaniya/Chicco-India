@@ -1,0 +1,13 @@
+<script>
+    (function() {
+        window.dataLayer = window.dataLayer || [];
+        <isif condition="${!empty(pdict.GTMGlobalData)}">
+            window._gtmGlobalData = <isprint value="${JSON.stringify(pdict.GTMGlobalData)}" encoding="off">;
+        </isif>
+        <isif condition="${!empty(pdict.GTMDataLayer) && pdict.GTMDataLayer.length > 0}">
+        <isloop items="${pdict.GTMDataLayer}" var="dl">
+        window.dataLayer.push(<isprint value="${JSON.stringify(dl)}" encoding="off">);
+        </isloop>
+        </isif>
+    }());
+</script>

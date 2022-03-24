@@ -1,0 +1,14 @@
+{
+  "name": "gtm",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./int_gtm_sfra/cartridge/client/default/js/gtm/init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PixelMEDIA",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "intersection-observer": "^0.5.0"
+  }
+}

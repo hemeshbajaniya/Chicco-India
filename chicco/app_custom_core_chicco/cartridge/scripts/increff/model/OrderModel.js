@@ -63,13 +63,14 @@ function getOrderLineItems(order) {
     var orderLineItems = [];
     while(productLineItemsIt.hasNext()) {
         var productLineItem = productLineItemsIt.next();
+        var sellPricePerUnit = productLineItem.getPriceValue() / productLineItem.quantityValue;
         var orderLineItem = {
             channelSkuCode: productLineItem.productID ? productLineItem.productID : productLineItem.productName,
             orderItemCode: productLineItem.getUUID(),
             quantity: productLineItem.quantityValue,
             sellerDiscountPerUnit: getProductPriceAdjustmentsValue(productLineItem.getPriceAdjustments()),
             channelDiscountPerUnit: '',
-            sellingPricePerUnit: productLineItem.getPriceValue(),
+            sellingPricePerUnit: sellPricePerUnit,
            // shippingChargePerUnit: productLineItem.shippingLineItem.adjustedGrossPrice.value,
             giftOptions: {
                 giftwrapRequired: productLineItem.gift ? productLineItem.gift : getOrderLevelGiftInfo(order).isGift,

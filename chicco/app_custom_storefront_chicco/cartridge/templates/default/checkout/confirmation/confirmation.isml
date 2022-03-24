@@ -4,8 +4,9 @@
         assets.addCss('/css/layouts/cart.css');
         assets.addJs('/js/checkoutRegistration.js');
     </isscript>
-
-    <script>
+    
+    <input id="purchaseValue" type="hidden" value="${Number((pdict.order.totals.subTotal).replace(/[^0-9.-]+/g,""))}"/>
+    <iscomment> <script>
     dataLayer.push({ ecommerce: null });    
     var dataLayer =  window.dataLayer  ||  [];
     dataLayer.push({
@@ -24,8 +25,7 @@
         }
     }
     });
-    </script>
-    <input id="purchaseValue" type="hidden" value="${pdict.order.totals.subTotal}"/>
+    </script> </iscomment>
     <isif condition="${pdict.reportingURLs && pdict.reportingURLs.length}">
         <isinclude template="reporting/reportingUrls" />
     </isif>

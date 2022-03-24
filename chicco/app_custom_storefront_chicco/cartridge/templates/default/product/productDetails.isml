@@ -5,21 +5,21 @@
 
         assets.addCss('/css/layouts/product_listing.css');
         assets.addCss('/css/main.css');
-        assets.addCss('/css/custom.css');
+        //assets.addCss('/css/custom.css');
         assets.addCss('/css/product/share.css');
         assets.addCss('/css/discount-style.css');
         assets.addJs('/js/jquery.min.js');
         assets.addJs('/js/jquery.counterup.min.js');
         assets.addJs('/js/popper.min.js');
-        assets.addJs('/js/bootstrap.min.js');
+        //assets.addJs('/js/bootstrap.min.js');
         assets.addJs('/js/jquery.matchHeight-min.js');
         assets.addJs('/js/jquery.payment.min.js');
         assets.addJs('/js/main_design.js');
         assets.addJs('/js/share_link.js');
         assets.addJs('/js/jquery.fancybox.min.js');
-        assets.addJs('/css/jquery.fancybox.min.css');
+        //assets.addJs('/css/jquery.fancybox.min.css');
     </isscript>
-    <script>
+    <iscomment> <script>
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             "ecommerce": {
@@ -29,7 +29,7 @@
                 }
             }
         });
-    </script>
+    </script> </iscomment>
     <input id="viewContentName" type="hidden" name="" value="${pdict.viewContent.content_name}"/>
     <input id="viewContentCategory" type="hidden" name="" value="${pdict.viewContent.content_category}"/>
     <input id="viewContentIds" type="hidden" name="" value="<isprint value="${pdict.viewContent.content_ids}" encoding="off"/>"/>

@@ -111,6 +111,7 @@
 
                                 <!-- Tab panes 1 -->
                                 <div class="tab-pane container cart cart-page active shipping_product">
+                                    <isinclude template="cart/cartApproachingDiscount" />
                                     <div class="row align-items-center">
                                         <div class="col-12">
                                             <isloop items="${pdict.items}" var="lineItem" status="productItems">
@@ -125,7 +126,6 @@
                                                     </isif>
                                                 </isif>
                                             </isloop>
-                                            <isinclude template="cart/cartApproachingDiscount" />
                                         </div>
 
 
